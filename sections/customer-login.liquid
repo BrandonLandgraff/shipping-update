@@ -31,6 +31,11 @@
   gap: .5em;
   margin-bottom: 24px;
 }
+@media screen and (max-width: 1024px) {
+  .custom-account-icons {
+    grid-template-columns: 1fr;
+  }
+}
 .custom-account-icons p,
 .m-sign-up p {
   margin: 0px !important;
@@ -114,24 +119,24 @@
       <div class="m-sign-up">
         <h3 class="h2">New to <span id="register-text">Ecigone?</span></h3>
         <div class="custom-register-text">
-          <p><strong>Creating an account has benefits</strong></p>
+          <p><strong>{{ section.settings.title }}</strong></p>
         </div>
         <div class="custom-account-icons">
           <div class="icon-grid">
             {% render 'custom-past-order' %}
-            <p>Re-order past orders</p>
+            <p>{{ section.settings.benefit_1 }}</p>
           </div>
           <div class="icon-grid">
             {% render 'custom-earn-cashback' %}
-            <p>Re-order past orders</p>
+            <p>{{ section.settings.benefit_2 }}</p>
           </div>
           <div class="icon-grid">
             {% render 'custom-checkout-faster' %}
-            <p>Re-order past orders</p>
+            <p>{{ section.settings.benefit_3 }}</p>
           </div>
           <div class="icon-grid">
             {% render 'custom-reward' %}
-            <p>Re-order past orders</p>
+            <p>{{ section.settings.benefit_4 }}</p>
           </div>
         </div>
         <a class="m-button m-button--outline" href="{{ routes.account_register_url }}">
@@ -146,6 +151,40 @@
 {
   "name": "Customer login",
   "settings": [
+    {
+      "type": "header",
+      "content": "Benefits"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Creating an account has benefits"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Benefit"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Benefit"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Benefit"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Benefit"
+    },
     {
       "type": "header",
       "content": "Page header padding"
