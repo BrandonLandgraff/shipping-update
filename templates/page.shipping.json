@@ -41,6 +41,7 @@
       "blocks": {
         "liquid_ebdKmN": {
           "type": "liquid",
+          "disabled": true,
           "settings": {
             "width": "100%",
             "alignment": "center",
@@ -147,6 +148,7 @@
       "block_order": [
         "text_yBq89K"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "boxed_layout": true,
