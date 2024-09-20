@@ -821,6 +821,92 @@
                         </div>
                       </m-handpicked-products>
 
+                    {% when 'shipping_information' %}
+                      {% style %}
+                      .shipping-grid {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 1em;
+                        align-items: end;
+                      }
+                      @media screen and (max-width: 768px){
+                        .shipping-grid {
+                          flex-direction: column;
+                          gap: .5em;
+                        }
+                      }
+                      .shipping-image {
+                        width: 112px;
+                        height: auto;
+                      }
+                      .shipping-information .left-content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1em;
+                      }
+                      .shipping-information .right-content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .5em;
+                      }
+                      @media screen and (max-width: 768px) {
+                        .shipping-information .right-content {
+                          width: 100%;
+                        }
+                      }
+                      .shipping-information .left-content ul {
+                        list-style: disc;
+                        padding-left: 1em !important;
+                      }
+                      .download-app {
+                        text-align: left;
+                        color: #263042;
+                        font-size: 14px;
+                      }
+                      .shipping-logo,
+                      .shipping-logo svg {
+                        display: block;
+                        width: 112px;
+                        height: auto;
+                      }
+
+                      .m-custom-content__block {
+                        width: 100%;
+                        max-width: 1080px;
+                      }
+                      {% endstyle %}
+                      <div class="shipping-information">
+                        <div class="shipping-grid">
+
+                          <div class="left-content">
+                            {% if block.settings.image != blank %}
+                              <div class="shipping-image">
+                                    {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'lazy-load' }}
+                              </div>
+                            {% endif %}
+                            <h4>{{ block.settings.title }}</h4>
+                            <span class="description">{{ block.settings.description }}</span>
+                          </div>
+
+                          {% if block.settings.google_link != blank %}
+                            <div class="right-content">
+                              <p class="download-app">Download the app:</p>
+                              {% if block.settings.google_link != blank %}
+                                <a class="shipping-logo" href="{{ block.settings.google_link }}">
+                                  {% render 'google-store' %}
+                                </a>
+                              {% endif %}
+                              {% if block.settings.apple_link != blank %}
+                                <a class="shipping-logo" href="{{ block.settings.apple_link }}">
+                                  {% render 'apple-store' %}
+                                </a>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        
+                        </div>
+                      </div>
+
                     {% when 'image_comparison' %}
                       {{ 'section-image-comparison.css' | asset_url | stylesheet_tag }}
                       {% liquid
@@ -2187,6 +2273,39 @@
               "label": "Fade in right"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "shipping_information",
+      "name": "Shipping information",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Shipping information"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>This is some text that can be added to the site.</p>"
+        },
+        {
+          "type": "url",
+          "id": "google_link",
+          "label": "Google link"
+        },
+        {
+          "type": "url",
+          "id": "apple_link",
+          "label": "Apple link"
         }
       ]
     },

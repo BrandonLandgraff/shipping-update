@@ -12,6 +12,41 @@
   assign boxed_color_scheme = settings.boxed_color_scheme
 %}
 
+{% style %}
+.custom-reset-password {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0px;
+}
+.m-customer-forms .m-reset-password-btn {
+  margin: 0px;
+  color: #29B9CE;
+}
+#register-text {
+  color: #29B9CE;
+}
+.custom-account-icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5em;
+  margin-bottom: 24px;
+}
+.custom-account-icons p,
+.m-sign-up p {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.icon-grid {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.custom-register-text {
+  margin-bottom: 20px;
+}
+{% endstyle %}
+
 <div 
   class="m-section m-section--padding{% if boxed_layout %} m-section--boxed{% endif %} m-customer-forms"
   style="
@@ -22,7 +57,7 @@
   <div class="m-page-width"> 
     <div class="m-section__wrapper m-section__content md:m:flex{% if boxed_layout %} m-gradient m-color-{{ boxed_color_scheme }}{% endif %}">
       <div id="recover" class="m-recover-form">
-        <h3 class="h4">{{ 'customer.recover_password.title' | t }}</h3>
+        <h3 class="h2">{{ 'customer.recover_password.title' | t }}</h3>
         <p>{{ 'customer.recover_password.subtext' | t }}</p>
 
         <div data-recover-form>
@@ -54,7 +89,7 @@
         </div>
       </div>
       <div id="login" class="m-login-form">
-        <h3 class="h4">{{ 'customer.login.title' | t }}</h3>
+        <h3 class="h2">Login</h3>
         {% form 'customer_login' %}
           {% render 'form__error', form: form %}
           <input
@@ -70,17 +105,37 @@
             class="form-field form-field--input"
           >
 
-          <a href="#recover" class="m-reset-password-btn">{{ 'customer.login.forgot_password' | t }}</a>
+          <div class="custom-reset-password"><p>Forgot your password?</p> <a href="#recover" class="m-reset-password-btn">Reset password</a></div>
           <button class="m-button m-button--primary" type="submit">
-            {{ 'customer.login.sign_in' | t }}
+            SIGN IN
           </button>
         {% endform %}
       </div>
       <div class="m-sign-up">
-        <h3 class="h4">{{ 'customer.login.new_customer' | t }}</h3>
-        <p>{{ 'customer.register.description' | t }}</p>
-        <a class="m-button m-button--primary" href="{{ routes.account_register_url }}">
-          {{- 'customer.register.title' | t -}}
+        <h3 class="h2">New to <span id="register-text">Ecigone?</span></h3>
+        <div class="custom-register-text">
+          <p><strong>Creating an account has benefits</strong></p>
+        </div>
+        <div class="custom-account-icons">
+          <div class="icon-grid">
+            {% render 'custom-past-order' %}
+            <p>Re-order past orders</p>
+          </div>
+          <div class="icon-grid">
+            {% render 'custom-earn-cashback' %}
+            <p>Re-order past orders</p>
+          </div>
+          <div class="icon-grid">
+            {% render 'custom-checkout-faster' %}
+            <p>Re-order past orders</p>
+          </div>
+          <div class="icon-grid">
+            {% render 'custom-reward' %}
+            <p>Re-order past orders</p>
+          </div>
+        </div>
+        <a class="m-button m-button--outline" href="{{ routes.account_register_url }}">
+          CREATE ACCOUNT
         </a>
       </div>
     </div>
