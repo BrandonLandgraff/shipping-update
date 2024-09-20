@@ -136,6 +136,16 @@
             "apple_link": "https:\/\/apps.apple.com\/gb\/app\/royal-mail\/id1435168829"
           }
         },
+        "shipping_information_zXiRwg": {
+          "type": "shipping_information",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Royal_Mail.svg_1d5c3bd2-0927-4d59-ab19-fbfecc48e172.webp",
+            "title": "DPD Pickup Shop - Next Day UK : 7 Days A Week",
+            "description": "<ul><li>Place your order before <strong>4pm <\/strong>for same day dispatch <strong>Mon-Fri<\/strong><\/li><li>Place your order before <strong>3pm <\/strong>for same day dispatch <strong>Sat-Sun<\/strong><\/li><li>Deliveries are made every day (excluding Bank Holidays) <\/li><li>Fully Tracked with alert when your order is ready for collection £1.99 on orders under £20 <\/li><li><strong>FREE on orders over £20<\/strong><\/li><\/ul>",
+            "google_link": "https:\/\/play.google.com\/store\/apps\/details?id=com.royalmail.app.droid&hl=en_CA&pli=1",
+            "apple_link": "https:\/\/apps.apple.com\/gb\/app\/royal-mail\/id1435168829"
+          }
+        },
         "liquid_U4NxQT": {
           "type": "liquid",
           "disabled": true,
@@ -194,6 +204,7 @@
       },
       "block_order": [
         "shipping_information_9Jzx3i",
+        "shipping_information_zXiRwg",
         "liquid_U4NxQT",
         "html_6WKxKq",
         "liquid_bUCNpt",
