@@ -156,6 +156,16 @@
             "apple_link": "https:\/\/apps.apple.com\/gb\/app\/dpd\/id1064977107"
           }
         },
+        "shipping_information_8LAhht": {
+          "type": "shipping_information",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/DPDLOCAL_logo_bluegrad_2c_coated-01.webp",
+            "title": "DPD Next Day UK : 7 Days A Week",
+            "description": "<ul><li>Place your order before <strong>3pm <\/strong>for same day dispatch <strong>Sat-Sun <\/strong><\/li><li>Deliveries are made every day (excluding Bank Holidays) <\/li><li>Fully Tracked Service with a 1-Hour delivery window <\/li><li>Signature Required, or Safe Place Option & Collection Point <\/li><li>£5.99 on orders under £30 <\/li><li>£4.99 on orders over £30 & under £80 <\/li><li><strong>FREE on orders over £80 <\/strong><\/li><\/ul>",
+            "google_link": "https:\/\/play.google.com\/store\/apps\/details?id=com.dpd.yourdpd&hl=en_CA",
+            "apple_link": "https:\/\/apps.apple.com\/gb\/app\/dpd\/id1064977107"
+          }
+        },
         "liquid_U4NxQT": {
           "type": "liquid",
           "disabled": true,
@@ -216,6 +226,7 @@
         "shipping_information_9Jzx3i",
         "shipping_information_zXiRwg",
         "shipping_information_FUxULH",
+        "shipping_information_8LAhht",
         "liquid_U4NxQT",
         "html_6WKxKq",
         "liquid_bUCNpt",
