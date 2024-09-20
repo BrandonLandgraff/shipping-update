@@ -251,6 +251,55 @@
         "padding_bottom": 30,
         "custom_class": ""
       }
+    },
+    "custom_content_P9xqNH": {
+      "type": "custom-content",
+      "blocks": {
+        "shipping_information_MBj4zb": {
+          "type": "shipping_information",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/s_16800ad6-4b21-4138-9b71-ba9d32d00f15.webp",
+            "title": "UPS Standard & Express International : Mon-Fri",
+            "description": "<ul><li>Place your order before <strong>2pm <\/strong>for same day dispatch <strong>Mon-Fri <\/strong><\/li><li>Deliveries are made Mon-Fri (excluding Bank Holidays) Fully Tracked Service, Signature Required <\/li><li>Express Saver: 1-2 Working Days <\/li><li>Standard Delivery: 3-5 Working Days <\/li><li>Prices Calculated At Checkout <\/li><li>Import Duty & Taxes to be paid on arrival <\/li><li>Customs rejection\/refusal is at the risk of receiver, Ecigone will not be liable for detained or destroyed goods. <\/li><\/ul>",
+            "google_link": "https:\/\/play.google.com\/store\/apps\/details?id=com.dpd.yourdpd&hl=en_CA",
+            "apple_link": "https:\/\/apps.apple.com\/gb\/app\/dpd\/id1064977107"
+          }
+        },
+        "shipping_information_NrX3Yi": {
+          "type": "shipping_information",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Royal_Mail.svg_1d5c3bd2-0927-4d59-ab19-fbfecc48e172.webp",
+            "title": "Royal Mail Tracked 24 : Mon-Fri",
+            "description": "<ul><li>Place your order before <strong>4pm <\/strong>for same day dispatch <strong>Mon-Fri<\/strong><\/li><li>Deliveries are made every day (excluding Bank Holidays) <\/li><li>Fully Tracked Service with a 2-Hour delivery window Safe Place Option <\/li><li>£1.99 on orders under £30 <\/li><li><strong>FREE on orders over £30 <\/strong><\/li><\/ul>",
+            "google_link": "https:\/\/play.google.com\/store\/apps\/details?id=com.royalmail.app.droid&hl=en_CA&pli=1",
+            "apple_link": "https:\/\/apps.apple.com\/gb\/app\/royal-mail\/id1435168829"
+          }
+        }
+      },
+      "block_order": [
+        "shipping_information_MBj4zb",
+        "shipping_information_NrX3Yi"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "boxed_layout": true,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "header_divider": true,
+        "header_alignment": "left",
+        "header_mobile_alignment": "left",
+        "heading": "International Shipping",
+        "heading_size": "h2",
+        "subheading": "",
+        "description": "",
+        "text_color": "body",
+        "gap": 30,
+        "row_gap": 40,
+        "gap_mobile": 16,
+        "row_gap_mobile": 24,
+        "padding_top": 0,
+        "padding_bottom": 30,
+        "custom_class": ""
+      }
     }
   },
   "order": [
@@ -258,6 +307,7 @@
     "main",
     "727b7047-8858-40a6-adc2-59d49243edf2",
     "custom_content_88gNhP",
-    "custom_content_Nghc4w"
+    "custom_content_Nghc4w",
+    "custom_content_P9xqNH"
   ]
 }
