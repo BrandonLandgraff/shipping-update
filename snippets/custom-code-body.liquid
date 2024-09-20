@@ -1,0 +1,79 @@
+{%- comment -%}
+  Custom code before </body>
+  All custom code in this file will be kept when updating the theme
+ {% render 'appikon-discounts' %}
+{%- endcomment -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Corporation",
+  "name": "Ecigone",
+  "alternateName": "Ecig One",
+  "url": "https://ecigone.co.uk/",
+  "logo": "https://ecigone.co.uk/cdn/shop/files/EcigOne-logo-DBG-D_d4142840-a352-452a-9af9-779b995efae4.png",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+44 1246 260010",
+    "contactType": "customer service",
+    "contactOption": "TollFree",
+    "areaServed": "GB",
+    "availableLanguage": "en"
+  },{
+    "@type": "ContactPoint",
+    "telephone": "+44 1246 260010",
+    "contactType": "package tracking",
+    "contactOption": "TollFree",
+    "areaServed": "GB",
+    "availableLanguage": "en"
+  },{
+    "@type": "ContactPoint",
+    "telephone": "+44 1246 260010",
+    "contactType": "technical support",
+    "contactOption": "TollFree",
+    "areaServed": "GB",
+    "availableLanguage": "en"
+  }],
+  "sameAs": [
+    "https://www.facebook.com/ECigOne.co.uk/",
+    "https://x.com/ecigone",
+    "https://www.instagram.com/ecig.one/",
+    "https://www.youtube.com/channel/UC0KPyZONGskesZsOwSVx7mQ",
+    "https://ecigone.co.uk/"
+  ]
+}
+</script>
+
+<!-- Chatbox -->
+    <script>
+        function ensureShopifyChatZIndex() {
+            const chatElement = document.getElementById('shopify-chat');
+            if (chatElement) {
+                chatElement.style.zIndex = '15';
+                const inboxElement = chatElement.querySelector('inbox-online-store-chat');
+                if (inboxElement) {
+                    inboxElement.style.zIndex = '15';
+                }
+            } else {
+                // If the element doesn't exist yet, try again after a short delay
+                setTimeout(ensureShopifyChatZIndex, 500);
+            }
+        }
+
+        // Run the function when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', ensureShopifyChatZIndex);
+
+        // Also run the function when the window has fully loaded (including all resources)
+        window.addEventListener('load', ensureShopifyChatZIndex);
+
+        // Set up a MutationObserver to watch for changes in the DOM
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    ensureShopifyChatZIndex();
+                }
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>

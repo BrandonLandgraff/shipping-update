@@ -1,0 +1,396 @@
+{% liquid
+  assign enable_rtl = settings.enable_rtl
+  assign language_support_rtl = settings.language_support_rtl
+  if enable_rtl and language_support_rtl != blank
+    assign shop_locale = localization.language.iso_code
+    assign language_support_rtl_list = language_support_rtl | split: ','
+    assign is_rtl = language_support_rtl_list | where: shop_locale
+    if is_rtl.size > 0
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
+%}
+<!doctype html>
+<html
+  class="js {% if settings.page_transition %} m:overflow-hidden{% endif %}"
+  lang="{{ request.locale.iso_code }}"
+  {% if enable_rtl %}
+    dir="rtl"
+  {% endif %}
+  data-template="{{ template.name }}"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0{% comment %}, user-scalable=0{% endcomment %}">
+    <meta name="theme-color" content="{{ settings.color_primary }}">
+
+    {% if enable_rtl %}
+      {{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}
+    {% endif %}     
+
+    {%- liquid
+      render 'social-meta-tags'
+      render 'preload'
+      render 'SEO' 
+      render 'social-meta-tags' 
+      render 'font-face'
+    -%}
+
+    {% render 'critical-css' %}
+    {% render 'custom-code-head' %}
+
+    {{ 'grid.css' | asset_url | stylesheet_tag }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'modules.css' | asset_url | stylesheet_tag }}
+    {{ 'rtl.css' | asset_url | stylesheet_tag }}
+
+    {% render 'style-tags' %}
+
+    <script src="{{ 'vendor.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme-global.js' | asset_url }}" defer="defer"></script>
+
+    {%- if settings.animations != 'none' -%}
+      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {% capture MyJsFunc %}load', function(){}{% endcapture %} {% capture MyJsFunc2%}document.addEventListener('StartAsyncLoading',function(event){asyncLoad();});if(window.attachEvent){%endcapture %} {% capture MyJsFunc3%}document.addEventListener('StartAsyncLoading',function(event){prefetchAssets();});{%endcapture %} {% if template contains "index" or template contains "product" or template contains "collection" or page.url contains "pages" or blog.url contains "blogs" %} {{ content_for_header | replace: "load', asyncLoad",MyJsFunc | replace: 'if(window.attachEvent)', MyJsFunc2 | replace: 'defer="defer" src="//', 'defer="defer" data-src="//' | replace: 'DOMContentLoaded', 'StartPreviewBarLoading' | replace: "addEventListener('load', prefetchAssets);", MyJsFunc3 | replace: 'src="/checkouts/internal/preloads.js', 'data-src="/checkouts/internal/preloads.js' | replace: 'src="https://shop.app/checkouts', 'data-src="https://shop.app/checkouts' }} {% else %} {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%} {% endif %}
+ 
+
+    {% render 'theme-data' %}
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+{% render 'store-credit-launcher' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'store-credit-launcher' %}
+</head>
+  <body
+    id="m-theme"
+    class="template-{{ template.name | append: ' ' | append: template.suffix }}{% if settings.page_transition %} m:overflow-hidden{% endif %}"
+    {% if template.name == 'product' %}
+      data-product-id="{{ product.id }}"
+    {% endif %}
+  >
+
+    <!-- AMP UPSELL EDITS - START -->
+    <style>
+      .amp-cart__footer-row--subtotal-label::after {
+        content: "Taxes included for UK customers only";
+        opacity: .6;
+        font-size: 13px;
+      }
+      .amp-cart__footer-row--subtotal-label {
+        display: flex;
+        flex-direction: column;
+      }
+      .amp-cart__variant-selector-option-select select {
+        height: 40px;
+        /* Adjust as needed */
+        line-height: 15px;
+        vertical-align: middle;
+      }
+      .amp-cart__variant-selector-button {
+        background: rgb(41, 185, 206) !important;
+      }
+      #amp-theme-extension>div>div>div.amp-cart-drawer__inner>div.amp-cart-drawer--scrollable>div.amp-cart__free-gifts.amp-cart__free-gifts--carousel>div.amp-cart__free-gifts-carousel>div>div.swiper-wrapper>div>div>div>div.amp-cart__free-gifts-item-details-bottom>div:nth-child(1) {
+        color: black !important;
+        font-weight: bold !important;
+      }
+      .amp-cart__free-gifts-item-price--dashed {
+        color: rgb(86, 86, 86) !important;
+      }
+      .amp-cart__free-gifts-item-button {
+        text-transform: uppercase !important;
+      }
+      .amp-hide-discount-box {
+        display: none !important;
+      }
+      /* AMP Upsell Cart Order - Start */
+      .amp-cart-drawer .amp-cart__announcement { order: 1; }
+      .amp-cart-drawer .amp-cart__header { order: 2; }
+      .amp-cart-drawer .amp-cart__rewards { order: 3; }
+      .amp-cart-drawer .amp-cart__cart-lines { order: 4; }
+      .amp-cart-drawer .amp-cart__free-gifts { order: 5; }
+      .amp-cart-drawer .amp-cart__upsell { order: 6; }
+      .amp-cart-drawer .amp-cart__note { order: 7; }
+      .amp-cart-drawer .amp-cart__discount-box { order: 8; }
+      .amp-cart-drawer .amp-cart__footer { order: 9; }
+      /* AMP Upsell Cart Order - End */
+      .amp-cart-drawer .amp-cart__discount-box {
+        background: #efefef !important;
+      }
+      .amp-cart-drawer .amp-cart__discount-box {
+        padding: 0 30px;
+      }
+      .amp-cart-drawer .amp-cart__discount-box .amp-cart__discount-box-title {
+        display: none;
+      }
+      .amp-cart-drawer .amp-cart__discount-box .amp-cart__discount-box-input {
+        background: #ffffff;
+      }
+      .amp-cart-drawer .amp-cart__note {
+        padding-bottom: 10px;
+      }
+      .amp-cart-drawer .amp-cart__note .amp-cart__note-button-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 10px;
+      }
+      .amp-cart-drawer .amp-cart__note .amp-cart__note-button-wrapper .amp-cart__note-button {
+        font-weight: 700;
+      }
+      .amp-cart-drawer .amp-cart__note .amp-cart__note-button-wrapper .amp-custom-discount-header {
+        font-weight: 700;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 16px;
+      }
+      .amp-cart-drawer:has(.amp-cart__footer .amp-cart__footer-row-discounts-container) .amp-cart__note .amp-custom-discount-header {
+        display: none;
+      }
+      .amp-cart-drawer .amp-cart__footer .amp-cart__footer-row:nth-child(1) {
+        padding-top: 0;
+      }
+      .amp-cart-drawer .amp-hidden {
+        display: none;
+      }
+      .amp-cart-drawer .amp-cart__header {
+        padding: 10px 30px;
+        border: 0;
+      }
+      .amp-cart-drawer .amp-cart__rewards {
+        padding: 10px 30px;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-current-reward,
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-applied-reward {
+        color: #29b9ce !important;
+        font-weight: 700;
+      }
+      .amp-cart-drawer .amp-cart__cart-lines {
+        border-top: 0;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-icon--unfulfilled svg,
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-icon--fulfilled svg {
+        display: none;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-icon--unfulfilled {
+        width: 20px;
+        height: 20px;
+        background: #e8e8e8;
+        border: 0;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-icon--fulfilled {
+        width: 20px;
+        height: 20px;
+        background: #29b9ce;
+        border: 0;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-labels {
+        transform: translate(8px,-15px);
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-marker {
+        background: #e8e8e8 !important;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar-tier-check {
+        display: none;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-current-reward {
+        order: 1;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-applied-reward {
+        text-align: left;
+        order: 2;
+      }
+      .amp-cart-drawer .amp-cart__rewards .amp-cart__rewards-progress-bar {
+        order: 3;
+      }
+      .amp-cart-drawer .amp-cart__footer .custom-payment-badges {
+        max-width: 100%;
+        height: auto;
+      }
+      .amp-cart-drawer .amp-cart__footer .amp-cart__footer-continue-link {
+        text-decoration: underline;
+        font-weight: 700;
+      }
+      .amp-cart-drawer .amp-cart__footer .amp-cart__footer-checkout-button {
+        padding: 12px 18px;
+      }
+      /* mobile fix */
+      .shopify-section-group-header-group:has(.m-topbar-section),
+      .shopify-section-group-header-group:has(.m-topbar-section) * {
+        max-width: 100%;
+      }
+    </style>
+    <script>
+      function ampInitCustomHeaders () {
+        const discountBoxForm = document.querySelector(".amp-cart-drawer .amp-cart__discount-box .amp-cart__discount-box-form");
+    
+        if (discountBoxForm) {
+          // hide discount box by default
+          discountBoxForm.classList.add("amp-hide-discount-box");
+          
+          // add custom discount box header
+          const discountCustomHeader = document.createElement('p');
+          discountCustomHeader.classList.add('amp-custom-discount-header');
+          discountCustomHeader.textContent = 'Add Coupon';
+          
+          const noteHeader = document.querySelector('.amp-cart-drawer .amp-cart__note .amp-cart__note-button');
+          
+          if (noteHeader) {
+            noteHeader.insertAdjacentElement('afterend', discountCustomHeader);
+          }
+        }
+      }
+      
+      function ampInitCustomHeaderListeners () {
+        document.addEventListener('click', e => {
+          if (e.target.matches('.amp-cart-drawer .amp-cart__note .amp-cart__note-button')) {
+            const discountBoxForm = document.querySelector(".amp-cart-drawer .amp-cart__discount-box .amp-cart__discount-box-form");
+            const noteBody = document.querySelector('.amp-cart-drawer .amp-cart__note .amp-cart__note-input');
+            if (discountBoxForm) {
+              discountBoxForm.classList.add('amp-hide-discount-box');
+            }
+            if (noteBody) {
+              noteBody.classList.remove('amp-hidden');
+            }
+          } else if (e.target.matches('.amp-cart-drawer .amp-cart__note .amp-cart__note-button-wrapper .amp-custom-discount-header')) {
+            const discountBoxForm = document.querySelector(".amp-cart-drawer .amp-cart__discount-box .amp-cart__discount-box-form");
+            const noteBody = document.querySelector('.amp-cart-drawer .amp-cart__note .amp-cart__note-input');
+            if (discountBoxForm) {
+              discountBoxForm.classList.toggle("amp-hide-discount-box");
+            }
+            if (noteBody) {
+              noteBody.classList.add('amp-hidden');
+            }
+          }
+        });
+      }
+      
+      function ampAddPaymentTrustBadges () {
+        const ampCartFooter = document.querySelector('.amp-cart-drawer .amp-cart__footer');
+        const ampCustomPaymentBadges = document.querySelector('.amp-cart-drawer .amp-cart__footer .custom-payment-badges');
+        
+        if (ampCartFooter && !ampCustomPaymentBadges) {
+          const customPaymentBadges = document.createElement('img');
+          customPaymentBadges.setAttribute('src', 'https://ecigone.co.uk/cdn/shop/files/Korteles_031dcc57-96ea-4286-bbaf-eaa62be4b919.png');
+          customPaymentBadges.classList.add('custom-payment-badges');
+          ampCartFooter.insertAdjacentElement('beforeend', customPaymentBadges);
+        }
+      }
+    
+      window.AMP_CART_LOADED = () => {
+        ampInitCustomHeaders();
+        ampInitCustomHeaderListeners();
+        ampAddPaymentTrustBadges();
+      }
+    </script>
+    <!-- AMP UPSELL EDITS - END -->
+    
+    {% if settings.page_transition %}
+      <div class="m-page-transition">
+        <div class="m-page-transition__spinner">
+          <div class="m-page-transition__spinner-content">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {%- liquid
+      render 'scroll-top-button'
+      sections 'header-group'
+
+      assign enable_aside_group = false
+      if template == 'index' and settings.enable_aside_section_group == true
+        assign enable_aside_group = true
+      endif
+    -%}
+    <main role="main" id="MainContent" class="m-main-content">
+      {% if enable_aside_group %}
+      <div class="m-main-content__container m-page-width">
+        <div class="m-aside-section-group m:hidden xl:m:block">{% sections 'aside-group' %}</div>
+      {% endif %}
+        <div class="m-content-for-layout">{{ content_for_layout }}</div>
+      {% if enable_aside_group %}
+      </div>
+      {% endif %}
+    </main>
+
+    {%- sections 'footer-group' -%}
+
+    {% render 'script-tags' %}
+    {% render 'cookie-banner' %}
+    {% render 'custom-code-body' %}
+
+    <script src="{{ 'product-quick-view.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'compare-product.js' | asset_url }}" defer="defer"></script>
+
+    {%- if settings.predictive_search_enabled -%}
+      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- if linklists['gift-wrapping'].links != blank
+      and linklists['gift-wrapping'].links.first.type == 'product_link'
+    -%}
+      <script src="{{ 'gift-wrapping.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- if settings.show_swatch_option -%}
+      <script src="{{ 'product-card-swatch.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- if settings.enable_cart_drawer and template != 'cart' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    
+    
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+        window.lazySizesConfig.expand = 100;
+        window.lazySizesConfig.loadHidden = false;
+    </script>
+  
+    <script defer src="{{ 'lazysizes.min.js' | asset_url }}" ></script>
+        <script src="//cdn.shopify.com/s/files/1/0387/0359/5652/files/theme.js?v=1692867713" type="text/javascript"></script>
+
+
+
+    
+
+
+{% render 'freegifts-snippet' %}
+
+
+
+
+
+
+
+
+{% include 'store-credit-launcher' %}
+</body>
+</html>

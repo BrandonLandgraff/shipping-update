@@ -1,0 +1,91 @@
+{%- comment -%}
+  Custom code before </head>
+  For example: tracking code, custom css, custom javascript
+  All custom code in this file will be kept when updating the theme
+{%- endcomment -%}
+    <script async src="https://cdn.salesfire.co.uk/code/f55d333d-b28d-48ae-bcdc-b2ebb3ad2e9b.js"></script>
+    <meta name='dmca-site-verification' content='VnNSV0tPTTY3N1YwZkFiM2NHWFhEdz090' />
+    <meta name="msvalidate.01" content="5D4349E59A5C69A381C0FE54D41936AD" />
+    <meta name="yandex-verification" content="d572cc211f62b81b" />
+    <meta name="norton-safeweb-site-verification" content="e9q-f0mkjrkt7ykw6lmt5mx7em0c32i5o05vg4oamnk56jpxejprk3pek2dcgklgqkwtyqnc093m08i3i3e0riweuir3x6pyzirwz7t56iaqbwmvojuhfwihrtbnv8tl" />
+    <meta name="google-site-verification" content="thmctlye2old72S_5yyD5AGKGDNrG6wmx3OVeLch5Ss" />
+    <meta name="p:domain_verify" content="ad5d3b1dd30b753026fc01f877ed2af5"/>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    window.lipscoreInit = function() {
+        lipscore.init({
+            apiKey: "2d1f05fa1fc9faf6bd769c21"
+        });
+    };
+    (function() {
+        var scr = document.createElement('script'); scr.async = 1;
+        scr.src = "//static.lipscore.com/assets/en/lipscore-v1.js";
+        document.getElementsByTagName('head')[0].appendChild(scr);
+    })();
+    //]]>
+</script>  
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof __sf !== 'undefined' && __sf.domChange) {
+    __sf.domChange();
+  }
+});
+</script>
+
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded and parsed');
+
+            // Находим элемент ссылки
+            var reviewLink = document.querySelector('.lipscore-rating-review-link');
+            console.log('Review link:', reviewLink);
+
+            // Проверяем, что элемент существует
+            if (reviewLink) {
+                // Добавляем обработчик события click на элемент ссылки
+                reviewLink.addEventListener('click', function(event) {
+                    console.log('Review link clicked');
+                    event.preventDefault(); // Предотвращаем стандартное действие по клику
+
+                    // Находим третий элемент с классом m-tab-header
+                    var tabHeaders = document.querySelectorAll('.m-tab-header');
+                    console.log('Tab headers:', tabHeaders);
+
+                    if (tabHeaders.length >= 3) {
+                        var thirdTabHeader = tabHeaders[2];
+                        console.log('Third tab header before adding class:', thirdTabHeader);
+
+                        thirdTabHeader.classList.add('active'); // Добавляем класс active
+
+                        console.log('Third tab header after adding class:', thirdTabHeader);
+
+                        // Используем MutationObserver для отслеживания изменения класса
+                        var observer = new MutationObserver(function(mutations) {
+                            mutations.forEach(function(mutation) {
+                                console.log('Mutation observed:', mutation);
+                                if (mutation.attributeName === 'class' && thirdTabHeader.classList.contains('active')) {
+                                    console.log('Class "active" added to third tab header');
+                                    // Повторно выполняем клик на элементе ссылки
+                                    reviewLink.click();
+                                    console.log('Review link clicked again');
+                                    // Останавливаем наблюдение после выполнения клика
+                                    observer.disconnect();
+                                }
+                            });
+                        });
+
+                        // Настраиваем наблюдатель для отслеживания изменений атрибутов
+                        observer.observe(thirdTabHeader, { attributes: true });
+                    } else {
+                        console.log('Not enough tab headers found');
+                    }
+                });
+            } else {
+                console.log('Review link not found');
+            }
+        });
+</script>
+
+

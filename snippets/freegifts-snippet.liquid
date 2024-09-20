@@ -1,0 +1,150 @@
+{% if template.name != 'cart' %}
+  <style>
+      #freegifts-main-popup-container{
+        display: none !important;
+      }
+
+      .bogos-slider-offer .bogos-offer-gift-items-container .glider-track {
+        display: unset !important;
+      }
+
+      .bogos-offer-gift-items-container .bogos-offer-gift-item {
+        display: flex;
+        flex-direction: row !important;
+        width: 100% !important;
+        max-width: unset !important;
+        margin-bottom: 8px;
+        border-radius: unset !important;
+      }
+
+      .bogos-gift-item-title-price {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .bogos-gifts-slider-container {
+        padding: unset !important;
+      }
+
+      .bogos-offer-gift-item .bogos-gift-product-title {
+      font-size: 13px !important;
+      font-weight: 500;
+      line-height: 1.1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      }
+
+      .bogos-slider-header-info{
+        display: none !important;
+      }
+    .bogos-offer-gift-item .bogos-gift-item-bottom-info {
+      padding: 0 12px 0px 22px !important;
+    }
+
+    .bogos-slider-offers-container .bogos-slider-offer {
+    border-radius: unset !important;
+    }
+
+    .bogos-slider-offer .bogos-slider-offer-title {
+    font-size: 16px !important;
+    }
+
+    .bogos-gifts-slider-container .bogos-gifts-slider-header {
+      margin-bottom: unset !important;
+    }
+  </style>
+{% endif %}
+
+<script id="bogos_section_gift_item" type="text/template">
+   {% raw %}
+       <div class="bogos-offer-gift-item" style ="max-width: unset !important">
+               <div class="bogos-gift-item-top-info">
+                   <div class="bogos-gift-item-image-container">
+                       <a class="gift-original-url" href="/products/{{ fg_product_handle }}" target="_blank">
+                           <img class="bogos-gift-item-image" src="{{ fg_product_img }}" alt="{{ fg_product_img_alt }}">
+                       </a>
+                       <div class="bogos-gift-quantity-container {{ bogos_check_show_quantity_box }}">
+                           <button class="bogos-minus-btn">&minus;</button>
+                           <input type="number" class="bogos-gift-quantity-input input-box" value="1" min="1"
+                                  max="{{ bogos_number_max_gifts }}">
+                           <button class="bogos-plus-btn">&plus;</button>
+                       </div>
+                       <select class="bogos-gift-select-variant {{ bogos_check_show_select_variant }}">
+                           <option value="">
+                               {{ bogos_default_select_variant_title }}
+                           </option>
+                           {{ sca_fg_variant_select_section }}
+                       </select>
+                   </div>
+
+               </div>
+                 <div class="bogos-gift-item-title-price">
+                     <a class="gift-original-url" href="/products/{{ fg_product_handle }}" target="_blank">
+                       <div class="bogos-gift-item-title">
+                           <div class="bogos-gift-product-title">
+                               {{ fg_product_title }}
+                           </div>
+                           <span class="bogos-gift-variant-title {{ fg_gifts_check_show_by_variants }}">
+                             {{ fg_variant_title }}
+                           </span>
+                       </div>
+                   </a>
+                   <div class="bogos-gift-item-price-container">
+                         <span class="bogos-gift-item-price">
+                           {{ fg_gift_price }}
+                         </span>
+                       <span class="bogos-gift-item-compare-price">
+                             {{ fg_original_price }}
+                       </span>
+                   </div>
+               </div>
+
+               <div class="bogos-gift-item-bottom-info">
+  <div class="bogos-gift-item-price-container" style="display: none !important">
+                         <span class="bogos-gift-item-price">
+                           {{ fg_gift_price }}
+                         </span>
+                       <span class="bogos-gift-item-compare-price">
+                             {{ fg_original_price }}
+                       </span>
+                   </div>
+                   <button class="bogos-gift-item-add-btn btn-add-to-cart" data-offer="{{ fg_product_belongs_to_offer }}"
+                           data-variant="{{ fg_variant_id }}">
+                       {{ fg_add_to_cart }}
+                   </button>
+               </div>
+           </div>
+   {% endraw %}
+</script>
+
+<script id="bogos_section_slider_offer" type="text/template">
+  {% raw %}
+    <div class="bogos-slider-offer" data-offer="{{ bogos_offer_id }}">
+              <div class="bogos-slider-offer-title {{ bogos_check_offer_title }}">
+                  {{ bogos_offer_title }}
+              </div>
+              <div class="bogos-slider-offer-badge-container {{ check_show_number_gift_available }}">
+                  <div class="bogos-slider-offer-badge {{ check_show_number_gift_available_type }}">
+
+                        <span class="bogos-badge-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M4.5 0C3.4801 0 2.6385 0.763422 2.51547 1.75H2.25C1.00736 1.75 0 2.75736 0 4V11.75C0 12.9926 1.00736 14 2.25 14H9.75C10.9926 14 12 12.9926 12 11.75V4C12 2.75736 10.9926 1.75 9.75 1.75H9.48453C9.3615 0.763422 8.5199 0 7.5 0H4.5ZM7.5 1.5H4.5C4.22386 1.5 4 1.72386 4 2V3C4 3.27614 4.22386 3.5 4.5 3.5H7.5C7.77614 3.5 8 3.27614 8 3V2C8 1.72386 7.77614 1.5 7.5 1.5ZM9.28033 7.28033C9.57322 6.98744 9.57322 6.51256 9.28033 6.21967C8.98744 5.92678 8.51256 5.92678 8.21967 6.21967L5.25 9.18934L4.03033 7.96967C3.73744 7.67678 3.26256 7.67678 2.96967 7.96967C2.67678 8.26256 2.67678 8.73744 2.96967 9.03033L4.71967 10.7803C5.01256 11.0732 5.48744 11.0732 5.78033 10.7803L9.28033 7.28033Z"
+                                  fill="#29845A"/>
+                          </svg>
+                        </span>
+                      <span class="bogos-badge-title">
+                          {{ bogos_number_gift_available }}
+                        </span>
+                  </div>
+              </div>
+              <div class="glider-contain">
+                  <div class="glider bogos-offer-gift-items-container" id="fg-gift-items"></div>
+              </div>
+              {{ sca_fg_disable_slider_section }}
+          </div>
+  {% endraw %}
+</script>

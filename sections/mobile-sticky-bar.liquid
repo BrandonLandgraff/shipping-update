@@ -1,0 +1,571 @@
+{% style %}
+.m-sticky-bar {
+  --m-duration-default: 0.3s;
+  --m-sticky-bar-bg: {{ section.settings.desktop_background_color }};
+  --m-sticky-bar-stroke: {{ section.settings.stroke_color }};
+  --m-sticky-bar-hover: {{ section.settings.hover_color }};
+  position: fixed;
+  z-index: 11;
+  display: flex;
+  padding: {{ section.settings.section_padding_top }}px {{ section.settings.section_padding_right }}px {{ section.settings.section_padding_bottom }}px {{ section.settings.section_padding_left }}px;
+  margin: {{ section.settings.section_margin_top }}px {{ section.settings.section_margin_right }}px {{ section.settings.section_margin_bottom }}px {{ section.settings.section_margin_left }}px;
+  background-color: var(--m-sticky-bar-bg);
+}
+
+/* Mobile and tablet layout */
+@media screen and (max-width: 1290px) {
+  .m-sticky-bar {
+    {% if section.settings.show_on_mobile %}
+      display: flex !important;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      justify-content: space-between;
+      border-top: {{ section.settings.stroke_width }}px solid var(--m-sticky-bar-stroke);
+    {% else %}
+      display: none !important;
+    {% endif %}
+  }
+}
+
+/* Desktop layout */
+@media screen and (min-width: 1291px) {
+  .m-sticky-bar {
+    {% if section.settings.show_on_desktop %}
+      display: flex !important;
+      flex-direction: column;
+      left: {{ section.settings.desktop_position_x }}px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: {{ section.settings.desktop_corner_radius }}px;
+      border: {{ section.settings.stroke_width }}px solid var(--m-sticky-bar-stroke);
+    {% else %}
+      display: none !important;
+    {% endif %}
+  }
+}
+
+.m-sticky-bar--item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.m-sticky-bar--button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  transition: all var(--m-duration-default) ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.m-sticky-bar--item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--m-sticky-bar-hover);
+  opacity: 0;
+  transition: opacity var(--m-duration-default) ease-out;
+  border-radius: {{ section.settings.desktop_corner_radius }}px;
+  z-index: 0;
+}
+
+.m-sticky-bar--item:hover::before {
+  opacity: {{ section.settings.hover_opacity }};
+}
+
+.m-sticky-bar--icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.m-sticky-bar--icon svg,
+.m-sticky-bar--icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.m-sticky-bar--text {
+  text-align: center;
+  position: relative;
+}
+{% endstyle %}
+
+{% if section.settings.enable_sticky_bar %}
+  <div class="m-sticky-bar m-gradient m-color-{{ section.settings.color_scheme }}">
+    {% for block in section.blocks %}
+      {% if block.settings.show_button %}
+        {% assign should_display = true %}
+        {% if block.settings.only_show_logged_in %}
+          {% if customer %}
+            {% assign should_display = true %}
+          {% else %}
+            {% assign should_display = false %}
+          {% endif %}
+        {% endif %}
+        {% if should_display %}
+          {% liquid
+            assign button_url = block.settings.button_link
+            assign button_text = block.settings.button_text
+            assign icon_html = ''
+            case block.settings.button_type
+              when 'home'
+                assign button_url = routes.root_url
+                assign button_text = button_text | default: 'Home'
+                assign icon_html = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>'
+              when 'cart'
+                assign button_url = routes.cart_url
+                assign button_text = button_text | default: 'Cart'
+                assign icon_html = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>'
+              when 'account'
+                assign button_url = routes.account_url
+                assign button_text = button_text | default: 'Account'
+                assign icon_html = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>'
+              when 'search'
+                assign button_url = routes.search_url
+                assign button_text = button_text | default: 'Search'
+                assign icon_html = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>'
+              when 'menu'
+                assign button_text = button_text | default: 'Menu'
+                assign icon_html = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>'
+            endcase
+          %}
+          {% if block.settings.button_icon_svg != blank %}
+            {% assign icon_html = block.settings.button_icon_svg %}
+          {% endif %}
+          <div class="m-sticky-bar--item" 
+               {{ block.shopify_attributes }}
+               style="{% unless block.settings.show_on_mobile %}@media screen and (max-width: 1570px) { display: none !important; }{% endunless %}
+                      {% unless block.settings.show_on_desktop %}@media screen and (min-width: 1571px) { display: none !important; }{% endunless %}
+                      padding: {{ block.settings.icon_padding_top }}px {{ block.settings.icon_padding_right }}px {{ block.settings.icon_padding_bottom }}px {{ block.settings.icon_padding_left }}px;
+                      margin: {{ block.settings.icon_margin_top }}px {{ block.settings.icon_margin_right }}px {{ block.settings.icon_margin_bottom }}px {{ block.settings.icon_margin_left }}px;">
+            <a href="{{ button_url }}"
+               class="m-sticky-bar--button"
+               style="flex-direction: {{ block.settings.layout_direction }};"
+               {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+               {{ block.settings.button_custom_attributes }}>
+              <div class="m-sticky-bar--icon-wrapper">
+                {% if block.settings.button_icon_image != blank %}
+                  {{ block.settings.button_icon_image | image_url: width: block.settings.icon_size | image_tag: class: 'm-sticky-bar--icon', loading: 'lazy', width: block.settings.icon_size, height: block.settings.icon_size }}
+                {% else %}
+                  <span class="m-sticky-bar--icon" style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px;">
+                    {{ icon_html }}
+                  </span>
+                {% endif %}
+              </div>
+              <span class="m-sticky-bar--text" style="font-size: {{ block.settings.text_size }}px;">
+                {{ button_text }}
+              </span>
+            </a>
+            {{ block.settings.button_custom_liquid }}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sticky bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_bar",
+      "label": "Enable Sticky Bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile and tablet (up to 1570px)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "label": "Show on desktop (1571px and above)",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_padding_left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Left padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_padding_right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Right padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_margin_left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Left margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_margin_right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Right margin",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "desktop_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "stroke_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Stroke width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "stroke_color",
+      "label": "Stroke color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Hover opacity",
+      "default": 0.1
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings (1571px and above)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_position_x",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Distance from left",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_corner_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show button",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "only_show_logged_in",
+          "label": "Only show when user is logged in",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_on_mobile",
+          "label": "Show on mobile and tablet (up to 1570px)",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_on_desktop",
+          "label": "Show on desktop (1571px and above)",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "button_type",
+          "label": "Button type",
+          "options": [
+            { "value": "custom", "label": "Custom" },
+            { "value": "home", "label": "Home" },
+            { "value": "cart", "label": "Cart" },
+            { "value": "account", "label": "Account" },
+            { "value": "search", "label": "Search" },
+            { "value": "menu", "label": "Menu" }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "button_icon_svg",
+          "label": "Custom icon (SVG)",
+          "info": "Enter SVG code for the icon. Leave blank to use default."
+        },
+        {
+          "type": "image_picker",
+          "id": "button_icon_image",
+          "label": "Custom icon (Image)",
+          "info": "Upload an image for the icon. Leave blank to use SVG."
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon size",
+          "default": 24
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Custom button text"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Text size",
+          "default": 12
+        },
+        {
+          "type": "select",
+          "id": "layout_direction",
+          "label": "Layout direction",
+          "options": [
+            { "value": "column", "label": "Vertical (Icon above text)" },
+            { "value": "column-reverse", "label": "Vertical (Text above icon)" },
+            { "value": "row", "label": "Horizontal (Icon left of text)" },
+            { "value": "row-reverse", "label": "Horizontal (Text left of icon)" }
+          ],
+          "default": "column"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Custom button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button Spacing"
+        },
+        {
+          "type": "range",
+          "id": "icon_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Top padding",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "icon_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Bottom padding",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "icon_padding_left",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Left padding",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "icon_padding_right",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Right padding",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "icon_margin_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "icon_margin_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Bottom margin",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "icon_margin_left",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Left margin",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "icon_margin_right",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Right margin",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "button_custom_attributes",
+          "label": "Custom HTML attributes",
+          "info": "Enter custom attributes for the button (e.g., onclick=\"myFunction()\")"
+        },
+        {
+          "type": "liquid",
+          "id": "button_custom_liquid",
+          "label": "Custom Liquid code",
+          "info": "Add custom Liquid code for this button"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky bar",
+      "blocks": [
+        {
+          "type": "button"
+        },
+        {
+          "type": "button"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

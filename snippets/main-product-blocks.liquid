@@ -1,0 +1,1495 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign size_title = 'size'
+  assign product_form_id = 'product-form-' | append: section.id
+  assign product_form_class = 'product-form-' | append: section.id
+
+  if update_browser_history == null
+    assign update_browser_history = section.settings.enable_history_state
+  endif
+
+  assign image_field = section.blocks | where: 'type', 'image_field'
+  assign wishlist_app = settings.wishlist_app
+
+  assign alignBreadcrumb = 'left'
+
+  for block in section.blocks
+    if block.type == 'variant_picker'
+      assign size_title = block.settings.size_title | default: 'size'
+      break
+    endif
+  endfor
+
+  assign variant_id = product.selected_or_first_available_variant.id
+  assign selected_variant_id = ''
+  unless section.settings.show_featured_media
+    assign selected_variant_id = product.selected_variant.id
+  endunless
+%}
+
+{% style %}
+.mix-or-match-container {
+  margin-left: 12px;
+  display: flex;
+    align-items: center;
+    gap: 12px;
+}
+@media screen and (max-width: 768px) {
+  .mix-or-match-container {
+    margin-left: 0px;
+  }
+}
+.mix-or-match-container a {
+  padding: 4px 10px;
+  background-color: #222222;
+  color: white;
+  text-decoration: underline;
+  border-radius: 4px;
+}
+{% endstyle %}
+
+{% comment %} Fallback for case not show block price, buy buttons {% endcomment %}
+<input type="hidden" name="id" value="{{ variant_id }}" data-selected-variant="{{ selected_variant_id }}" disabled>
+{% comment %} End comment {% endcomment %}
+{%- for block in section.blocks -%}
+  <div class="main-product__block main-product__block-{{ block.type }}" {{ block.shopify_attributes }}>
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        {% render block %}
+        {%- when 'free_products' -%}
+          {% style %}
+          .free-products-wrapper ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .free-products-wrapper li {
+            display: block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: red;
+            background-color: #f8f8f8;
+            width: fit-content;
+            border: solid 1px #f1f1f1;
+          }
+          {% endstyle %}
+
+        {% comment %} FREE PRODUCT OVERRIDE {% endcomment %}
+        {% assign free_product = product.metafields.custom.free_products.value %}
+        {% if free_product != blank %}
+        <div class="free-products-wrapper">
+          <ul>
+            {% for free_product in free_product %}
+              <li>🎁  {{ free_product.title }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% else %}
+
+        {% comment %} Geekvape Aegis Solo 3 (S100) Vape Kit {% endcomment %}
+        {% comment %} {% assign collection_a = block.settings.collection_a %}
+        {% assign collection_b = block.settings.collection_b %}
+        
+        {% assign product_in_collection_a = false %}
+        {% for product_a in collection_a.products %}
+          {% if product_a.id == product.id %}
+            {% assign product_in_collection_a = true %}
+          {% endif %}
+        {% endfor %}
+        
+        {% if product_in_collection_a %}
+          <div class="free-products-wrapper">
+            <ul>
+                <li>🎁  FREE 10ML NIC SALT</li>
+            </ul>
+          </div>
+        {% endif %}
+        
+        {% assign product_in_collection_b = false %}
+        {% for product_b in collection_b.products %}
+          {% if product_b.id == product.id %}
+            {% assign product_in_collection_b = true %}
+          {% endif %}
+        {% endfor %}
+        
+        {% if product_in_collection_b %}
+          <div class="free-products-wrapper">
+            <ul>
+                <li>🎁  FREE 100ML SHORTFILL</li>
+            </ul>
+          </div>
+        {% endif %} {% endcomment %}
+
+        {% comment %} Geekvape Aegis Solo 3 (S100) Vape Kit {% endcomment %}
+            {% assign collection_a = block.settings.collection_a %}
+            {% assign collection_b = block.settings.collection_b %}
+
+            <!-- Check if the product is in collection_a -->
+            {% assign product_in_collection_a = false %}
+            {% for product_a in collection_a.products %}
+              {% if product_a.id == product.id %}
+                {% assign product_in_collection_a = true %}
+              {% endif %}
+            {% endfor %}
+
+            <!-- Check if the product is in collection_b -->
+            {% assign product_in_collection_b = false %}
+            {% for product_b in collection_b.products %}
+              {% if product_b.id == product.id %}
+                {% assign product_in_collection_b = true %}
+              {% endif %}
+            {% endfor %}
+
+            <!-- Render content for collection_a -->
+            {% if product_in_collection_a %}
+              <div class="free-products-wrapper">
+                <ul>
+                  <li>🎁 FREE 10ML NIC SALT</li>
+                </ul>
+              </div>
+            {% else %}
+              <div id="check-collection-a" data-product-id="{{ product.id }}" data-collection-handle="{{ collection_a.handle }}"></div>
+            {% endif %}
+
+            <!-- Render content for collection_b -->
+            {% if product_in_collection_b %}
+              <div class="free-products-wrapper">
+                <ul>
+                  <li>🎁 FREE 100ML SHORTFILL</li>
+                </ul>
+              </div>
+            {% else %}
+              <div id="check-collection-b" data-product-id="{{ product.id }}" data-collection-handle="{{ collection_b.handle }}"></div>
+            {% endif %}
+
+
+        {% endif %}
+
+        
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            function fetchAllProducts(collectionHandle, page = 1, accumulatedProducts = []) {
+              return fetch(`/collections/${collectionHandle}/products.json?page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                  const products = accumulatedProducts.concat(data.products);
+          
+                  // If there are fewer than 30 products returned, it means we've fetched all the products
+                  if (data.products.length < 30) {
+                    return products;
+                  } else {
+                    // Recursively fetch the next page
+                    return fetchAllProducts(collectionHandle, page + 1, products);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error fetching collection products:', error);
+                  return accumulatedProducts; // Return what we've fetched so far in case of error
+                });
+            }
+          
+            function checkProductInCollection(elementId, freebieText) {
+              const ajaxDiv = document.getElementById(elementId);
+              if (ajaxDiv) {
+                const productId = ajaxDiv.getAttribute('data-product-id');
+                const collectionHandle = ajaxDiv.getAttribute('data-collection-handle');
+          
+                fetchAllProducts(collectionHandle).then(products => {
+                  const productFound = products.some(product => product.id == productId);
+          
+                  console.log("ALL PRODUCTS DATA:", products);
+          
+                  if (productFound) {
+                    const freeProductWrapper = document.createElement('div');
+                    freeProductWrapper.classList.add('free-products-wrapper');
+                    freeProductWrapper.innerHTML = `<ul><li>${freebieText}</li></ul>`;
+                    ajaxDiv.appendChild(freeProductWrapper);
+                  }
+                });
+              }
+            }
+          
+            // Check for both collections
+            checkProductInCollection('check-collection-a', '🎁 FREE 10ML NIC SALT');
+            checkProductInCollection('check-collection-b', '🎁 FREE 100ML SHORTFILL');
+          });
+          </script>          
+        
+
+
+        {%- when 'policy' -%}
+          {% if block.settings.policy_text != blank %}
+            {%- liquid
+              assign blockid = block.id
+              assign scaled_text_font_size = block.settings.text_font_size | times: 0.9 | round
+              assign scaled_font_size = block.settings.font_size | times: 0.9 | round
+              assign scaled_description_font_size = block.settings.description_font_size | times: 0.9 | round
+              assign line_height = block.settings.line_height
+              assign letter_spacing  = block.settings.letter_spacing 
+            -%}
+            {% style %}
+            .policy-wrapper {
+              display: block;
+              padding: 12px;
+              border-radius: 4px;
+              background-color: #f8f8f8;
+              width: 100%;
+              border: solid 1px #f1f1f1;
+            }
+
+            #showPolicyPopup-{{ blockid }} {
+            position: relative;
+            background: none;
+            color: {{ block.settings.text_font_color }};
+            font-size: {{ block.settings.text_font_size }}px !important;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: none;
+            font: inherit;
+            outline: none;
+            overflow: hidden;  /* This ensures the pseudo-elements don't extend outside of the button */
+            line-height: 1.3em;    /* Just to give some space for the underline */
+        }
+        
+        @media (max-width: 768px) {
+            #showPolicyPopup-{{ blockid }} {
+                font-size: {{ scaled_text_font_size }}px;
+            }
+        }
+        
+        /* The initial underline */
+        #showPolicyPopup-{{ blockid }}::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background-color: {{ block.settings.text_font_color }};
+            transform: scaleX(1);
+            transition: transform 0.3s ease;
+        }
+        
+        #showPolicyPopup-{{ blockid }}:hover::before {
+            transform: scaleX(0);  /* Hide the initial line */
+        }
+        
+        .policy-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 999999;
+        }
+        
+        .policy-popup-content {
+            background-color: #fff;
+            padding: 42px 20px 20px 20px;
+            width: 70%;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: {{ borderRadius }}px;
+            margin-top: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .policy-popup-content {
+                width: 95%;
+            }
+        }
+        
+        .policy-close-btn {
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.3s ease; /* This ensures a smooth transition effect when hovering */
+            opacity: 1;  /* Default opacity */
+        }
+        
+        .policy-close-btn:hover {
+            opacity: 0.7;  /* Reduced opacity when hovered */
+        }
+        
+        /* HEADING */
+        .policy-header {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%; /* This will make the font size the same as the parent element */
+            vertical-align: baseline;
+            color: inherit;
+            background: none;
+            text-decoration: none;
+            text-align: inherit;
+        }
+        #policy-header-{{ blockid }} {
+          font-size: {{ block.settings.font_size }}px;
+          color: {{ block.settings.font_color }};
+          line-height: normal;
+        }
+        @media (max-width: 768px) {
+          #policy-header-{{ blockid }} {
+            font-size: {{ scaled_font_size }}px;
+          }
+        }
+        
+        /* DESCRIPTION */
+        #policy-description-{{ block.id }} p,
+        #policy-description-{{ block.id }} h1,
+        #policy-description-{{ block.id }} h2,
+        #policy-description-{{ block.id }} h3,
+        #policy-description-{{ block.id }} h4,
+        #policy-description-{{ block.id }} h5,
+        #policy-description-{{ block.id }} a,
+        #policy-description-{{ block.id }} ul,
+        #policy-description-{{ block.id }} li {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            background: none;
+            text-decoration: none;
+            text-align: inherit;
+            font-size: {{ block.settings.description_font_size }}px;
+            color: {{ block.settings.description_font_color }};
+            line-height: {{ line_height | times: 0.01 | plus: 1 }}em;
+            letter-spacing: {{ letter_spacing | times: 0.01 }}rem;
+        }
+        @media (max-width: 768px) {
+            #policy-description-{{ block.id }} p,
+            #policy-description-{{ block.id }} h1,
+            #policy-description-{{ block.id }} h2,
+            #policy-description-{{ block.id }} h3,
+            #policy-description-{{ block.id }} h4,
+            #policy-description-{{ block.id }} h5,
+            #policy-description-{{ block.id }} a,
+            #policy-description-{{ block.id }} ul,
+            #policy-description-{{ block.id }} li {
+                font-size: {{ scaled_description_font_size }}px;
+            }
+        }
+            {% endstyle %}
+            <div class="policy-wrapper">
+              <p>{{ block.settings.policy_text }} <button id="showPolicyPopup-{{ blockid }}">{{ block.settings.link_text }}</button></p>
+            </div>
+
+            <div class="policy-popup" id="policy-popup-{{ blockid }}">
+              <div class="policy-popup-content">
+                  <button class="policy-close-btn" id="closePolicyPopup-{{ blockid }}">&#10005;</button>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+            
+                    {% if block.settings.popup_heading != blank %}
+                        <h2 id="policy-header-{{ blockid }}" class="policy-header">{{ block.settings.popup_heading }}</h2>
+                    {% endif %}
+                    
+                    {% if block.settings.popup_description != blank %}
+                        <div class="bl-description-component-{{ block.id }}">
+                            <span id="policy-description-{{ block.id }}" class="bl-description-{{ block.id }}">{{ block.settings.popup_description }}</span>
+                        </div>
+                    {% endif %}
+            
+                  </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <script>
+            window.addEventListener('load', function() {
+              const showPopupButtonPolicy = document.getElementById("showPolicyPopup-{{ blockid }}");
+              const popupPolicy = document.getElementById("policy-popup-{{ blockid }}");
+              const closePopupButtonPolicy = document.getElementById("closePolicyPopup-{{ blockid }}");
+              const originalParentPolicy = popupPolicy.parentElement;
+              
+              showPopupButtonPolicy.addEventListener("click", function() {
+                  document.body.appendChild(popupPolicy);
+                  popupPolicy.style.display = "block";
+              });
+              
+              closePopupButtonPolicy.addEventListener("click", function() {
+                  popupPolicy.style.display = "none";
+                  originalParentPolicy.appendChild(popupPolicy);
+              });
+              
+              window.onclick = function(eventPolicy) {
+                  if (eventPolicy.target == popupPolicy) {
+                      popupPolicy.style.display = "none";
+                      originalParentPolicy.appendChild(popupPolicy);
+                  }
+              }
+            });
+          </script>
+
+          
+
+{%- when 'badge' -%}
+  {%- liquid
+    assign has_tags = false
+    for tag in product.tags
+      if tag contains 'tag__' or tag contains 'badge_'
+        assign has_tags = true
+      endif
+    endfor
+  -%}
+  {% if has_tags or product.metafields.theme.custom_badge != blank %}
+    <div class="product-block-group product-block-group--tags m:display-flex">
+      {% render 'product-tags', product: product %}
+    </div>
+  {% endif %}
+      {%- when 'breadcrumb' -%}
+        {% render 'breadcrumb', container: 'container', justify: alignBreadcrumb, hide_current: true %}
+      {%- when 'title' -%}
+        <div class="product-block-group product-block-group--title">
+          {% if is_featured == true %}
+            <h2 class="m-product-title {{ block.settings.heading_size }}">{{ product.title }}</h2>
+          {% else %}
+            <h1 class="m-product-title {{ block.settings.heading_size }}">{{ product.title }}</h1>
+          {% endif %}
+          {% if section.settings.show_atwl %}
+            <div class="m-product-wishlist m:hidden md:m:block">
+              {% if wishlist_app == 'growave' %}
+                {% liquid
+                  capture the_snippet_fave_icon
+                    render 'ssw-widget-faveicon' with product.id
+                  endcapture
+                %}
+                {% unless the_snippet_fave_icon contains 'Liquid error' %}
+                  {{ the_snippet_fave_icon }}
+                {% else %}
+                  {% render 'mm-ssw-widget-faveicon' with product.id %}
+                {% endunless %}
+              {% else %}
+                {% render 'tooltip', type: 'wishlist', product: product, color_scheme: color_scheme %}
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+        {% if settings.review_app == 'ali_reviews' %}
+          <div product-id="{{ product.id }}" class="alr-display-review-badge"></div>
+        {% endif %}
+      {%- when 'price' -%}
+        <div class="product-block-group--price"> <div class="m-points-display">
+          {% render 'product-prices',
+            use_variant: true,
+            product: product,
+            show_sale_badge: block.settings.show_saving,
+            price_text_size: 'm:text-xl md:m:text-2xl',
+            sale_badge_type: block.settings.sale_badge_type
+          %}
+    
+          {% if product.metafields.custom.mix_or_match != blank %}
+            <div class="mix-or-match-container">
+              <p>OR MIX & MATCH:</p>
+                {{ product.metafields.custom.mix_or_match | metafield_tag }}
+            </div>
+          {% endif %}
+
+
+  </div>
+
+      <div class="upzelo-points">
+        <span class="m-points-text" style="margin-right: 4px;">Earn</span>
+        <div class="m-points-icon">
+          <span class="points-value">
+            {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | ceil }}
+          </span>
+        </div>
+        <span style="margin-right: 4px;">
+          <strong>points</strong> on this purchase.
+        </span>
+        <a 
+          href="#"
+          onclick="event.preventDefault(); window.upzelo.toggle();" 
+          class="m-points-learn-more"
+        >
+          Learn more
+        </a>
+      </div>
+
+        </div>
+        {%- if shop.taxes_included -%}
+          <div class="m-product-tax">
+            {{ 'products.product.include_taxes' | t }}
+          </div>
+        {%- endif -%}
+        <div class="installment-shoppay">
+          {%- form 'product', product, id: 'product-form-installment', class: 'installment' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {{ form | payment_terms }}
+          {%- endform -%}
+        </div>
+      {%- when 'short_description' -%}
+        {% if product.metafields.descriptor.short_description != blank %}
+          <div class="m-product-description">{{ product.metafields.descriptor.short_description }}</div>
+        {% endif %}
+      {%- when 'description' -%}
+        <div class="m-product-description rte">
+          {{ product.description }}
+        </div>
+      {%- when 'rating' -%}
+        {% render 'product-reviews-app__badge', product: product %}
+      {%- when 'meta' -%}
+        <ul class="m-product-meta">
+          {% if block.settings.show_vendor and product.vendor != blank %}
+            <li>
+              <span class="m-product-meta--label">{{ 'products.product.vendor' | t }}:</span>
+              <div class="m-product-meta--value">{{ product.vendor | link_to_vendor }}</div>
+            </li>
+          {% endif %}
+          {% if block.settings.show_type and product.type != blank %}
+            <li>
+              <span class="m-product-meta--label">{{ 'products.product.type' | t }}:</span>
+              <div class="m-product-meta--value">{{ product.type | link_to_type }}</div>
+            </li>
+          {% endif %}
+          {% if block.settings.show_collections and product.collections.size > 0 %}
+            <li>
+              <span class="m-product-meta--label">{{ 'products.product.collections' | t }}:</span>
+              <div class="m-product-meta--value">
+                {% for collection in product.collections %}
+                  <a href="{{ collection.url }}" class="hover:text-black">
+                    {{ collection.title }}
+                    {%- if forloop.last != true -%},{%- endif -%}
+                  </a>
+                {% endfor %}
+              </div>
+            </li>
+          {% endif %}
+          {% if block.settings.show_availability %}
+            <li>
+              <span class="m-product-meta--label">{{ 'products.product.availability' | t }}:</span>
+              <div
+                class="m-product-meta--value m-product-availability{% unless selected_variant.available %} m-product-availability--outofstock{% endunless %}"
+                data-availability
+              >
+                {%- if selected_variant.available -%}
+                  {{- 'products.product.in_stock' | t -}}
+                {%- else -%}
+                  {{ 'products.product.out_of_stock' | t }}
+                {%- endif -%}
+              </div>
+            </li>
+          {% endif %}
+          {% if block.settings.show_sku %}
+            <li>
+              <span class="m-product-meta--label">{{ 'products.product.sku' | t }}:</span>
+              <div class="m-product-meta--value" data-variant-sku>{{ selected_variant.sku | default: 'N/A' }}</div>
+            </li>
+          {% endif %}
+        </ul>
+      {%- when 'custom_field' -%}
+        {% liquid
+          assign label_hidden = false
+          assign field_type = block.settings.field_type
+          assign field_options = block.settings.field_options
+          assign field_name = block.settings.title
+          assign field_placeholder = block.settings.field_placeholder
+          assign field_required = block.settings.field_required
+          assign show_at_checkout = block.settings.show_at_checkout
+
+          if field_name == blank
+            assign label_hidden = true
+            assign field_name = 'Custom field ' | append: forloop.index
+          endif
+        %}
+        <div class="m-product-custom-field" data-theme-fields data-product-custom-field="{{ field_type }}">
+          <label class="m-product-option--label{% if label_hidden %} m:hidden{% endif %}" for="{{ block.id }}">
+            {{ field_name -}}
+            {%- if field_required -%}
+              <sup>*</sup>
+            {%- endif %}
+          </label>
+          {% unless show_at_checkout %}
+            {% assign field_name = field_name | prepend: '_' %}
+          {% endunless %}
+          {% case field_type %}
+            {% when 'text' %}
+              <input
+                type="text"
+                id="{{ block.id }}"
+                class="form-field form-field--input"
+                placeholder="{{ field_placeholder }}"
+                name="properties[{{- field_name -}}]"
+                {% if field_required %}
+                  required
+                {% endif %}
+                form="{{ product_form_id }}"
+              >
+            {% when 'textarea' %}
+              <textarea
+                id="{{ block.id }}"
+                class="form-field form-field--input form-field--textarea"
+                placeholder="{{ field_placeholder }}"
+                name="properties[{{- field_name -}}]"
+                {% if field_required %}
+                  required
+                {% endif %}
+                form="{{ product_form_id }}"
+              ></textarea>
+            {% when 'select' %}
+              {% assign options = field_options | newline_to_br | split: '<br />' %}
+              <select
+                id="{{ block.id }}"
+                class="form-field form-field--input"
+                name="properties[{{- field_name -}}]"
+                {% if field_required %}
+                  required
+                {% endif %}
+                form="{{ product_form_id }}"
+              >
+                {% if field_placeholder != blank %}
+                  <option value="">{{ field_placeholder }}</option>
+                {% endif %}
+                {% for option in options %}
+                  <option value="{{ option }}" label="{{ option }}">{{ option }}</option>
+                {% endfor %}
+              </select>
+          {% endcase %}
+        </div>
+      {%- when 'image_field' -%}
+        {% liquid
+          assign label_hidden = false
+          assign field_name = block.settings.title
+          assign field_required = block.settings.field_required
+          assign show_at_checkout = block.settings.show_at_checkout
+          if field_name == blank
+            assign label_hidden = true
+            assign field_name = 'Custom image ' | append: forloop.index
+          endif
+        %}
+        <div class="m-product-custom-field" data-theme-fields data-product-custom-field="image_field">
+          <label class="m-product-option--label{% if label_hidden %} m:hidden{% endif %}" for="{{ block.id }}">
+            {{ field_name -}}
+            {%- if field_required -%}
+              <sup>*</sup>
+            {%- endif %}
+          </label>
+          {% unless show_at_checkout %}
+            {% assign field_name = field_name | prepend: '_' %}
+          {% endunless %}
+          <input
+            type="file"
+            accept="image/*"
+            id="{{ block.id }}"
+            name="properties[{{- field_name -}}]"
+            {% if field_required %}
+              required
+            {% endif %}
+            form="{{ product_form_id }}"
+            class="form-field form-field--input"
+          >
+        </div>
+      {%- when 'visitors' -%}
+        {%- liquid
+          assign live_views_min = block.settings.live_views_range | split: '-' | first
+          assign live_views_max = block.settings.live_views_range | split: '-' | last
+          assign modulo_numb = live_views_max | minus: live_views_min
+          assign live_views_current = 'now' | date: '%S' | modulo: modulo_numb | plus: live_views_min
+        -%}
+        <m-visitiors-counter
+          class="m-product-live-views m:display-flex m:items-center"
+          data-live-views-current="{{ live_views_current }}"
+          data-live-views-min="{{ live_views_min }}"
+          data-live-views-max="{{ live_views_max }}"
+          data-live-views-duration="{{ block.settings.live_view_duration }}"
+        >
+          <span class="live-views-icon{% if block.settings.live_view_icon_blinks %} animate-pulse{% endif %}">
+            <svg
+              class="m-svg-icon--medium"
+              fill="currentColor"
+              stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+            >
+              <path d="M569.354 231.631C512.97 135.949 407.81 72 288 72 168.14 72 63.004 135.994 6.646 231.631a47.999 47.999 0 0 0 0 48.739C63.031 376.051 168.19 440 288 440c119.86 0 224.996-63.994 281.354-159.631a47.997 47.997 0 0 0 0-48.738zM288 392c-102.556 0-192.091-54.701-240-136 44.157-74.933 123.677-127.27 216.162-135.007C273.958 131.078 280 144.83 280 160c0 30.928-25.072 56-56 56s-56-25.072-56-56l.001-.042C157.794 179.043 152 200.844 152 224c0 75.111 60.889 136 136 136s136-60.889 136-136c0-31.031-10.4-59.629-27.895-82.515C451.704 164.638 498.009 205.106 528 256c-47.908 81.299-137.444 136-240 136z"/>
+            </svg>
+          </span>
+          <div class="live-views-text">
+            {%- assign live_views_numb = '{count_number}' -%}
+            {{ block.settings.live_views_text | replace: live_views_numb, live_views_current }}
+          </div>
+        </m-visitiors-counter>
+        <script src="{{ 'visitors-counter.js' | asset_url }}" defer="defer"></script>
+      {%- when 'variant_picker' -%}
+        {% render 'product-option',
+          product: product,
+          section: section,
+          size_title: size_title,
+          product_form_id: product_form_id,
+          update_browser_history: update_browser_history,
+          color_scheme: color_scheme
+        %}
+      {%- when 'buy_buttons' -%}
+        {% liquid
+          assign gift_card_recipient_feature_active = false
+          if block.settings.show_gift_card_recipient and product.gift_card?
+            assign gift_card_recipient_feature_active = true
+          endif
+
+          assign show_dynamic_checkout = block.settings.show_dynamic_checkout
+          if image_field.size > 0 or gift_card_recipient_feature_active == true
+            assign show_dynamic_checkout = false
+          endif
+        %}
+        <product-form class="m-product-form m-product-form--main" data-product-id="{{ product.id }}">
+          {%- form 'product',
+            product,
+            id: product_form_id,
+            data-product-id: product.id,
+            class: product_form_class,
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form',
+            data-product-id: product.id,
+            data-product-handle: product.handle,
+            data-dynamic-checkout: show_dynamic_checkout,
+            data-enable-image-zoom: section.settings.show_zoom_button,
+            data-enable-history-state: section.settings.enable_history_state,
+            data-enable-video-autoplay: section.settings.enable_video_autoplay
+          -%}
+             <script data-foxkit-product-json type="application/json">
+              {
+                "id": {{ product.id | json }},
+                "available": {{ product.available | json }},
+                "variants": [
+                  {%- for variant in product.variants -%}
+                    {
+                      "id": {{ variant.id | json }},
+                      "available": {{ variant.available | json }},
+                      "inventory_quantity": {{ variant.inventory_quantity | json }},
+                      "inventory_policy": {{ variant.inventory_policy | json }},
+                      "inventory_management": {{ variant.inventory_management | json }}
+                    }{% unless forloop.last %},{% endunless %}
+                  {%- endfor -%}
+                ],
+                "selectedVariant": {
+                  "id": {{ product.selected_or_first_available_variant.id | json }},
+                  "available": {{ product.selected_or_first_available_variant.available | json }},
+                  "inventory_quantity": {{ product.selected_or_first_available_variant.inventory_quantity | json }},
+                  "inventory_policy": {{ product.selected_or_first_available_variant.inventory_policy | json }},
+                  "inventory_management": {{ product.selected_or_first_available_variant.inventory_management | json }}
+                },
+                "collectionIds": "{% for collection in product.collections %}{{ collection.id }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+              }
+            </script>
+            <input
+              type="hidden"
+              name="id"
+              value="{{ variant_id }}"
+              data-selected-variant="{{ selected_variant_id }}"
+              disabled
+            >
+            {%- if gift_card_recipient_feature_active -%}
+              {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+            {%- endif -%}
+
+            <div class="m-product-form--wrapper m:display-flex m:flex-wrap m:items-end">
+              {% if block.settings.show_quantity_selector %}
+                <div class="m-product-form--input">
+                  <label class="m-product-option--label">
+                    {{ 'products.product.quantity' | t }}
+                  </label>
+                  {% render 'product-qty-input', product_form_id: product_form_id, product: product %}
+                </div>
+              {% endif %}
+              {% if block.settings.show_atc_button %}
+                {% liquid
+                  assign btn_class = 'm-button--primary'
+                  if show_dynamic_checkout
+                    assign btn_class = 'm-button--secondary'
+                  endif
+                %}
+                <button
+                  type="submit"
+                  name="add"
+                  class="m-add-to-cart m-spinner-button m-button {{ btn_class }} {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}"
+                  data-atc-text="{{ 'products.product.add_to_cart' | t }}"
+                >
+                  <span class="m-spinner-icon">
+                    <svg
+                      class="animate-spin m-svg-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
+                  <span class="m-add-to-cart--text">
+                    {% if product.selected_or_first_available_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+              {% endif %}
+              {% liquid
+                assign show_terms = false
+                if settings.agree_text != blank and settings.show_agree_on_product
+                  render 'agree-terms-checkbox'
+                  assign show_terms = true
+                endif
+              %}
+              {% if show_dynamic_checkout %}
+                <div
+                  class="m-product-dynamic-checkout buy-one-click{% if block.settings.show_atc_button %} show-add-to-cart{% else %} m:flex-1{% endif %}"
+                  {% if show_terms %}
+                    data-terms-action disabled
+                  {% endif %}
+                >
+                  {{ form | payment_button }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="m-product-form-message"></div>
+          {%- endform -%}
+        </product-form>
+        <link
+          rel="stylesheet"
+          href="{{ 'pickup-availability.css' | asset_url }}"
+          media="print"
+          onload="this.media='all';"
+        >
+        {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
+          | where: 'pick_up_enabled', true
+        -%}
+        {% comment %}
+        {% capture available %}{% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}{% endcapture %}
+        <pickup-availability
+          {{ available }}
+          class="product__pickup-availabilities"
+          data-base-url="{{ routes.root_url }}"
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          data-has-only-default-variant="{{ product.has_only_default_variant }}"
+        >
+          <template>
+            <pickup-availability-preview class="m-pickup-availability__preview m:display-flex"> 
+              <svg
+                class="m-svg-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+              >
+                <path fill="#DE3618" stroke="#fff" d="M13.94 3.94 10 7.878l-3.94-3.94A1.499 1.499 0 1 0 3.94 6.06L7.88 10l-3.94 3.94a1.499 1.499 0 1 0 2.12 2.12L10 12.12l3.94 3.94a1.497 1.497 0 0 0 2.12 0 1.499 1.499 0 0 0 0-2.12L12.122 10l3.94-3.94a1.499 1.499 0 1 0-2.121-2.12z"/>
+              </svg>
+              <div class="m-pickup-availability__info">
+                <p class="m:text-color-subtext">
+                  {{- 'products.product.pickup_availability.unavailable' | t -}}
+                </p>
+                <button class="m-pickup-availability__button m-button m-button--link">
+                  {{- 'products.product.pickup_availability.refresh' | t -}}
+                </button>
+              </div>
+            </pickup-availability-preview>
+          </template>
+        </pickup-availability>
+        <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+       {% endcomment %}
+      {%- when 'collapsible_tab' -%}
+        {% if block.settings.heading != blank %}
+          <div class="m-product-collapsible">
+            <collapsible-tab
+              class="m-collapsible no-js-hidden"
+              data-block-id="collapsible-tab-{{ block.id }}"
+              {% if block.settings.default_open %}
+                open="true"
+              {% endif %}
+            >
+              <button class="m-collapsible--button" data-trigger>
+                <span>{{ block.settings.heading }}</span>
+                <span class="m-collapsible--icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.5306 6.53073L8.5306 11.5307C8.46092 11.6007 8.37813 11.6561 8.28696 11.694C8.1958 11.7318 8.09806 11.7513 7.99935 11.7513C7.90064 11.7513 7.8029 11.7318 7.71173 11.694C7.62057 11.6561 7.53778 11.6007 7.4681 11.5307L2.4681 6.53073C2.3272 6.38984 2.24805 6.19874 2.24805 5.99948C2.24805 5.80023 2.3272 5.60913 2.4681 5.46823C2.60899 5.32734 2.80009 5.24818 2.99935 5.24818C3.19861 5.24818 3.3897 5.32734 3.5306 5.46823L7.99997 9.93761L12.4693 5.46761C12.6102 5.32671 12.8013 5.24756 13.0006 5.24756C13.1999 5.24756 13.391 5.32671 13.5318 5.46761C13.6727 5.60851 13.7519 5.7996 13.7519 5.99886C13.7519 6.19812 13.6727 6.38921 13.5318 6.53011L13.5306 6.53073Z" fill="currentColor"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="m-collapsible--content" data-content hidden>
+                <div class="m-collapsible--content__inner rte">
+                  {{ block.settings.content }}
+                  {{ block.settings.liquid }}
+                </div>
+              </div>
+            </collapsible-tab>
+          </div>
+        {% endif %}
+      {%- when 'text' -%}
+        {% if block.settings.text != blank %}
+          <div class="m-product-text m:{{ block.settings.text_color }} m:{{ block.settings.text_size }}">
+            {{ block.settings.text }}
+          </div>
+        {% endif %}
+      {%- when 'custom_text' -%}
+        {% if block.settings.content != blank %}
+          <div class="m-product-text">
+            <div class="rte">
+              {{ block.settings.content }}
+            </div>
+          </div>
+        {% endif %}
+      {%- when 'image' -%}
+        {% if block.settings.image != blank %}
+          {% assign image_link = block.settings.image_link %}
+          <div class="m:display-flex m:justify-{{ block.settings.image_alignment }}">
+            <div class="m-product-image" style="width: {{ block.settings.image_width }}%">
+              {% if image_link != blank %}<a href="{{ image_link }}" class="m:block">{% endif %}
+              {% render 'responsive-image', image: block.settings.image %}
+              {% if image_link != blank %}</a>{% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {%- when 'custom_liquid' -%}
+        {% if block.settings.custom_liquid != blank %}
+          <div class="m-product-text">
+            {{ block.settings.custom_liquid }}
+          </div>
+        {% endif %}
+      {%- when 'trust_badge' -%}
+        {% if block.settings.trust_badges_image != blank %}
+          {% assign position = block.settings.position %}
+          <div class="m-product-trust-badge m:text-center m-product-trust-badge--{{ position | default: 'below' }}">
+            <div class="m-product-trust-badge--image-wrap" style="width: {{ block.settings.trust_badges_image_width }};">
+              {% render 'responsive-image', image: block.settings.trust_badges_image %}
+            </div>
+            {% if block.settings.trust_badges_text != blank %}
+              <h6 class="m:text-small-medium m:text-color-subtext">{{ block.settings.trust_badges_text }}</h6>
+            {% endif %}
+          </div>
+        {% endif %}
+      {%- when 'addons' -%}
+        {% liquid
+          assign show_size_button = true
+          assign size_title_downcase = size_title | downcase
+          for option in product.options_with_values
+            assign downcased_option = option.name | downcase
+            if size_title_downcase contains downcased_option
+              assign show_size_button = false
+              break
+            endif
+          endfor
+        %}
+        <div class="m-product-addon">
+          {% if block.settings.show_atcp or block.settings.show_ask_a_question or show_size_button %}
+            <div class="m-product-addon--wrapper m:display-flex m:flex-wrap">
+              {% if block.settings.show_social %}
+                <m-sharing class="m-product-addon--item m:display-flex">
+                  <a 
+                    class="m:display-flex m:items-center" data-open-share
+                    data-tippy-theme="m-color-{{ color_scheme }}" data-tippy-content="{{ 'products.product.social_share' | t }}"
+                  >
+                    <svg class="m-svg-icon--medium" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16.875 8.75V16.25C16.875 16.5815 16.7433 16.8995 16.5089 17.1339C16.2745 17.3683 15.9565 17.5 15.625 17.5H4.375C4.04348 17.5 3.72554 17.3683 3.49112 17.1339C3.2567 16.8995 3.125 16.5815 3.125 16.25V8.75C3.125 8.41848 3.2567 8.10054 3.49112 7.86612C3.72554 7.6317 4.04348 7.5 4.375 7.5H6.25C6.41576 7.5 6.57473 7.56585 6.69194 7.68306C6.80915 7.80027 6.875 7.95924 6.875 8.125C6.875 8.29076 6.80915 8.44974 6.69194 8.56695C6.57473 8.68416 6.41576 8.75 6.25 8.75H4.375V16.25H15.625V8.75H13.75C13.5842 8.75 13.4253 8.68416 13.3081 8.56695C13.1908 8.44974 13.125 8.29076 13.125 8.125C13.125 7.95924 13.1908 7.80027 13.3081 7.68306C13.4253 7.56585 13.5842 7.5 13.75 7.5H15.625C15.9565 7.5 16.2745 7.6317 16.5089 7.86612C16.7433 8.10054 16.875 8.41848 16.875 8.75ZM7.31719 5.44219L9.375 3.3836V10.625C9.375 10.7908 9.44085 10.9497 9.55806 11.0669C9.67527 11.1842 9.83424 11.25 10 11.25C10.1658 11.25 10.3247 11.1842 10.4419 11.0669C10.5592 10.9497 10.625 10.7908 10.625 10.625V3.3836L12.6828 5.44219C12.8001 5.55947 12.9591 5.62535 13.125 5.62535C13.2909 5.62535 13.4499 5.55947 13.5672 5.44219C13.6845 5.32492 13.7503 5.16586 13.7503 5C13.7503 4.83415 13.6845 4.67509 13.5672 4.55782L10.4422 1.43282C10.3841 1.37471 10.3152 1.32861 10.2393 1.29715C10.1635 1.2657 10.0821 1.24951 10 1.24951C9.91787 1.24951 9.83654 1.2657 9.76066 1.29715C9.68479 1.32861 9.61586 1.37471 9.55781 1.43282L6.43281 4.55782C6.31554 4.67509 6.24965 4.83415 6.24965 5C6.24965 5.16586 6.31554 5.32492 6.43281 5.44219C6.55009 5.55947 6.70915 5.62535 6.875 5.62535C7.04085 5.62535 7.19991 5.55947 7.31719 5.44219Z" fill="currentColor"/>
+                    </svg>
+                    <span class="m-product-addon--label">{{ 'products.product.social_share' | t }}</span>
+                  </a>
+                  <div class="m-product-addon--sharing m:hidden">
+                    <div class="m-product-addon--sharing-wrapper m-gradient m-color-{{ settings.popups_drawer_color_scheme }}">
+                      <div class="m-product-addon--sharing__copy-link">
+                        <label>{{ 'products.product.copy_link' | t }}</label>
+                        <input
+                          class="form-field form-field--input"
+                          type="text"
+                          value="{{ shop.secure_url }}/products/{{ product.handle }}"
+                        >
+                      </div>
+                      {% assign url = shop.url | append: product.url %}
+                      {% render 'social-sharing', url: url %}
+                    </div>
+                  </div>
+                </m-sharing>
+                <script src="{{ 'sharing.js' | asset_url }}" defer="defer"></script>
+              {% endif %}
+              {% if block.settings.show_atcp %}
+                <a
+                  href="#add-to-compare"
+                  class="m-product-addon--item m-compare-button in-prod-page m:display-flex m:items-center"
+                  data-product-handle="{{ product.handle }}"
+                  data-tippy-theme="m-color-{{ color_scheme }}"
+                  data-tippy-content="{{ 'products.product.add_to_compare' | t }}"
+                  data-tippy-placement="{{ placement }}"
+                  data-revert-text="{{ 'products.product.remove_from_compare' | t }}"
+                  data-tippy-role="tooltip-compare-{{ product.handle }}"
+                >
+                  <svg class="m-svg-icon--medium" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.75 11.25L16.25 13.75L13.75 16.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3.75 13.75H16.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.25 8.75L3.75 6.25L6.25 3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.25 6.25H3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span
+                    class="m-product-addon--label"
+                  >
+                    {{- 'products.product.add_to_compare' | t -}}
+                  </span>
+                </a>
+              {% endif %}
+              {% if block.settings.show_ask_a_question %}
+                <m-ask-question class="m-product-addon--item m:display-flex">
+                  <a 
+                    class="form-ask__button m:display-flex m:items-center" data-open-ask-question
+                    data-tippy-theme="m-color-{{ color_scheme }}" data-tippy-content="{{ 'products.product.add_a_question' | t }}"
+                  >
+                    <svg class="m-svg-icon--medium" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.9375 14.0625C10.9375 14.2479 10.8825 14.4292 10.7795 14.5833C10.6765 14.7375 10.5301 14.8577 10.3588 14.9286C10.1875 14.9996 9.99896 15.0182 9.81711 14.982C9.63525 14.9458 9.4682 14.8565 9.33709 14.7254C9.20598 14.5943 9.11669 14.4273 9.08052 14.2454C9.04434 14.0635 9.06291 13.875 9.13387 13.7037C9.20482 13.5324 9.32499 13.386 9.47916 13.283C9.63333 13.18 9.81458 13.125 10 13.125C10.2486 13.125 10.4871 13.2238 10.6629 13.3996C10.8387 13.5754 10.9375 13.8139 10.9375 14.0625ZM10 5.625C8.27657 5.625 6.875 6.88672 6.875 8.4375V8.75C6.875 8.91576 6.94085 9.07473 7.05806 9.19194C7.17527 9.30915 7.33424 9.375 7.5 9.375C7.66576 9.375 7.82474 9.30915 7.94195 9.19194C8.05916 9.07473 8.125 8.91576 8.125 8.75V8.4375C8.125 7.57812 8.96641 6.875 10 6.875C11.0336 6.875 11.875 7.57812 11.875 8.4375C11.875 9.29688 11.0336 10 10 10C9.83424 10 9.67527 10.0658 9.55806 10.1831C9.44085 10.3003 9.375 10.4592 9.375 10.625V11.25C9.375 11.4158 9.44085 11.5747 9.55806 11.6919C9.67527 11.8092 9.83424 11.875 10 11.875C10.1658 11.875 10.3247 11.8092 10.4419 11.6919C10.5592 11.5747 10.625 11.4158 10.625 11.25V11.1938C12.05 10.932 13.125 9.79531 13.125 8.4375C13.125 6.88672 11.7234 5.625 10 5.625ZM18.125 10C18.125 11.607 17.6485 13.1779 16.7557 14.514C15.8629 15.8502 14.594 16.8916 13.1093 17.5065C11.6247 18.1215 9.99099 18.2824 8.4149 17.9689C6.8388 17.6554 5.39106 16.8815 4.25476 15.7452C3.11846 14.6089 2.34463 13.1612 2.03112 11.5851C1.71762 10.009 1.87852 8.37535 2.49348 6.8907C3.10844 5.40605 4.14985 4.1371 5.486 3.24431C6.82214 2.35152 8.39303 1.875 10 1.875C12.1542 1.87727 14.2195 2.73403 15.7427 4.25727C17.266 5.78051 18.1227 7.84581 18.125 10ZM16.875 10C16.875 8.64025 16.4718 7.31104 15.7164 6.18045C14.9609 5.04987 13.8872 4.16868 12.631 3.64833C11.3747 3.12798 9.99238 2.99183 8.65876 3.2571C7.32514 3.52237 6.10013 4.17716 5.13864 5.13864C4.17716 6.10013 3.52238 7.32513 3.2571 8.65875C2.99183 9.99237 3.12798 11.3747 3.64833 12.6309C4.16868 13.8872 5.04987 14.9609 6.18046 15.7164C7.31105 16.4718 8.64026 16.875 10 16.875C11.8227 16.8729 13.5702 16.1479 14.8591 14.8591C16.1479 13.5702 16.8729 11.8227 16.875 10Z" fill="currentColor"/>
+                    </svg>
+                    <span class="m-product-addon--label">{{ 'products.product.add_a_question' | t }}</span>
+                  </a>
+                  {% render 'form__ask-a-question' %}
+                </m-ask-question>
+                <script src="{{ 'ask-question.js' | asset_url }}" defer="defer"></script>
+              {% endif %}
+              {% if show_size_button %}
+                <a
+                  href="#open-size-guide"
+                  data-open-sizeguide
+                  class="m-product-addon--item m:display-flex m:items-center m:hidden"
+                  data-tippy-theme="m-color-{{ color_scheme }}" data-tippy-content="{{ 'products.product.size_guide' | t }}"
+                >
+                  <svg
+                    class="m-svg-icon--large"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 512"
+                  >
+                    <path d="M608 128H32c-17.67 0-32 14.33-32 32v192c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V160c0-17.67-14.33-32-32-32zm0 224H32V160h80v56c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-56h64v56c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-56h64v56c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-56h64v56c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-56h64v56c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-56h80v192z"/>
+                  </svg>
+                  <span class="m-product-addon--label">{{ 'products.product.size_guide' | t }}</span>
+                </a>
+              {% endif %}       
+            </div>
+            {% if block.settings.show_ask_a_question %}
+              <div class="m-product-ask-question"></div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {%- when 'shipping' -%}
+        {%- liquid
+          assign blockid = block.id
+          assign scaled_text_font_size = block.settings.text_font_size | times: 0.9 | round
+          assign scaled_font_size = block.settings.font_size | times: 0.9 | round
+          assign scaled_description_font_size = block.settings.description_font_size | times: 0.9 | round
+          assign line_height = block.settings.line_height
+          assign letter_spacing  = block.settings.letter_spacing 
+        -%}
+        {% style %}
+        .m-product-shipping__icon {
+            display: flex;
+            width: 42px;
+            height: 42px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            background-color: #F8F8F8;
+        }
+        #showFlexiPopup-{{ blockid }} {
+            position: relative;
+            background: none;
+            color: {{ block.settings.text_font_color }};
+            font-size: {{ block.settings.text_font_size }}px !important;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: none;
+            font: inherit;
+            outline: none;
+            overflow: hidden;  /* This ensures the pseudo-elements don't extend outside of the button */
+            line-height: 1.3em;    /* Just to give some space for the underline */
+        }
+        
+        @media (max-width: 768px) {
+            #showFlexiPopup-{{ blockid }} {
+                font-size: {{ scaled_text_font_size }}px;
+            }
+        }
+        
+        /* The initial underline */
+        #showFlexiPopup-{{ blockid }}::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background-color: {{ block.settings.text_font_color }};
+            transform: scaleX(1);
+            transition: transform 0.3s ease;
+        }
+        
+        #showFlexiPopup-{{ blockid }}:hover::before {
+            transform: scaleX(0);  /* Hide the initial line */
+        }
+        
+        .flexi-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 999999;
+        }
+        
+        .flexi-popup-content {
+            background-color: #fff;
+            padding: 42px 20px 20px 20px;
+            width: 70%;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: {{ borderRadius }}px;
+            margin-top: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .flexi-popup-content {
+                width: 95%;
+            }
+        }
+        
+        .flexi-close-btn {
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.3s ease; /* This ensures a smooth transition effect when hovering */
+            opacity: 1;  /* Default opacity */
+        }
+        
+        .flexi-close-btn:hover {
+            opacity: 0.7;  /* Reduced opacity when hovered */
+        }
+        
+        /* HEADING */
+        .flexi-header {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%; /* This will make the font size the same as the parent element */
+            vertical-align: baseline;
+            color: inherit;
+            background: none;
+            text-decoration: none;
+            text-align: inherit;
+        }
+        #flexi-header-{{ blockid }} {
+          font-size: {{ block.settings.font_size }}px;
+          color: {{ block.settings.font_color }};
+          line-height: normal;
+        }
+        @media (max-width: 768px) {
+          #flexi-header-{{ blockid }} {
+            font-size: {{ scaled_font_size }}px;
+          }
+        }
+        
+        /* DESCRIPTION */
+        #flexi-description-{{ block.id }} ul {
+          list-style-position: inside !important;
+          list-style: disc;
+        }
+
+        #flexi-description-{{ block.id }} p,
+        #flexi-description-{{ block.id }} h1,
+        #flexi-description-{{ block.id }} h2,
+        #flexi-description-{{ block.id }} h3,
+        #flexi-description-{{ block.id }} h4,
+        #flexi-description-{{ block.id }} h5,
+        #flexi-description-{{ block.id }} a,
+        #flexi-description-{{ block.id }} ul,
+        #flexi-description-{{ block.id }} li {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            background: none;
+            text-decoration: none;
+            text-align: inherit;
+            font-size: {{ block.settings.description_font_size }}px;
+            color: {{ block.settings.description_font_color }};
+            line-height: {{ line_height | times: 0.01 | plus: 1 }}em;
+            letter-spacing: {{ letter_spacing | times: 0.01 }}rem;
+        }
+        @media (max-width: 768px) {
+            #flexi-description-{{ block.id }} p,
+            #flexi-description-{{ block.id }} h1,
+            #flexi-description-{{ block.id }} h2,
+            #flexi-description-{{ block.id }} h3,
+            #flexi-description-{{ block.id }} h4,
+            #flexi-description-{{ block.id }} h5,
+            #flexi-description-{{ block.id }} a,
+            #flexi-description-{{ block.id }} ul,
+            #flexi-description-{{ block.id }} li {
+                font-size: {{ scaled_description_font_size }}px;
+            }
+        }
+
+        /* NEW STYLES */
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .contact-form label {
+          font-size: 14px;
+        }
+
+        .inquire-input-form {
+          border: solid 1px lightgrey;
+          border-radius: 4px;
+          height: 42px; 
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+          padding: 10px;
+          box-sizing: border-box;
+        }
+
+        /* Style the placeholder text */
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+          color: #999;
+          padding-left: 5px;
+        }
+
+        .contact-form textarea {
+          min-height: 150px;
+          padding: 10px;
+          box-sizing: border-box;
+          resize: vertical;
+        }
+        {% endstyle %}
+        <ul class="m-product-shipping">
+          {% if block.settings.show_delivery_times %}
+            <li class="m-product-shipping--item m-product-shipping__deliver m:display-flex m:items-center">
+              <span class="m-product-shipping__icon">
+<svg class="icon-delivery " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="24" height="44" viewBox="0 0 54 44" fill="none">      <path d="M5.5 22H18.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M6.6001 38.5C6.6001 39.667 7.06367 40.7861 7.88883 41.6113C8.71399 42.4364 9.83314 42.9 11.0001 42.9C12.167 42.9 13.2862 42.4364 14.1114 41.6113C14.9365 40.7861 15.4001 39.667 15.4001 38.5C15.4001 37.333 14.9365 36.2139 14.1114 35.3887C13.2862 34.5636 12.167 34.1 11.0001 34.1C9.83314 34.1 8.71399 34.5636 7.88883 35.3887C7.06367 36.2139 6.6001 37.333 6.6001 38.5V38.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M37.3999 38.5C37.3999 39.667 37.8635 40.7861 38.6886 41.6113C39.5138 42.4364 40.6329 42.9 41.7999 42.9C42.9669 42.9 44.086 42.4364 44.9112 41.6113C45.7363 40.7861 46.1999 39.667 46.1999 38.5C46.1999 37.333 45.7363 36.2139 44.9112 35.3887C44.086 34.5636 42.9669 34.1 41.7999 34.1C40.6329 34.1 39.5138 34.5636 38.6886 35.3887C37.8635 36.2139 37.3999 37.333 37.3999 38.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M6.6001 38.5H2.2001C1.90836 38.5 1.62857 38.3841 1.42228 38.1778C1.21599 37.9715 1.1001 37.6917 1.1001 37.4V26.8554C1.10016 26.5642 1.21567 26.285 1.4213 26.0788L5.5001 22L10.3709 13.2308C10.5615 12.888 10.8403 12.6025 11.1784 12.4036C11.5164 12.2048 11.9015 12.1 12.2937 12.1H18.7001V2.20001C18.7001 1.90827 18.816 1.62848 19.0223 1.42219C19.2286 1.2159 19.5084 1.10001 19.8001 1.10001H50.6001C50.8918 1.10001 51.1716 1.2159 51.3779 1.42219C51.5842 1.62848 51.7001 1.90827 51.7001 2.20001V37.4C51.7001 37.6917 51.5842 37.9715 51.3779 38.1778C51.1716 38.3841 50.8918 38.5 50.6001 38.5H46.2001" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M15.3999 38.5H37.3999" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M18.7002 12.1V34.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M1.1001 34.1H51.7001" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>    </svg>
+              </span>
+              {% liquid
+                assign range = 2 | times: 24 | times: 60 | times: 60
+                assign deliver_in = block.settings.deliver_days | times: 24 | times: 60 | times: 60
+                assign date_format = block.settings.date_format | default: '%b %d'
+                assign now = 'now' | date: '%s'
+
+                assign from = now | plus: deliver_in | minus: range | date: date_format
+                assign to = now | plus: deliver_in | plus: range | date: date_format
+              %}
+              <div class="m-product-shipping__content">
+                <span class="m-product-shipping__title">Order in the next <span id="countdown-timer" class="countdown-box"></span> to get it by <span id="arrival-date"></span></span>
+                <!-- <span class="m-product-shipping__text m:text-small-medium">{{ from }} - {{ to }}</span> -->
+              </div>
+            </li>
+          {% endif %}
+          {% if block.settings.shipping_title != blank %}
+            <li class="m-product-shipping--item m-product-shipping__info m:display-flex m:items-center">
+              <span class="m-product-shipping__icon">
+<svg class="icon-delivery-package" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 44 44" fill="none">
+            <path d="M23.6498 42.7423C23.4202 42.8471 23.1714 42.9032 22.919 42.9073C22.6666 42.9114 22.4161 42.8634 22.1832 42.7662L2.044 34.3768C1.71005 34.2375 1.4248 34.0025 1.22416 33.7014C1.02352 33.4003 0.916474 33.0465 0.916504 32.6847V11.275C0.916331 10.9181 1.02032 10.569 1.21572 10.2703C1.41111 9.9717 1.68942 9.73659 2.0165 9.59384L21.2665 1.22467C21.4978 1.12372 21.7475 1.07162 21.9998 1.07162C22.2522 1.07162 22.5019 1.12372 22.7332 1.22467L41.9832 9.59384C42.3103 9.73659 42.5886 9.9717 42.784 10.2703C42.9794 10.569 43.0833 10.9181 43.0832 11.275V32.725C43.0834 33.0772 42.9822 33.422 42.7917 33.7182C42.6012 34.0143 42.3294 34.2494 42.0088 34.3952L23.6498 42.7423Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22.9165 19.239V42.9275" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22.9165 19.239L42.7513 10.2245" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M32.0337 5.269L11.9165 14.531V21.2392" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22.9167 19.239L1.25586 10.2135" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>           
+              </span>
+              <div class="m-product-shipping__content">
+                <span class="m-product-shipping__title">{{ block.settings.shipping_title }}</span>
+                {% if block.settings.shipping_text != blank %}
+                  <span class="m-product-shipping__text m:text-small-medium">{{ block.settings.shipping_text }}</span>
+                {% endif %}
+              </div>
+            </li>
+          {% endif %}
+          {% if block.settings.price_match_title != blank %}
+            <li class="m-product-shipping--item m-product-shipping__info m:display-flex m:items-center">
+              <span class="m-product-shipping__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_8_6349)">
+                    <path d="M0.689084 11.039L11.652 0.467607C11.6604 0.459519 11.6716 0.455 11.6833 0.455H19.5C19.5249 0.455 19.545 0.475147 19.545 0.5V9.43041C19.545 9.44262 19.54 9.45432 19.5312 9.4628L9.29049 19.3378C9.27306 19.3546 9.24546 19.3546 9.22802 19.3378L0.689085 11.1038C0.670732 11.0861 0.670734 11.0567 0.689084 11.039L0.373253 10.7115L0.689084 11.039Z" stroke="black" stroke-width="0.91"/>
+                    <circle cx="14.7059" cy="5.29274" r="2.48618" stroke="black" stroke-width="0.91"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_8_6349">
+                    <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+              </span>
+              <div class="m-product-shipping__content">
+                <span class="m-product-shipping__title">{{ block.settings.price_match_title }} <button id="showFlexiPopup-{{ blockid }}">{{ block.settings.price_match_text }}</button></span>
+              </div>
+            </li>
+          {% endif %}
+          {% if block.settings.show_returns_text and block.settings.returns_text != blank %}
+            <li class="m-product-shipping--item m-product-shipping__return m:display-flex m:items-center">
+              <span class="m-product-shipping__icon">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 256 256" xml:space="preserve">
+
+<defs>
+</defs>
+<g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+	<path d="M 31.771 63.528 c -8.136 0 -16.272 -3.098 -22.466 -9.291 C 3.305 48.236 0 40.258 0 31.771 S 3.305 15.306 9.306 9.306 c 12.387 -12.387 32.543 -12.388 44.932 0 l 0 0 c 12.388 12.388 12.388 32.544 0 44.932 C 48.044 60.431 39.908 63.528 31.771 63.528 z M 31.771 4.013 c -7.112 0 -14.224 2.707 -19.638 8.121 c -10.828 10.828 -10.828 28.447 0 39.275 c 10.829 10.827 28.447 10.827 39.275 0 c 10.827 -10.828 10.827 -28.447 0 -39.275 C 45.995 6.72 38.883 4.013 31.771 4.013 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<path d="M 58.357 60.357 c -0.512 0 -1.023 -0.195 -1.414 -0.586 l -5.534 -5.534 c -0.781 -0.781 -0.781 -2.047 0 -2.828 s 2.047 -0.781 2.828 0 l 5.534 5.534 c 0.781 0.781 0.781 2.047 0 2.828 C 59.381 60.162 58.869 60.357 58.357 60.357 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<path d="M 84.075 89.997 c -1.518 0 -3.035 -0.577 -4.189 -1.732 L 56.943 65.322 c -1.119 -1.118 -1.736 -2.606 -1.736 -4.189 c 0 -1.582 0.617 -3.07 1.736 -4.189 s 2.607 -1.736 4.189 -1.736 c 1.583 0 3.071 0.617 4.19 1.736 l 22.941 22.942 c 2.31 2.31 2.31 6.068 0.001 8.379 c -0.001 0 -0.001 0 -0.001 0.001 C 87.109 89.42 85.592 89.997 84.075 89.997 z M 86.851 86.851 h 0.01 H 86.851 z M 61.133 59.207 c -0.514 0 -0.997 0.201 -1.361 0.564 c -0.363 0.364 -0.564 0.848 -0.564 1.361 c 0 0.515 0.2 0.997 0.564 1.36 l 22.942 22.943 c 0.749 0.749 1.97 0.751 2.723 0 c 0.75 -0.751 0.75 -1.973 0 -2.723 L 62.494 59.771 C 62.13 59.407 61.647 59.207 61.133 59.207 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<path d="M 39.667 47.488 H 21.563 c -0.965 0 -1.792 -0.688 -1.967 -1.637 s 0.353 -1.887 1.254 -2.231 c 4.505 -1.719 5.308 -4.958 5.304 -11.117 c -0.589 -7.474 0.649 -12.285 3.786 -14.706 c 2.562 -1.977 6.189 -2.165 10.784 -0.56 c 1.043 0.365 1.593 1.505 1.229 2.548 c -0.364 1.043 -1.505 1.592 -2.548 1.229 c -3.237 -1.131 -5.597 -1.148 -7.02 -0.05 c -1.937 1.495 -2.71 5.402 -2.236 11.299 c 0.004 0.052 0.006 0.104 0.006 0.157 c 0.007 3.979 -0.251 7.997 -2.519 11.07 h 12.032 c 1.104 0 2 0.896 2 2 C 41.667 46.594 40.771 47.488 39.667 47.488 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<path d="M 36.234 33.821 H 21.563 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 14.672 c 1.104 0 2 0.896 2 2 S 37.339 33.821 36.234 33.821 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+</g>
+</svg>                                   
+              </span>
+<div class="m-product-shipping__content" style="display: flex; align-items: center;">
+    <span class="m-product-shipping__title">{{ block.settings.returns_title }}</span>
+    <span class="m-product-shipping__text m:text-small-medium" style="display: flex; align-items: center;">
+        {{ block.settings.returns_text }}
+        <a>
+            <strong style="color: #0abeb3;">Click Here!</strong>
+        </a>
+    </span>
+</div>
+
+
+
+
+
+
+            </li>
+          {% endif %}
+        </ul>
+
+        <div class="flexi-popup" id="flexi-popup-{{ blockid }}">
+          <div class="flexi-popup-content">
+              <button class="flexi-close-btn" id="closeFlexiPopup-{{ blockid }}">&#10005;</button>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+        
+                {% if block.settings.popup_heading != blank %}
+                    <h2 id="flexi-header-{{ blockid }}" class="flexi-header">{{ block.settings.popup_heading }}</h2>
+                {% endif %}
+                
+                {% if block.settings.popup_description != blank %}
+                    <div class="bl-description-component-{{ block.id }}">
+                        <span id="flexi-description-{{ block.id }}" class="bl-description-{{ block.id }}">{{ block.settings.popup_description }}</span>
+                    </div>
+                {% endif %}
+        
+                 <form method="post" action="/contact" accept-charset="UTF-8" class="contact-form">
+                  <input type="hidden" name="form_type" value="contact" />
+                  <input type="hidden" name="utf8" value="✓" />
+                
+                  <label for="ContactFormName">Name</label>
+                  <input type="text" id="ContactFormName" class="inquire-input-form" name="contact[name]" placeholder="Enter your name" required />
+                
+                  <label for="ContactFormEmail">Email</label>
+                  <input type="email" id="ContactFormEmail" class="inquire-input-form" name="contact[email]" placeholder="Enter your email" required />
+                
+                  <label for="ContactFormMessage">Please provide a link to the website where you found this product cheaper below:</label>
+                  <textarea id="ContactFormMessage" class="inquire-input-form" name="contact[body]" rows="10" placeholder="Please provide a URL in your description... E.g. somedomain.com/product" required></textarea>
+
+                  {%- if product and product.title -%}
+                    <input type="hidden" id="contactFormProduct" name="contact[product]" value="{{ product.title }}">
+                 {%- endif -%}
+                
+                  <button type="submit" class="m-spinner-button m-button m-button--primary">Send</button>
+                </form>        
+        
+              </div>
+          </div>
+        </div>
+
+        <script>
+          window.addEventListener('load', function() {
+            const showPopupButton = document.getElementById("showFlexiPopup-{{ blockid }}");
+            const popup = document.getElementById("flexi-popup-{{ blockid }}");
+            const closePopupButton = document.getElementById("closeFlexiPopup-{{ blockid }}");
+            const originalParent = popup.parentElement;
+        
+            showPopupButton.addEventListener("click", function() {
+                document.body.appendChild(popup);
+                popup.style.display = "block";
+            });
+        
+            closePopupButton.addEventListener("click", function() {
+                popup.style.display = "none";
+                originalParent.appendChild(popup);
+            });
+        
+            window.onclick = function(event) {
+                if (event.target == popup) {
+                    popup.style.display = "none";
+                    originalParent.appendChild(popup);
+                }
+            }
+          });
+        </script>
+
+      {%- when 'complementary' -%}
+        {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+        {{ 'product-complementary.css' | asset_url | stylesheet_tag }}
+        <complementary-products
+          class="m-complementary-products m-complementary-products--default"
+          data-product-card-style="{{ settings.pcard_layout }}"
+          data-product-card-view="{{ view }}"
+          data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
+          style="--column-gap: 15px; --column-gap-mobile: 15px;"
+          data-enable-slider="true"
+          data-show-navigation="true"
+          data-rows="{{ block.settings.products_per_column }}"
+          data-mobile-items="2"
+        >
+          {%- if recommendations.performed and recommendations.products_count > 0 -%}
+            {%- liquid
+              assign number_of_slides = recommendations.products_count | plus: 0.0 | divided_by: rows
+              assign enable_slider = false
+              if number_of_slides > 1
+                assign enable_slider = true
+              endif
+            -%}
+            {% capture block_content %}
+              <div class="m-complementary-products__wrapper m-mixed-layout">
+                <div class="m-mixed-layout__wrapper{% if enable_slider %} swiper{% endif %}">
+                  <div class="m-mixed-layout__inner m:grid m:grid-2-cols{% if enable_slider %} swiper-wrapper{% endif %}">
+                    {%- for product in recommendations.products -%}
+                      <div class="swiper-slide">
+                        {% liquid
+                          render 'product-card-1', show_border: true, color_scheme: block.settings.color_scheme, classes: 'm-product-card--complementary', type: 'complementary', product: product, view: 'list', image_ratio: block.settings.pcard_image_ratio, show_vendor: false, show_variant_options: false, show_cart_button: true, show_quickview_button: false, show_wishlist_button: false, show_compare_button: false, column_wrapper: true
+                        %}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </div>
+            {% endcapture %}
+            {% unless block.settings.block_heading == blank %}
+              <div class="m-complementary-products__heading">
+                <h3 class="{{ block.settings.heading_size }}">{{ block.settings.block_heading }}</h3>
+                {% if enable_slider %}
+                  {% render 'slider-controls', navigation_position: 'outsite', container: 'container', show_pagination: true, show_nav: true %}
+                {% endif %}
+              </div>
+            {% endunless %}
+            {{ block_content }}
+          {%- endif -%}
+        </complementary-products>
+    {%- endcase -%}
+  </div>
+{%- endfor -%}
