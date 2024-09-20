@@ -24,9 +24,11 @@
           assign color_scheme = settings.hot_badge_scheme
       endcase
     -%}
-    <span class="m-product-tag m-product-tag--{{ type }} m-gradient m-color-{{ color_scheme }}">
-      {{ tag_name }}
-    </span>
+    {% unless tag contains 'BUY' %}
+      <span class="m-product-tag m-product-tag--{{ type }} m-gradient m-color-{{ color_scheme }}">
+        {{ tag_name }}
+      </span>
+    {% endunless %}
   {% endif %}
 {% endfor %}
 {% if product.metafields.theme.custom_badge != blank %}

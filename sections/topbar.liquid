@@ -14,7 +14,7 @@
               {% when 'menu' %}
                 <div class="m-topbar-section__menu m:hidden xl:m:flex {{ current_position }}">
                   <div class="m-topbar-section__menu-container">
-                    <ul class="m-link-lists m-link-lists--inline">
+                    <ul class="m-link-lists m-link-lists--inline" style="Flex-wrap: no-wrap;">
                       {% for link in linklists[block.settings.menu].links -%}
                         <li class="m-link-lists__item">
                           <a href="{{ link.url }}" class="m-link">{{ link.title }}</a>
@@ -77,7 +77,7 @@
               {% when 'menu' %}
                 <div class="m-topbar-section__menu m:hidden xl:m:flex {{ current_position }}">
                   <div class="m-topbar-section__menu-container">
-                    <ul class="m-link-lists m-link-lists--inline">
+                    <ul class="m-link-lists m-link-lists--inline" style="Flex-wrap: no-wrap;">
                       {% for link in linklists[block.settings.menu].links -%}
                         <li class="m-link-lists__item">
                           <a href="{{ link.url }}" class="m-link">{{ link.title }}</a>
@@ -140,10 +140,10 @@
               {% when 'menu' %}
                 <div class="m-topbar-section__menu m:hidden xl:m:flex {{ current_position }}">
                   <div class="m-topbar-section__menu-container">
-                    <ul class="m-link-lists m-link-lists--inline">
+                    <ul class="m-link-lists m-link-lists--inline" style="flex-wrap: nowrap;">
                       {% for link in linklists[block.settings.menu].links -%}
                         <li class="m-link-lists__item">
-                          <a href="{{ link.url }}" class="m-link">{{ link.title }}</a>
+                          <a href="{{ link.url }}" class="m-link" style="white-space: nowrap;">{{ link.title }}</a>
                         </li>
                       {%- endfor %}
                     </ul>

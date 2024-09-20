@@ -29,6 +29,15 @@
   .m--featured-promotions--{{ section.id }} .m-featured-promotions__wrapper > *:nth-child({{ items_per_row }}n):after {
     content: none;
   }
+  .m-featured-promotions__item {
+    width: fit-content;
+  }
+  @media screen and (min-width: 1024px) {
+    .m-featured-promotions__wrapper {
+      display: flex;
+      justify-content: center;
+    }
+  }
 {% endstyle %}
 
 <section class="m-section m-featured-promotions m--featured-promotions--{{ section.id }} m-section--padding m-color-{{ color_scheme }} m-gradient {{ custom_classes }}{% if section.settings.boxed_layout %} m-section--boxed{% endif %}"
