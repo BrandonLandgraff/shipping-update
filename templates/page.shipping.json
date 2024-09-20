@@ -166,6 +166,16 @@
             "apple_link": "https:\/\/apps.apple.com\/gb\/app\/dpd\/id1064977107"
           }
         },
+        "shipping_information_X7XyRW": {
+          "type": "shipping_information",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-20_at_4.56.17_PM.png",
+            "title": "Same Day Local Delivery UK : Mon-Fri",
+            "description": "<ul><li>Place your order before <strong>3pm <\/strong>for <strong>same day Dispatch & Delivery <\/strong><\/li><li>Deliveries are made Mon-Fri (excluding Bank Holidays) <\/li><li>Delivered between <strong>3pm-8pm <\/strong><\/li><li>To Local Postcodes: <strong>S40, S41, S42, S43, S44, S45 <\/strong>£3.99 on orders under £60 <\/li><li><strong>FREE on orders over £60 <\/strong><\/li><\/ul>",
+            "google_link": "",
+            "apple_link": ""
+          }
+        },
         "liquid_U4NxQT": {
           "type": "liquid",
           "disabled": true,
@@ -227,6 +237,7 @@
         "shipping_information_zXiRwg",
         "shipping_information_FUxULH",
         "shipping_information_8LAhht",
+        "shipping_information_X7XyRW",
         "liquid_U4NxQT",
         "html_6WKxKq",
         "liquid_bUCNpt",
