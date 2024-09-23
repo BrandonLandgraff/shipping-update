@@ -9,17 +9,12 @@
   assign cards_width = section.settings.cards_width
   assign center = section.settings.center
   assign stack = section.settings.stack
-  assign display_options = section.settings.display_options
 
-  assign padding_top = section.settings.padding_top
-  assign padding_bottom  = section.settings.padding_bottom 
-  assign mobile_top_padding = section.settings.padding_top | times: 0.6 | round
-  assign mobile_bottom_padding = section.settings.padding_bottom | times: 0.6 | round
 -%}
 
 {%- style -%}
   /* SECTION STYLES */
-  .flexi-announcement-bar--{{ sectionid }} {
+  /* .flexi-announcement-bar--{{ sectionid }} {
       background-color: {{ bg_color }};
       padding-top: {{ padding_top }}px;
       padding-bottom: {{ padding_bottom }}px;
@@ -34,7 +29,7 @@
           padding-right: 2em;
           padding-left: 2em;
       }
-  }
+  } */
 
   .flexi-blocks-wrapper--{{ sectionid }} {
       display: flex;
