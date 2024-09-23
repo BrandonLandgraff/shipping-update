@@ -191,6 +191,7 @@
         "flexi_announcement_bar_Wdjd7C",
         "flexi_announcement_bar_XBhKAa"
       ],
+      "disabled": true,
       "settings": {
         "bg_color": "#ffffff",
         "display_options": "bl-hide-none",
