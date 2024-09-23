@@ -1,0 +1,491 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "custom_content_E6HDGF": {
+      "type": "custom-content",
+      "blocks": {
+        "image_Nxf3YU": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "width": "25%",
+            "alignment": "center",
+            "image": "{{ collection.image }}",
+            "link": "",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "liquid_grLwkg": {
+          "type": "liquid",
+          "settings": {
+            "width": "100%",
+            "alignment": "center",
+            "custom_liquid": "<div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 1;\" data-cascade=\"\">\n    <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.description }}<\/p><\/div><\/div>\n  <\/div>",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_tkjqYd": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "width": "100%",
+            "alignment": "center",
+            "image": "{{ collection.metafields.custom.promotion_banner.value }}",
+            "link": "",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "liquid_THE6hP": {
+          "type": "liquid",
+          "settings": {
+            "width": "100%",
+            "alignment": "center",
+            "custom_liquid": "{%- if collection.metafields.custom.promotion_banner.value != blank -%}\n  <div style=\"display: flex; justify-content: center; align-items: center;\">\n    <img srcset=\"{{ collection.metafields.custom.promotion_banner.value | img_url:'master' }}\" style=\"height: 150px; width: auto; border-radius: var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\">\n    <noscript>\n      <img loading=\"lazy\" src=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master' }}\" style=\"height: 150px; width: auto; border-radius: var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n    <\/noscript>\n  <\/div>\n{%- endif -%}",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "liquid_eBpPVg": {
+          "type": "liquid",
+          "settings": {
+            "width": "100%",
+            "alignment": "center",
+            "custom_liquid": "<div class=\"slick-slider\">\n  {% for collection in collections %}\n    {% if collection.tags contains 'custom.collectionoffer' %}\n      <div class=\"slick-slide\">\n        <div class=\"collection-container\">\n          <div class=\"collection-image\">\n            <img src=\"{{ collection.image.src | img_url: '300x300' }}\" alt=\"{{ collection.title }}\" class=\"rounded-image\">\n          <\/div>\n          <div class=\"collection-text\">\n            <p>{{ collection.title }}<\/p>\n          <\/div>\n        <\/div>\n      <\/div>\n    {% endif %}\n  {% endfor %}\n<\/div>\n\n<style>\n  .slick-slider {\n    width: 100%;\n    overflow: hidden;\n  }\n  .slick-slide {\n    float: left;\n    padding: 0 10px;\n    box-sizing: border-box;\n  }\n  .collection-container {\n    border-radius: 5px;\n    overflow: hidden;\n    box-shadow: 0 0 5px rgba(0,0,0,0.2);\n    background: #fff;\n    text-align: center;\n    width: 250px; \/* Adjust as per your design *\/\n    margin: 0 auto; \/* Centers the container *\/\n  }\n  .collection-image {\n    padding: 10px;\n  }\n  .rounded-image {\n    border-radius: 50%;\n    border: 2px solid #ccc; \/* Adjust border style *\/\n    width: 100px; \/* Adjust image size *\/\n    height: 100px; \/* Adjust image size *\/\n    display: block;\n    margin: 0 auto;\n  }\n  .collection-text {\n    padding: 10px;\n  }\n<\/style>\n\n<script>\n  $(document).ready(function(){\n    $('.slick-slider').slick({\n      slidesToShow: 3, \/\/ Adjust number of slides shown at once\n      slidesToScroll: 1,\n      autoplay: true,\n      autoplaySpeed: 2000, \/\/ Adjust autoplay speed (milliseconds)\n      dots: true, \/\/ Enable dots navigation\n      responsive: [\n        {\n          breakpoint: 768,\n          settings: {\n            slidesToShow: 2\n          }\n        },\n        {\n          breakpoint: 480,\n          settings: {\n            slidesToShow: 1\n          }\n        }\n      ]\n    });\n  });\n<\/script>",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "image_Nxf3YU",
+        "liquid_grLwkg",
+        "image_tkjqYd",
+        "liquid_THE6hP",
+        "liquid_eBpPVg"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "boxed_layout": true,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "header_divider": true,
+        "header_alignment": "center",
+        "header_mobile_alignment": "center",
+        "heading": "",
+        "heading_size": "h2",
+        "subheading": "",
+        "description": "<h1>{{ collection.title }}<\/h1>",
+        "text_color": "subtext",
+        "gap": 100,
+        "row_gap": 0,
+        "gap_mobile": 0,
+        "row_gap_mobile": 0,
+        "padding_top": 30,
+        "padding_bottom": 0,
+        "custom_class": ""
+      }
+    },
+    "collection-header": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "custom_css": [
+
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "text_alignment": "center",
+        "heading_size": "h4",
+        "upper_title": true,
+        "show_desc": true,
+        "desc_text_color": "subtext",
+        "collection_all_desc": "",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "eac066b5-1129-4cb9-8337-d3271016aa0b": {
+      "type": "breadcrumb",
+      "disabled": true,
+      "settings": {
+        "text_alignment": "left",
+        "hide_current": false,
+        "hide_on_mb": false,
+        "padding_top": 14,
+        "padding_bottom": 0,
+        "animations": "inherit"
+      }
+    },
+    "3d45cc71-3313-4636-b8aa-c81b26ba7a65": {
+      "type": "collection-list",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "background-1",
+        "boxed_layout": true,
+        "grid_bordered": false,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "heading": "",
+        "heading_size": "h3",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "m-button--link",
+        "header_divider": false,
+        "header_alignment": "center",
+        "card_layout": "standard",
+        "card_text_alignment": "center",
+        "card_horizontal_align": "center",
+        "card_vertical_align": "end",
+        "card_show_border": true,
+        "card_image_width": "128px",
+        "card_image_rounded": 100,
+        "card_hover_effect": "scaling-up",
+        "card_heading_size": "h6",
+        "card_show_product_count": true,
+        "items_per_row": 7,
+        "column_gap": 30,
+        "row_gap": 30,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": true,
+        "navigation_position": "inside",
+        "mobile_layout": "col-2",
+        "enable_swipe_mobile": true,
+        "column_gap_mobile": 16,
+        "row_gap_mobile": 10,
+        "padding_top": 30,
+        "padding_bottom": 0,
+        "animations": "inherit",
+        "custom_class": ""
+      }
+    },
+    "main": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+        "@media (min-width: 768px) {.m-collection-products--list .m-product-card, .m-collection-products--list .m-product-card .m-product-card__content {flex-direction: row !important; }}"
+      ],
+      "settings": {
+        "grid_layout": "grid",
+        "grid_columns": "4",
+        "show_collection_title": true,
+        "collection_title_size": "h3",
+        "show_layout_switcher": true,
+        "boxed_layout": true,
+        "grid_bordered": false,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "column_gap": 50,
+        "row_gap": 30,
+        "column_gap_mobile": 10,
+        "row_gap_mobile": 10,
+        "pagination_limit": 48,
+        "paginate_type": "paginate",
+        "show_sorting": true,
+        "show_filter": true,
+        "sidebar": "fixed",
+        "sidebar_title": "Filters",
+        "filter_title_divider": true,
+        "limit_height_widget": true,
+        "limit_height": 300,
+        "change_product_variant_on_fitlering": true,
+        "show_product_count": true,
+        "collapsed_groups": "Brand, More filters, Strength, Resistance,",
+        "color_swatches": "Flavour, Flavor, Color, Type, Colour",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "custom_liquid_p4jgp7": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".m-section {--column-gap: 30px; --column-gap-mobile: 16px; --row-gap: 40px; --row-gap-mobile: 24px; --section-padding-top: 0px; --section-padding-bottom: 30px;}"
+      ],
+      "settings": {
+        "custom_liquid": "{%- if collection.metafields.custom.description_title.value != blank -%}\n<div class=\"m-page-width\">\n  <div class=\"m-section__wrapper m-gradient m-color-scheme-9b802ae1-d821-4057-8103-ed71b8f01c72\">\n    <div class=\"m-section__header m:text-center sm:m:text-center\">\n      <div class=\"m-section__description m:text-color-body  m-scroll-trigger animate--fade-in-up\"><h2>{{ collection.metafields.custom.description_title.value }}<\/h2><\/div>\n    <\/div>\n    <div class=\"m-section__content\">\n      <m-custom-content class=\"m-custom-content__wrapper m:flex m:flex-wrap\">\n        <div class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-full m:w-full m:display-flex m:items-start \">\n          <div class=\"m-custom-content__block-inner m:w-full\">\n            <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 1;\" data-cascade=\"\">\n              <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.description_1 | metafield_tag }}<\/p><\/div><\/div>\n            <\/div>\n          <\/div>\n        <\/div>\n        <div class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-1\/2 m:w-full m:display-flex m:items-start \">\n          <div class=\"m-custom-content__block-inner m:w-full\">\n            <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 2;\" data-cascade=\"\">\n              <p class=\"m-richtext__subtitle\"><h2>{{ collection.metafields.custom.subheading_2.value }}<\/h2><\/p>\n              <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.sub_header_2_text | metafield_tag }}<\/p><\/div><\/div>\n            <\/div>\n          <\/div>\n        <\/div>\n        <div class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-1\/2 m:w-full m:display-flex m:items-start \">\n          <div class=\"m-custom-content__block-inner m:w-full\">\n            <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 3;\" data-cascade=\"\">\n              <p class=\"m-richtext__subtitle\"><h2>{{ collection.metafields.custom.sub_heading_title_2.value }}<\/h2><\/p>\n              <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.sub_header_text_2 | metafield_tag }}<\/p><\/div><\/div>\n            <\/div>\n          <\/div>\n        <\/div>\n        {%- if collection.metafields.custom.custom_collection_picture.value != blank -%}       \n        <div class=\"m-custom-content__block m-custom-content__block-image_card m:column lg:m:w-1\/3 m:display-flex m:items-center\">\n          <div class=\"m-custom-content__block-inner\">\n            <div class=\"m-image-card m-scroll-trigger animate--fade-in-up\">\n              <div class=\"m-image-card__inner m-color-background-1 m-gradient m-hover-box m-hover-box--scale-up\">\n                <div class=\"m-image-card__media\">\n                  <div class=\"m-image-card__desktop m:hidden md:m:block\">\n                      <img srcset=\"{{ collection.metafields.custom.custom_collection_picture | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\" class=\"m-image-card__desktop\">\n                      <noscript>\n                        <img class=\"m-image-card__desktop\" loading=\"lazy\" src=\"{{ collection.metafields.custom.custom_collection_picture | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                      <\/noscript>\n                  <\/div>\n                  <div class=\"m-image-card__mobile m:block md:m:hidden\">\n                      <img srcset=\"{{ collection.metafields.custom.custom_collection_picture | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\">\n                      <noscript>\n                        <img loading=\"lazy\" src=\"{{ collection.metafields.custom.custom_collection_picture | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                      <\/noscript>\n                  <\/div>\n                <\/div>\n              <\/div>\n            <\/div>              \n          <\/div>\n        <\/div>\n        {%- endif -%}        \n        <div class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-8\/12 m:w-full m:display-flex m:items-start \">\n          <div class=\"m-custom-content__block-inner m:w-full\">\n            <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 4;\" data-cascade=\"\">\n              <p class=\"m-richtext__subtitle\"><h2>{{ collection.metafields.custom.sub_heading_title_3.value }}<\/h2><\/p>\n              <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.sub_header_text_3 | metafield_tag }}<\/p><\/div><\/div>\n            <\/div>\n          <\/div>\n        <\/div>\n        {%- if collection.metafields.custom.collection_picture_full_width.value != blank -%}\n        <div class=\"m-custom-content__block m-custom-content__block-image_card m:column m:display-flex m:items-center \">\n            <div class=\"m-custom-content__block-inner\">\n                <link href=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master'}}\" rel=\"stylesheet\" type=\"text\/css\" media=\"all\">\n                  <div class=\"m-image-card m-scroll-trigger animate--fade-in-up\">\n                    <div class=\"m-image-card__inner m-color-background-1 m-gradient m-hover-box m-hover-box--scale-up\">\n                        <div class=\"m-image-card__media\">\n                            <div class=\"m-image-card__desktop m:hidden md:m:block\">\n                                    <img srcset=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\" class=\"m-image-card__desktop\">\n                                    <noscript>\n                                        <img class=\"m-image-card__desktop\" loading=\"lazy\" src=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                                    <\/noscript>\n                            <\/div>\n                            <div class=\"m-image-card__mobile m:block md:m:hidden\">\n                              <img srcset=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\">\n                              <noscript>\n                                <img loading=\"lazy\" src=\"{{ collection.metafields.custom.collection_picture_full_width | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                              <\/noscript>\n                            <\/div>\n                        <\/div>\n                    <\/div>\n                <\/div>       \n            <\/div>\n          <\/div>        \n          {%- endif -%}\n          <div class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-8\/12 m:w-full m:display-flex m:items-start\">\n            <div class=\"m-custom-content__block-inner m:w-full\">     \n                <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 2;\" data-cascade=\"\">         \n                    <p class=\"m-richtext__subtitle\"><h2>{{ collection.metafields.custom.sub_heading_title_4.value }}<\/h2><\/p>\n                    <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.sub_header_text_4 | metafield_tag }}<\/p><\/div><\/div>\n                <\/div>                \n            <\/div>\n        <\/div>\n        {%- if collection.metafields.custom.custom_picture_right_side.value != blank -%}\n        <div class=\"m-custom-content__block m-custom-content__block-image_card m:column lg:m:w-1\/3 m:display-flex m:items-center\">\n            <div class=\"m-custom-content__block-inner \">\n              <div class=\"m-image-card m-scroll-trigger animate--fade-in-up\">\n                <div class=\"m-image-card__inner m-color-background-1 m-gradient m-hover-box m-hover-box--scale-up\">\n                  <div class=\"m-image-card__media\">\n                    <div class=\"m-image-card__desktop m:hidden md:m:block\">\n                        <img srcset=\"{{ collection.metafields.custom.custom_picture_right_side | img_url:'master'}}\" alt=\"{{ collection.title }} - ECIGONE\" style=\"border-radius:var(--boxed-radius, 0px);\" loading=\"lazy\">\n                        <noscript>\n                          <img class=\"m-image-card__desktop\" loading=\"lazy\" src=\"{{ collection.metafields.custom.custom_picture_right_side | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                        <\/noscript>\n                    <\/div>\n                    <div class=\"m-image-card__mobile m:block md:m:hidden\">\n                        <img srcset=\"{{ collection.metafields.custom.custom_picture_right_side | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\" loading=\"lazy\">\n                        <noscript>\n                          <img loading=\"lazy\" src=\"{{ collection.metafields.custom.custom_picture_right_side | img_url:'master'}}\" style=\"border-radius:var(--boxed-radius, 0px);\" alt=\"{{ collection.title }} - ECIGONE\">\n                        <\/noscript>\n                    <\/div>\n                  <\/div>\n                <\/div>\n              <\/div>              \n            <\/div>\n          <\/div>\n          {%- endif -%}       \n          <div id=\"m-custom__block--text_RAp8Vg\" class=\"m-custom-content__block m-custom-content__block-text m:column lg:m:w-full m:w-full m:display-flex m:items-start \">\n            <div class=\"m-custom-content__block-inner m:w-full\">\n                <div class=\"m-richtext m:text-left m-scroll-trigger animate--fade-in-up\" style=\"--animation-order: 0;\" data-cascade=\"\">\n                    <p class=\"m-richtext__subtitle\"><h2>{{ collection.metafields.custom.final_text_title_center }}<\/h2><\/p>\n                    <div class=\"m-richtext__description rte m:text-color-body\"><div class=\"metafield-rich_text_field\"><p>{{ collection.metafields.custom.final_text_bottom | metafield_tag }}<\/p><\/div><\/div>\n                <\/div>\n            <\/div>\n          <\/div>\n      <\/m-custom-content>\n    <\/div>\n  <\/div>\n<\/div>\n{%- endif -%}",
+        "custom_class": "m-section m-custom-content  m-section--padding m-color-background-1 m-gradient m-section--boxed m-section--header-separated"
+      }
+    },
+    "custom_content_4wXXhY": {
+      "type": "custom-content",
+      "blocks": {
+        "text_B8pWgF": {
+          "type": "text",
+          "settings": {
+            "width": "100%",
+            "alignment": "start",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h2",
+            "subheading": "<strong>{{ collection.metafields.custom.description_title.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.description_1 | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "text_E48jE9": {
+          "type": "text",
+          "settings": {
+            "width": "50%",
+            "alignment": "center",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h2",
+            "subheading": "<strong>{{ collection.metafields.custom.subheading_2.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.sub_header_2_text | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "text_bfnRfN": {
+          "type": "text",
+          "settings": {
+            "width": "50%",
+            "alignment": "start",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h2",
+            "subheading": "<strong>{{ collection.metafields.custom.sub_heading_title_2.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.sub_header_text_2 | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_card_cX6hRX": {
+          "type": "image_card",
+          "settings": {
+            "width": "33%",
+            "color_scheme": "scheme_1",
+            "image_desktop": "{{ collection.metafields.custom.custom_collection_picture.value }}",
+            "image_mobile": "{{ collection.metafields.custom.custom_collection_picture.value }}",
+            "card_link": "",
+            "apply_link_on": "card",
+            "heading": "",
+            "text_size": "h2",
+            "sub_heading": "",
+            "description": "",
+            "desc_text_color": "body",
+            "content_position": "middle_center",
+            "content_alignment": "center",
+            "is_last_block_bottom": false,
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "content_padding_desktop": 30,
+            "content_padding_mobile": 19,
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "text_dbUaU4": {
+          "type": "text",
+          "settings": {
+            "width": "66%",
+            "alignment": "start",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h2",
+            "subheading": "<strong>{{ collection.metafields.custom.sub_heading_title_3.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.sub_header_text_3 | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_card_M9iagV": {
+          "type": "image_card",
+          "settings": {
+            "width": "100%",
+            "color_scheme": "scheme_1",
+            "image_desktop": "{{ collection.metafields.custom.collection_picture_full_width.value }}",
+            "image_mobile": "{{ collection.metafields.custom.collection_picture_full_width.value }}",
+            "card_link": "",
+            "apply_link_on": "card",
+            "heading": "",
+            "text_size": "h2",
+            "sub_heading": "",
+            "description": "",
+            "desc_text_color": "body",
+            "content_position": "middle_center",
+            "content_alignment": "center",
+            "is_last_block_bottom": false,
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "content_padding_desktop": 30,
+            "content_padding_mobile": 19,
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "text_et78tg": {
+          "type": "text",
+          "settings": {
+            "width": "66%",
+            "alignment": "start",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h3",
+            "subheading": "<strong>{{ collection.metafields.custom.sub_heading_title_4.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.sub_header_text_4 | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_card_CL3jwp": {
+          "type": "image_card",
+          "settings": {
+            "width": "33%",
+            "color_scheme": "scheme_1",
+            "image_desktop": "{{ collection.metafields.custom.custom_picture_right_side.value }}",
+            "image_mobile": "{{ collection.metafields.custom.custom_picture_right_side.value }}",
+            "card_link": "",
+            "apply_link_on": "card",
+            "heading": "",
+            "text_size": "h2",
+            "sub_heading": "",
+            "description": "",
+            "desc_text_color": "body",
+            "content_position": "middle_center",
+            "content_alignment": "center",
+            "is_last_block_bottom": false,
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "content_padding_desktop": 30,
+            "content_padding_mobile": 19,
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "text_RAp8Vg": {
+          "type": "text",
+          "settings": {
+            "width": "100%",
+            "alignment": "start",
+            "align_text": "center",
+            "title": "",
+            "text_size": "h2",
+            "subheading": "<strong>﻿<\/strong><strong>{{ collection.metafields.custom.final_text_title_center.value }}<\/strong>",
+            "text": "{{ collection.metafields.custom.final_text_bottom | metafield_tag }}",
+            "text_color": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "text_B8pWgF",
+        "text_E48jE9",
+        "text_bfnRfN",
+        "image_card_cX6hRX",
+        "text_dbUaU4",
+        "image_card_M9iagV",
+        "text_et78tg",
+        "image_card_CL3jwp",
+        "text_RAp8Vg"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "boxed_layout": true,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "header_divider": true,
+        "header_alignment": "center",
+        "header_mobile_alignment": "center",
+        "heading": "",
+        "heading_size": "h2",
+        "subheading": "",
+        "description": "<h2>{{ collection.title }}<\/h2>",
+        "text_color": "body",
+        "gap": 30,
+        "row_gap": 40,
+        "gap_mobile": 16,
+        "row_gap_mobile": 24,
+        "padding_top": 0,
+        "padding_bottom": 30,
+        "custom_class": ""
+      }
+    },
+    "collapsible_content_GJE8M7": {
+      "type": "collapsible-content",
+      "blocks": {
+        "item_8id7YF": {
+          "type": "item",
+          "settings": {
+            "header": "Collapsible tab heading",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<\/p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<\/p>",
+            "content_page": "",
+            "open": false
+          }
+        },
+        "item_neYGMd": {
+          "type": "item",
+          "settings": {
+            "header": "Collapsible tab heading",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<\/p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<\/p>",
+            "content_page": "",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "item_8id7YF",
+        "item_neYGMd"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "boxed_layout": true,
+        "boxed_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "header_divider": false,
+        "heading": "",
+        "heading_size": "h2",
+        "subheading": "",
+        "description": "",
+        "text_color": "body",
+        "header_alignment": "center",
+        "header_mobile_alignment": "left",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "custom_content_E6HDGF",
+    "collection-header",
+    "eac066b5-1129-4cb9-8337-d3271016aa0b",
+    "3d45cc71-3313-4636-b8aa-c81b26ba7a65",
+    "main",
+    "custom_liquid_p4jgp7",
+    "custom_content_4wXXhY",
+    "collapsible_content_GJE8M7"
+  ]
+}
