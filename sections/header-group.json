@@ -110,7 +110,7 @@
             "svg_icon": "fa-check",
             "icon_size": 20,
             "icon_color": "#47DE46",
-            "hide_icon": false,
+            "hide_icon": true,
             "description": "<strong>Free Nic Salt - </strong>With Every Pod Kit",
             "description_font_size": 14,
             "font_color": "#000000",
