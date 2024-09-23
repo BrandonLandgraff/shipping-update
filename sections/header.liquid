@@ -472,42 +472,47 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
 <script>
-  var swiper;
-
-  function initSwiper() {
-    var screenWidth = window.innerWidth;
-
-    if (screenWidth < 1024) {
-      if (!swiper) {
-        swiper = new Swiper('.swiper-{{ sectionid }}', {
-          slidesPerView: 'auto',
-          spaceBetween: 12,
-          grabCursor: true,
-          loop: true,
-          autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-          },
-          breakpoints: {
-            1024: {
-              spaceBetween: 12,
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper;
+  
+    function initSwiper() {
+      var screenWidth = window.innerWidth;
+      console.log('Screen width:', screenWidth);  // Debugging log
+  
+      if (screenWidth < 1024) {
+        if (!swiper) {
+          swiper = new Swiper('.swiper-{{ sectionid }}', {
+            slidesPerView: 'auto',
+            spaceBetween: 12,
+            grabCursor: true,
+            loop: true,
+            autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
             },
-          },
-        });
-      }
-    } else {
-      if (swiper) {
-        swiper.destroy(true, true);  // Destroy Swiper instance on desktop
-        swiper = undefined;
+            breakpoints: {
+              1024: {
+                spaceBetween: 12,
+              },
+            },
+          });
+          console.log('Swiper initialized');
+        }
+      } else {
+        if (swiper) {
+          swiper.destroy(true, true);  // Destroy Swiper instance on desktop
+          swiper = undefined;
+          console.log('Swiper destroyed');
+        }
       }
     }
-  }
-
-  // Initialize Swiper on page load
-  initSwiper();
-
-  // Reinitialize Swiper on window resize
-  window.addEventListener('resize', initSwiper);
+  
+    // Initialize Swiper on page load
+    initSwiper();
+  
+    // Reinitialize Swiper on window resize
+    window.addEventListener('resize', initSwiper);
+  });  
 </script>
 
 {% javascript %}
