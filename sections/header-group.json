@@ -1,1 +1,213 @@
-{"type":"header","name":"Header","sections":{"annoucement_bar_ppDMNJ":{"type":"annoucement-bar","custom_css":[".m-announcement-bar__content {font-weight: 500;}"],"settings":{"color_scheme":"scheme-9edbba93-5026-4a67-8bd2-78e30f1094f2","show_announcement":true,"homepage_only":false,"show_close":true,"message":"FREE DOOZY E-LIQUID WITH EVERY POD KIT AND SUB-OHM KIT!!","message_link":"","show_divider":false}},"9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3":{"type":"topbar","blocks":{"sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-menu-1":{"type":"menu","settings":{"position":"right","menu":"top-menu"}},"sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-text-1":{"type":"text","disabled":true,"settings":{"position":"center","text":"FREE NIC SALT WITH EVERY POD KIT!"}},"fd369d53-c50b-4296-ab1e-d6912617d864":{"type":"social_media","disabled":true,"settings":{"position":"right","show_facebook":true,"show_twitter":true,"show_instagram":true,"show_pinterest":false,"show_snapchat":false,"show_tumblr":false,"show_youtube":true,"show_vimeo":false,"show_tiktok":false,"show_discord":true,"show_whatsapp":false,"show_spotify":false,"show_line":false,"show_linkedin":false}},"country_region_YawYTC":{"type":"country_region","settings":{"position":"right","show_country_selector":true,"show_language_selector":false}}},"block_order":["sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-menu-1","sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-text-1","fd369d53-c50b-4296-ab1e-d6912617d864","country_region_YawYTC"],"custom_css":[".m-topbar-section__container {font-weight: 500;}"],"settings":{"color_scheme":"background-1"}},"729ed7ff-cd70-41ab-97b7-db284c5764d5":{"type":"header","custom_css":[".tmenu_item_text {font-family: sans-serif; font-weight: 600; font-size: 1.2rem;}"],"settings":{"color_scheme":"scheme-9b802ae1-d821-4057-8103-ed71b8f01c72","sticky_header_type":"always","separator_line":"bottom","customers":"icon-text","show_wishlist":false,"show_compare":false,"icon_size":"xlarge","custom_icon":"","search_button":"icon","menu":"main-new-menu","menu_color_scheme":"scheme-9b802ae1-d821-4057-8103-ed71b8f01c72","menu_show_separator_line":false,"enable_country_selector":false,"enable_language_selector":false,"mega_menu_heading":"","foxkit_menu_element":"","toggle_button_position":"menu","open_default":false,"megamenu_color":"background-1","padding_top":30,"padding_bottom":20}},"custom_liquid_VyLajt":{"type":"custom-liquid","disabled":true,"settings":{"custom_liquid":"<div id=\"mobile-search-container\" style=\"display: none;\">\n  {%- liquid\n    assign product_type_search_enabled = settings.product_type_search_enabled\n    assign product_type_custom = settings.product_type_search_custom\n\n    capture all_product_type\n      for type in shop.types\n        if type != blank\n          echo type | strip | append: ','\n        endif\n      endfor\n    endcapture\n    assign all_product_type_custom = product_type_custom | split: ','\n    assign all_product_type = all_product_type | split: ',' | uniq | join: ',' | split: ','\n\n    if all_product_type_custom.size > 0\n      capture product_types_custom\n        for type in all_product_type_custom\n          assign type_item = type | strip\n          if all_product_type contains type_item\n            echo type | append: ','\n          endif\n        endfor\n      endcapture\n      assign product_types = product_types_custom | split: ','\n    else \n      assign product_types = all_product_type\n    endif\n\n    assign has_search_product_type = false\n    if all_product_type.size > 0\n      assign has_search_product_type = true\n    endif\n  -%}\n  {%- if settings.predictive_search_enabled -%}\n    <predictive-search class=\"m-search {{ classes }}\" data-loading-text=\"{{ 'accessibility.loading' | t }}\">\n  {%- else -%}\n    <search-form class=\"m-search {{ classes }}\">\n  {%- endif -%}\n  <form action=\"{{ routes.search_url }}\" method=\"get\" role=\"search\" class=\"m-search-form{% if has_search_product_type and product_type_search_enabled and settings.predictive_search_enabled %} m-search-form__has-filter{% endif %}\">\n    <div class=\"m-search-form__wrapper\">\n      {% if has_search_product_type and product_type_search_enabled and settings.predictive_search_enabled %}\n        <div class=\"m-search-form__select\">\n          <label for=\"search-product-type\" class=\"m:hidden\">{{ 'sections.header.search_filter.option_1' | t }}<\/label>\n          <select data-predictive-search-filter id=\"search-product-type\">\n            <option disabled>{{ 'sections.header.search_filter.option_1' | t }}<\/option>\n            <option data-index=\"0\" value selected>{{ 'sections.header.search_filter.option_2' | t }}<\/option>\n            {% for product_type in product_types %}\n              <option data-index=\"{{ forloop.index }}\" value=\"{{ product_type | strip }}\">{{ product_type }}<\/option>\n            {% endfor %}\n          <\/select>\n        <\/div>\n      {% endif %}\n      <input\n        class=\"search__input field__input form-field form-field--input m-search__input\"\n        id=\"{{ input_id }}\"\n        type=\"search\"\n        name=\"q\"\n        value=\"{{ search.terms | escape }}\"\n        placeholder=\"{{ 'general.search.search_field_placeholder' | t }}\"\n        {%- if settings.predictive_search_enabled -%}\n          role=\"combobox\"\n          aria-expanded=\"false\"\n          aria-owns=\"predictive-search-results\"\n          aria-controls=\"predictive-search-results\"\n          aria-haspopup=\"listbox\"\n          aria-autocomplete=\"list\"\n          autocorrect=\"off\"\n          autocomplete=\"off\"\n          autocapitalize=\"off\"\n          spellcheck=\"false\"\n        {%- endif -%}\n      >\n      <input type=\"hidden\" name=\"options[prefix]\" value=\"last\">\n      <input type=\"hidden\" id=\"product_type_input\" name=\"filter.p.product_type\">\n      <div class=\"m-search-form__buttons\">\n        <button\n          type=\"reset\"\n          class=\"reset__button m-search-form__reset--button{% if search.terms == blank %} m:hidden{% endif %}\"\n          aria-label=\"{{ 'general.search.reset' | t }}\"\n        >\n          <svg class=\"m-svg-icon--large\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n            <path d=\"M18.75 5.25L5.25 18.75\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\/>\n            <path d=\"M18.75 18.75L5.25 5.25\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\/>\n          <\/svg>\n        <\/button>\n        <button class=\"search__button m-search-form__search--button m-spinner-button search__button--{{ section.settings.search_button }}\" aria-label=\"{{ 'general.search.search' | t }}\">\n          {% if section.settings.search_button == 'icon' or section.settings.search_button == 'icon-plain' %}\n            <svg class=\"m-svg-icon--large\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n              <path d=\"M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\/>\n              <path d=\"M15.8032 15.8035L20.9998 21\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\/>\n            <\/svg>\n          {% else %}\n            <span>{{ 'general.search.search_button_label' | t }}<\/span>\n          {% endif %}\n          <span class=\"m-spinner-icon\">\n            <svg\n              class=\"animate-spin m-svg-icon--medium\"\n              xmlns=\"http:\/\/www.w3.org\/2000\/svg\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n            >\n              <circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\"><\/circle>\n              <path fill=\"currentColor\" d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"><\/path>\n            <\/svg>\n          <\/span>\n        <\/button>\n      <\/div>\n    <\/div>\n    {%- if settings.predictive_search_enabled -%}\n      <div class=\"m-predictive-search m-gradient m-color-{{ settings.popups_drawer_color_scheme }}\" tabindex=\"-1\" data-predictive-search>\n      <\/div>\n      <span class=\"m-predictive-search-status m:visually-hidden\" role=\"status\" aria-hidden=\"true\"><\/span>\n    {%- endif -%}\n  <\/form>\n  {%- if settings.predictive_search_enabled -%}\n    <\/predictive-search>\n  {%- else -%}\n    <\/search-form>\n  {%- endif -%}\n<\/div>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    function checkScreenSize() {\n      var mobileSearchContainer = document.getElementById('mobile-search-container');\n      if (window.innerWidth <= 768) {\n        mobileSearchContainer.style.display = 'block';\n      } else {\n        mobileSearchContainer.style.display = 'none';\n      }\n    }\n\n    \/\/ Initial check\n    checkScreenSize();\n\n    \/\/ Check on window resize\n    window.addEventListener('resize', checkScreenSize);\n  });\n<\/script>","custom_class":""}},"custom_announcement_bar_LwTJx3":{"type":"custom-announcement-bar","blocks":{"flexi_announcement_bar_Y8yNVx":{"type":"flexi-announcement-bar","settings":{"svg_icon":"fa-check","icon_size":20,"icon_color":"#47de46","hide_icon":true,"description":"<strong>Free Next Day Delivery - <\/strong>Orders over £20","description_font_size":14,"font_color":"#000000","background_color":"","text_align":"center"}},"flexi_announcement_bar_UyhBeG":{"type":"flexi-announcement-bar","settings":{"svg_icon":"fa-check","icon_size":20,"icon_color":"#47de46","hide_icon":true,"description":"<strong>Up to 8PM - <\/strong>Same Day Dispatch","description_font_size":14,"font_color":"#000000","background_color":"","text_align":"center"}},"flexi_announcement_bar_Wdjd7C":{"type":"flexi-announcement-bar","settings":{"svg_icon":"fa-check","icon_image":"shopify:\/\/shop_images\/Trust_Pilot_Reviews_c8d1d8ab-e731-4440-ac49-8defe972aba4.svg","icon_size":20,"icon_color":"#47de46","hide_icon":false,"description":"<strong>Excellent<\/strong>","description_font_size":14,"font_color":"#000000","background_color":"","text_align":"center"}},"flexi_announcement_bar_XBhKAa":{"type":"flexi-announcement-bar","settings":{"svg_icon":"fa-check","icon_size":20,"icon_color":"#47de46","hide_icon":true,"description":"<strong>7 Days A Week<\/strong> - Delivery & Dispatch","description_font_size":14,"font_color":"#000000","background_color":"","text_align":"center"}}},"block_order":["flexi_announcement_bar_Y8yNVx","flexi_announcement_bar_UyhBeG","flexi_announcement_bar_Wdjd7C","flexi_announcement_bar_XBhKAa"],"settings":{"bg_color":"#ffffff","display_options":"bl-hide-none","cards_width":1200,"center":"auto","stack":"scroll","width":1200,"padding_top":6,"padding_bottom":6}}},"order":["annoucement_bar_ppDMNJ","9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3","729ed7ff-cd70-41ab-97b7-db284c5764d5","custom_liquid_VyLajt","custom_announcement_bar_LwTJx3"]}
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "annoucement_bar_ppDMNJ": {
+      "type": "annoucement-bar",
+      "custom_css": [
+        ".m-announcement-bar__content {font-weight: 500;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-9edbba93-5026-4a67-8bd2-78e30f1094f2",
+        "show_announcement": true,
+        "homepage_only": false,
+        "show_close": true,
+        "message": "FREE DOOZY E-LIQUID WITH EVERY POD KIT AND SUB-OHM KIT!!",
+        "message_link": "",
+        "show_divider": false
+      }
+    },
+    "9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3": {
+      "type": "topbar",
+      "blocks": {
+        "sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-menu-1": {
+          "type": "menu",
+          "settings": {
+            "position": "right",
+            "menu": "top-menu"
+          }
+        },
+        "sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "position": "center",
+            "text": "FREE NIC SALT WITH EVERY POD KIT!"
+          }
+        },
+        "fd369d53-c50b-4296-ab1e-d6912617d864": {
+          "type": "social_media",
+          "disabled": true,
+          "settings": {
+            "position": "right",
+            "show_facebook": true,
+            "show_twitter": true,
+            "show_instagram": true,
+            "show_pinterest": false,
+            "show_snapchat": false,
+            "show_tumblr": false,
+            "show_youtube": true,
+            "show_vimeo": false,
+            "show_tiktok": false,
+            "show_discord": true,
+            "show_whatsapp": false,
+            "show_spotify": false,
+            "show_line": false,
+            "show_linkedin": false
+          }
+        },
+        "country_region_YawYTC": {
+          "type": "country_region",
+          "settings": {
+            "position": "right",
+            "show_country_selector": true,
+            "show_language_selector": false
+          }
+        }
+      },
+      "block_order": [
+        "sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-menu-1",
+        "sections--16081956176069__9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3-text-1",
+        "fd369d53-c50b-4296-ab1e-d6912617d864",
+        "country_region_YawYTC"
+      ],
+      "custom_css": [
+        ".m-topbar-section__container {font-weight: 500;}"
+      ],
+      "settings": {
+        "color_scheme": "background-1"
+      }
+    },
+    "729ed7ff-cd70-41ab-97b7-db284c5764d5": {
+      "type": "header",
+      "custom_css": [
+        ".tmenu_item_text {font-family: sans-serif; font-weight: 600; font-size: 1.2rem;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "sticky_header_type": "always",
+        "separator_line": "bottom",
+        "customers": "icon-text",
+        "show_wishlist": false,
+        "show_compare": false,
+        "icon_size": "xlarge",
+        "custom_icon": "",
+        "search_button": "icon",
+        "menu": "main-new-menu",
+        "menu_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72",
+        "menu_show_separator_line": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "mega_menu_heading": "",
+        "foxkit_menu_element": "",
+        "toggle_button_position": "menu",
+        "open_default": false,
+        "megamenu_color": "background-1",
+        "padding_top": 30,
+        "padding_bottom": 20
+      }
+    },
+    "custom_liquid_VyLajt": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "<div id=\"mobile-search-container\" style=\"display: none;\">\n  {%- liquid\n    assign product_type_search_enabled = settings.product_type_search_enabled\n    assign product_type_custom = settings.product_type_search_custom\n\n    capture all_product_type\n      for type in shop.types\n        if type != blank\n          echo type | strip | append: ','\n        endif\n      endfor\n    endcapture\n    assign all_product_type_custom = product_type_custom | split: ','\n    assign all_product_type = all_product_type | split: ',' | uniq | join: ',' | split: ','\n\n    if all_product_type_custom.size > 0\n      capture product_types_custom\n        for type in all_product_type_custom\n          assign type_item = type | strip\n          if all_product_type contains type_item\n            echo type | append: ','\n          endif\n        endfor\n      endcapture\n      assign product_types = product_types_custom | split: ','\n    else \n      assign product_types = all_product_type\n    endif\n\n    assign has_search_product_type = false\n    if all_product_type.size > 0\n      assign has_search_product_type = true\n    endif\n  -%}\n  {%- if settings.predictive_search_enabled -%}\n    <predictive-search class=\"m-search {{ classes }}\" data-loading-text=\"{{ 'accessibility.loading' | t }}\">\n  {%- else -%}\n    <search-form class=\"m-search {{ classes }}\">\n  {%- endif -%}\n  <form action=\"{{ routes.search_url }}\" method=\"get\" role=\"search\" class=\"m-search-form{% if has_search_product_type and product_type_search_enabled and settings.predictive_search_enabled %} m-search-form__has-filter{% endif %}\">\n    <div class=\"m-search-form__wrapper\">\n      {% if has_search_product_type and product_type_search_enabled and settings.predictive_search_enabled %}\n        <div class=\"m-search-form__select\">\n          <label for=\"search-product-type\" class=\"m:hidden\">{{ 'sections.header.search_filter.option_1' | t }}</label>\n          <select data-predictive-search-filter id=\"search-product-type\">\n            <option disabled>{{ 'sections.header.search_filter.option_1' | t }}</option>\n            <option data-index=\"0\" value selected>{{ 'sections.header.search_filter.option_2' | t }}</option>\n            {% for product_type in product_types %}\n              <option data-index=\"{{ forloop.index }}\" value=\"{{ product_type | strip }}\">{{ product_type }}</option>\n            {% endfor %}\n          </select>\n        </div>\n      {% endif %}\n      <input\n        class=\"search__input field__input form-field form-field--input m-search__input\"\n        id=\"{{ input_id }}\"\n        type=\"search\"\n        name=\"q\"\n        value=\"{{ search.terms | escape }}\"\n        placeholder=\"{{ 'general.search.search_field_placeholder' | t }}\"\n        {%- if settings.predictive_search_enabled -%}\n          role=\"combobox\"\n          aria-expanded=\"false\"\n          aria-owns=\"predictive-search-results\"\n          aria-controls=\"predictive-search-results\"\n          aria-haspopup=\"listbox\"\n          aria-autocomplete=\"list\"\n          autocorrect=\"off\"\n          autocomplete=\"off\"\n          autocapitalize=\"off\"\n          spellcheck=\"false\"\n        {%- endif -%}\n      >\n      <input type=\"hidden\" name=\"options[prefix]\" value=\"last\">\n      <input type=\"hidden\" id=\"product_type_input\" name=\"filter.p.product_type\">\n      <div class=\"m-search-form__buttons\">\n        <button\n          type=\"reset\"\n          class=\"reset__button m-search-form__reset--button{% if search.terms == blank %} m:hidden{% endif %}\"\n          aria-label=\"{{ 'general.search.reset' | t }}\"\n        >\n          <svg class=\"m-svg-icon--large\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M18.75 5.25L5.25 18.75\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            <path d=\"M18.75 18.75L5.25 5.25\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </button>\n        <button class=\"search__button m-search-form__search--button m-spinner-button search__button--{{ section.settings.search_button }}\" aria-label=\"{{ 'general.search.search' | t }}\">\n          {% if section.settings.search_button == 'icon' or section.settings.search_button == 'icon-plain' %}\n            <svg class=\"m-svg-icon--large\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path d=\"M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n              <path d=\"M15.8032 15.8035L20.9998 21\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          {% else %}\n            <span>{{ 'general.search.search_button_label' | t }}</span>\n          {% endif %}\n          <span class=\"m-spinner-icon\">\n            <svg\n              class=\"animate-spin m-svg-icon--medium\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n            >\n              <circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\"></circle>\n              <path fill=\"currentColor\" d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"></path>\n            </svg>\n          </span>\n        </button>\n      </div>\n    </div>\n    {%- if settings.predictive_search_enabled -%}\n      <div class=\"m-predictive-search m-gradient m-color-{{ settings.popups_drawer_color_scheme }}\" tabindex=\"-1\" data-predictive-search>\n      </div>\n      <span class=\"m-predictive-search-status m:visually-hidden\" role=\"status\" aria-hidden=\"true\"></span>\n    {%- endif -%}\n  </form>\n  {%- if settings.predictive_search_enabled -%}\n    </predictive-search>\n  {%- else -%}\n    </search-form>\n  {%- endif -%}\n</div>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    function checkScreenSize() {\n      var mobileSearchContainer = document.getElementById('mobile-search-container');\n      if (window.innerWidth <= 768) {\n        mobileSearchContainer.style.display = 'block';\n      } else {\n        mobileSearchContainer.style.display = 'none';\n      }\n    }\n\n    // Initial check\n    checkScreenSize();\n\n    // Check on window resize\n    window.addEventListener('resize', checkScreenSize);\n  });\n</script>",
+        "custom_class": ""
+      }
+    },
+    "custom_announcement_bar_LwTJx3": {
+      "type": "custom-announcement-bar",
+      "blocks": {
+        "flexi_announcement_bar_Y8yNVx": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47de46",
+            "hide_icon": true,
+            "description": "<strong>Free Next Day Delivery - </strong>Orders over £30",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        },
+        "flexi_announcement_bar_UyhBeG": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47de46",
+            "hide_icon": true,
+            "description": "<strong>Up to 8PM - </strong>Same Day Dispatch",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        },
+        "flexi_announcement_bar_Wdjd7C": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_image": "shopify://shop_images/Trust_Pilot_Reviews_c8d1d8ab-e731-4440-ac49-8defe972aba4.svg",
+            "icon_size": 20,
+            "icon_color": "#47de46",
+            "hide_icon": false,
+            "description": "<strong>Excellent</strong>",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        },
+        "flexi_announcement_bar_XBhKAa": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47de46",
+            "hide_icon": true,
+            "description": "<strong>7 Days A Week</strong> - Delivery & Dispatch",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "flexi_announcement_bar_Y8yNVx",
+        "flexi_announcement_bar_UyhBeG",
+        "flexi_announcement_bar_Wdjd7C",
+        "flexi_announcement_bar_XBhKAa"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "display_options": "bl-hide-none",
+        "cards_width": 1200,
+        "center": "auto",
+        "stack": "scroll",
+        "width": 1200,
+        "padding_top": 6,
+        "padding_bottom": 6
+      }
+    }
+  },
+  "order": [
+    "annoucement_bar_ppDMNJ",
+    "9f2068cb-dd8b-4b88-99ec-3354e9f6a3a3",
+    "729ed7ff-cd70-41ab-97b7-db284c5764d5",
+    "custom_liquid_VyLajt",
+    "custom_announcement_bar_LwTJx3"
+  ]
+}
