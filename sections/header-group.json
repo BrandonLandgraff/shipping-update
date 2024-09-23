@@ -92,10 +92,11 @@
       "blocks": {
         "flexi_announcement_bar_bdchPj": {
           "type": "flexi-announcement-bar",
+          "disabled": true,
           "settings": {
             "svg_icon": "fa-check",
             "icon_size": 20,
-            "icon_color": "#47DE46",
+            "icon_color": "#47de46",
             "hide_icon": true,
             "description": "<strong>Free Next Day Delivery - </strong>Orders over £30",
             "description_font_size": 14,
@@ -106,10 +107,11 @@
         },
         "flexi_announcement_bar_rtfd3M": {
           "type": "flexi-announcement-bar",
+          "disabled": true,
           "settings": {
             "svg_icon": "fa-check",
             "icon_size": 20,
-            "icon_color": "#47DE46",
+            "icon_color": "#47de46",
             "hide_icon": true,
             "description": "<strong>Free Nic Salt - </strong>With Every Pod Kit",
             "description_font_size": 14,
@@ -120,11 +122,12 @@
         },
         "flexi_announcement_bar_HL7dae": {
           "type": "flexi-announcement-bar",
+          "disabled": true,
           "settings": {
             "svg_icon": "fa-check",
             "icon_image": "shopify://shop_images/Trust_Pilot_Reviews_620aef28-25b6-4d9a-91f9-eee96f7d2683.svg",
             "icon_size": 20,
-            "icon_color": "#47DE46",
+            "icon_color": "#47de46",
             "hide_icon": false,
             "description": "<strong>Excellent</strong>",
             "description_font_size": 14,
@@ -135,10 +138,11 @@
         },
         "flexi_announcement_bar_CUaq8a": {
           "type": "flexi-announcement-bar",
+          "disabled": true,
           "settings": {
             "svg_icon": "fa-check",
             "icon_size": 20,
-            "icon_color": "#47DE46",
+            "icon_color": "#47de46",
             "hide_icon": true,
             "description": "<strong>7 Days A Week</strong> - Delivery & Dispatch",
             "description_font_size": 14,
