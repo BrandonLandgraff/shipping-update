@@ -89,6 +89,71 @@
     },
     "729ed7ff-cd70-41ab-97b7-db284c5764d5": {
       "type": "header",
+      "blocks": {
+        "flexi_announcement_bar_bdchPj": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47DE46",
+            "hide_icon": true,
+            "description": "<strong>Free Next Day Delivery - </strong>Orders over £30",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        },
+        "flexi_announcement_bar_rtfd3M": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47DE46",
+            "hide_icon": false,
+            "description": "<strong>Free Nic Salt - </strong>With Every Pod Kit",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        },
+        "flexi_announcement_bar_HL7dae": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_image": "shopify://shop_images/Trust_Pilot_Reviews_620aef28-25b6-4d9a-91f9-eee96f7d2683.svg",
+            "icon_size": 20,
+            "icon_color": "#47DE46",
+            "hide_icon": false,
+            "description": "<strong>Excellent</strong>",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "left"
+          }
+        },
+        "flexi_announcement_bar_CUaq8a": {
+          "type": "flexi-announcement-bar",
+          "settings": {
+            "svg_icon": "fa-check",
+            "icon_size": 20,
+            "icon_color": "#47DE46",
+            "hide_icon": true,
+            "description": "<strong>7 Days A Week</strong> - Delivery & Dispatch",
+            "description_font_size": 14,
+            "font_color": "#000000",
+            "background_color": "",
+            "text_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "flexi_announcement_bar_bdchPj",
+        "flexi_announcement_bar_rtfd3M",
+        "flexi_announcement_bar_HL7dae",
+        "flexi_announcement_bar_CUaq8a"
+      ],
       "custom_css": [
         ".tmenu_item_text {font-family: sans-serif; font-weight: 600; font-size: 1.2rem;}"
       ],
@@ -113,7 +178,12 @@
         "open_default": false,
         "megamenu_color": "background-1",
         "padding_top": 30,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "bg_color": "#ffffff",
+        "cards_width": 1200,
+        "center": "auto",
+        "stack": "scroll",
+        "width": 1200
       }
     },
     "custom_liquid_VyLajt": {
