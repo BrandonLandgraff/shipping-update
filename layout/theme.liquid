@@ -56,6 +56,9 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+
     {% capture MyJsFunc %}load', function(){}{% endcapture %} {% capture MyJsFunc2%}document.addEventListener('StartAsyncLoading',function(event){asyncLoad();});if(window.attachEvent){%endcapture %} {% capture MyJsFunc3%}document.addEventListener('StartAsyncLoading',function(event){prefetchAssets();});{%endcapture %} {% if template contains "index" or template contains "product" or template contains "collection" or page.url contains "pages" or blog.url contains "blogs" %} {{ content_for_header | replace: "load', asyncLoad",MyJsFunc | replace: 'if(window.attachEvent)', MyJsFunc2 | replace: 'defer="defer" src="//', 'defer="defer" data-src="//' | replace: 'DOMContentLoaded', 'StartPreviewBarLoading' | replace: "addEventListener('load', prefetchAssets);", MyJsFunc3 | replace: 'src="/checkouts/internal/preloads.js', 'data-src="/checkouts/internal/preloads.js' | replace: 'src="https://shop.app/checkouts', 'data-src="https://shop.app/checkouts' }} {% else %} {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%} {% endif %}
  
 
