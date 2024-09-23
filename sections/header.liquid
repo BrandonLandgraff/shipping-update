@@ -9,7 +9,7 @@
 <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" /> {% endcomment %}
 
 {%- liquid
   assign color_scheme = section.settings.color_scheme
@@ -308,7 +308,7 @@
 </div>
 
           {% comment %} ANNOUNCEMENT BANNER START  {% endcomment %}
-          {%- liquid
+          {% comment %} {%- liquid
             assign sectionid = section.id
           
             assign bg_color = section.settings.bg_color
@@ -464,12 +464,12 @@
           
               </div>
             </div>
-          </section>
+          </section> {% endcomment %}
           {% comment %} ANNOUNCMENT BANNER END {% endcomment %}
     
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %}>    
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -513,7 +513,7 @@
     // Reinitialize Swiper on window resize
     window.addEventListener('resize', initSwiper);
   });  
-</script>
+</script> {% endcomment %}
 
 {% javascript %}
   class StickyHeader extends HTMLElement {
