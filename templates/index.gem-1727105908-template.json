@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "collection_list_j8kbX3": {
@@ -16,8 +16,8 @@
           "type": "collection_block",
           "settings": {
             "collection": "",
-            "custom_url": "shopify:\/\/pages\/shipping-returns",
-            "featured_image": "shopify:\/\/shop_images\/icons8-free-shipping-100.png",
+            "custom_url": "shopify://pages/shipping-returns",
+            "featured_image": "shopify://shop_images/icons8-free-shipping-100.png",
             "title": "FREE UK Delivery over £30",
             "card_color_scheme": "background-2"
           }
@@ -26,8 +26,8 @@
           "type": "collection_block",
           "settings": {
             "collection": "",
-            "custom_url": "shopify:\/\/pages\/lowest-price-guarantee-policy",
-            "featured_image": "shopify:\/\/shop_images\/icons8-discount-100.png",
+            "custom_url": "shopify://pages/lowest-price-guarantee-policy",
+            "featured_image": "shopify://shop_images/icons8-discount-100.png",
             "title": "Lowest Price Guarantee",
             "card_color_scheme": "background-2"
           }
@@ -37,7 +37,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/icons8-procurement-100.png",
+            "featured_image": "shopify://shop_images/icons8-procurement-100.png",
             "title": "Order Before 4pm Mon to Fri",
             "card_color_scheme": "background-2"
           }
@@ -47,7 +47,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/icons8-membership-card-100.png",
+            "featured_image": "shopify://shop_images/icons8-membership-card-100.png",
             "title": "Become a VIP Club Member",
             "card_color_scheme": "background-2"
           }
@@ -56,8 +56,8 @@
           "type": "collection_block",
           "settings": {
             "collection": "",
-            "custom_url": "shopify:\/\/collections\/weekly-offers",
-            "featured_image": "shopify:\/\/shop_images\/icons8-shopaholic-100.png",
+            "custom_url": "shopify://collections/weekly-offers",
+            "featured_image": "shopify://shop_images/icons8-shopaholic-100.png",
             "title": "Don't Miss Weekly Special Sales",
             "card_color_scheme": "background-2"
           }
@@ -126,11 +126,11 @@
         "layout": "grid",
         "image_height": "adapt",
         "color_scheme": "",
-        "image": "shopify:\/\/shop_images\/LVE-THERION-II-DNA250C_1200_x_500_px.png",
-        "image_link": "shopify:\/\/products\/lve-therion-ii-dna250c-box-mod-2",
+        "image": "shopify://shop_images/LVE-THERION-II-DNA250C_1200_x_500_px.png",
+        "image_link": "shopify://products/lve-therion-ii-dna250c-box-mod-2",
         "content_position": "middle_center",
         "content_alignment": "center",
-        "image_mobile": "shopify:\/\/shop_images\/LVE-THERION-II-DNA250C_400_x_500_px.png",
+        "image_mobile": "shopify://shop_images/LVE-THERION-II-DNA250C_400_x_500_px.png",
         "stack_images_on_mobile": false,
         "content_alignment_mobile": "center",
         "animations": "inherit",
@@ -145,9 +145,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/free-doozy-tropical-nic-salt-with-every-vape-kit-1.webp",
-            "image_mobile": "shopify:\/\/shop_images\/free-doozy-tropical-nic-salt-with-every-vape-kit.webp",
-            "image_link": "https:\/\/ecigone.co.uk\/collections\/vape-kits",
+            "image": "shopify://shop_images/free-doozy-tropical-nic-salt-with-every-vape-kit-1.webp",
+            "image_mobile": "shopify://shop_images/free-doozy-tropical-nic-salt-with-every-vape-kit.webp",
+            "image_link": "https://ecigone.co.uk/collections/vape-kits",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -163,9 +163,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/geekvape-wenax-q-pro-pod-kit.jpg",
-            "image_mobile": "shopify:\/\/shop_images\/Copy_of_LOWER_BANNERS_POD_KITS_1200_x_500_px_400_x_500_px.jpg",
-            "image_link": "shopify:\/\/products\/geekvape-wenax-q-pro-pod-kit",
+            "image": "shopify://shop_images/geekvape-wenax-q-pro-pod-kit.jpg",
+            "image_mobile": "shopify://shop_images/Copy_of_LOWER_BANNERS_POD_KITS_1200_x_500_px_400_x_500_px.jpg",
+            "image_link": "shopify://products/geekvape-wenax-q-pro-pod-kit",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -181,9 +181,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "background-1",
-            "image": "shopify:\/\/shop_images\/ZEUS_JUICE_NEW_FLAVOURS_3200X500_f18e92c6-b856-4e5a-af8a-e07f128812ea.png",
-            "image_mobile": "shopify:\/\/shop_images\/zodiac_new_flavours_500_x_600.png",
-            "image_link": "https:\/\/ecigone.co.uk\/collections\/zeus-juice",
+            "image": "shopify://shop_images/ZEUS_JUICE_NEW_FLAVOURS_3200X500_f18e92c6-b856-4e5a-af8a-e07f128812ea.png",
+            "image_mobile": "shopify://shop_images/zodiac_new_flavours_500_x_600.png",
+            "image_link": "https://ecigone.co.uk/collections/zeus-juice",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -199,9 +199,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/3200x500_aa.png",
-            "image_mobile": "shopify:\/\/shop_images\/400x500_aaa.png",
-            "image_link": "https:\/\/ecigone.co.uk\/collections\/rap-concept",
+            "image": "shopify://shop_images/3200x500_aa.png",
+            "image_mobile": "shopify://shop_images/400x500_aaa.png",
+            "image_link": "https://ecigone.co.uk/collections/rap-concept",
             "enable_container_box": true,
             "content_position": "bottom_left",
             "content_alignment": "center",
@@ -217,9 +217,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/geekvape-wenax-q-pro-pod-kit_001fa2d4-4ec7-4e09-90a0-cb169f98f2f4.png",
-            "image_mobile": "shopify:\/\/shop_images\/geekvape-wenax-q-pod-kit.png",
-            "image_link": "https:\/\/ecigone.co.uk\/products\/geekvape-wenax-q-pro-pod-kit",
+            "image": "shopify://shop_images/geekvape-wenax-q-pro-pod-kit_001fa2d4-4ec7-4e09-90a0-cb169f98f2f4.png",
+            "image_mobile": "shopify://shop_images/geekvape-wenax-q-pod-kit.png",
+            "image_link": "https://ecigone.co.uk/products/geekvape-wenax-q-pro-pod-kit",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -235,9 +235,9 @@
           "type": "image_slide",
           "settings": {
             "color_scheme": "",
-            "image": "shopify:\/\/shop_images\/asdadsasas.png",
-            "image_mobile": "shopify:\/\/shop_images\/uwell-caliburn-g3-pro-pod-kit_1.png",
-            "image_link": "https:\/\/ecigone.co.uk\/products\/uwell-caliburn-g3-pro-pod-kit",
+            "image": "shopify://shop_images/asdadsasas.png",
+            "image_mobile": "shopify://shop_images/uwell-caliburn-g3-pro-pod-kit_1.png",
+            "image_link": "https://ecigone.co.uk/products/uwell-caliburn-g3-pro-pod-kit",
             "enable_container_box": true,
             "content_position": "bottom_left",
             "content_alignment": "center",
@@ -261,7 +261,7 @@
             "sub_heading": "",
             "heading": "Image slide",
             "heading_size": "h3",
-            "description": "<p>Tell your brand's story through images<\/p>",
+            "description": "<p>Tell your brand's story through images</p>",
             "button_label": "Button label",
             "button_style": "m-button--primary"
           }
@@ -278,7 +278,7 @@
             "sub_heading": "",
             "heading": "Image slide",
             "heading_size": "h3",
-            "description": "<p>Tell your brand's story through images<\/p>",
+            "description": "<p>Tell your brand's story through images</p>",
             "button_label": "Button label",
             "button_style": "m-button--primary"
           }
@@ -288,9 +288,9 @@
           "disabled": true,
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/Web_Banneris_9c79efce-e89d-4240-bc6f-78605e56acdb.png",
-            "image_mobile": "shopify:\/\/shop_images\/Mob_Banneris_35f2b828-e238-41b6-a5ba-dacbb6285fd7.png",
-            "image_link": "shopify:\/\/products\/vaporesso-gen-max-vape-kit",
+            "image": "shopify://shop_images/Web_Banneris_9c79efce-e89d-4240-bc6f-78605e56acdb.png",
+            "image_mobile": "shopify://shop_images/Mob_Banneris_35f2b828-e238-41b6-a5ba-dacbb6285fd7.png",
+            "image_link": "shopify://products/vaporesso-gen-max-vape-kit",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -307,9 +307,9 @@
           "disabled": true,
           "settings": {
             "color_scheme": "scheme-1",
-            "image": "shopify:\/\/shop_images\/Web_Banneris_5965b972-6a60-4ad5-bfe3-1b04e0dacebf.png",
-            "image_mobile": "shopify:\/\/shop_images\/Mob_Banneris_4de15871-e5c3-466a-ae29-8bf2d110cda8.png",
-            "image_link": "shopify:\/\/products\/the-lancashire-creamery-100ml-shortfill",
+            "image": "shopify://shop_images/Web_Banneris_5965b972-6a60-4ad5-bfe3-1b04e0dacebf.png",
+            "image_mobile": "shopify://shop_images/Mob_Banneris_4de15871-e5c3-466a-ae29-8bf2d110cda8.png",
+            "image_link": "shopify://products/the-lancashire-creamery-100ml-shortfill",
             "enable_container_box": true,
             "content_position": "bottom_left",
             "content_alignment": "center",
@@ -326,9 +326,9 @@
           "disabled": true,
           "settings": {
             "color_scheme": "",
-            "image": "shopify:\/\/shop_images\/Web_Banneris_ff6591e8-315b-4d78-9657-75574543d1a5.png",
-            "image_mobile": "shopify:\/\/shop_images\/Mob_Banneris_0293c721-257c-43be-a061-0ada14e7cfd8.png",
-            "image_link": "shopify:\/\/products\/voopoo-argus-g2-mini-pod-vape-kit",
+            "image": "shopify://shop_images/Web_Banneris_ff6591e8-315b-4d78-9657-75574543d1a5.png",
+            "image_mobile": "shopify://shop_images/Mob_Banneris_0293c721-257c-43be-a061-0ada14e7cfd8.png",
+            "image_link": "shopify://products/voopoo-argus-g2-mini-pod-vape-kit",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -345,9 +345,9 @@
           "disabled": true,
           "settings": {
             "color_scheme": "background-1",
-            "image": "shopify:\/\/shop_images\/Artboard_3_d99b6bfc-4d2a-4c18-bcac-8955938478a6.png",
-            "image_mobile": "shopify:\/\/shop_images\/Mob_Banneris.png",
-            "image_link": "shopify:\/\/products\/uwell-caliburn-g3-pod-vape-kit",
+            "image": "shopify://shop_images/Artboard_3_d99b6bfc-4d2a-4c18-bcac-8955938478a6.png",
+            "image_mobile": "shopify://shop_images/Mob_Banneris.png",
+            "image_link": "shopify://products/uwell-caliburn-g3-pod-vape-kit",
             "enable_container_box": true,
             "content_position": "middle_center",
             "content_alignment": "center",
@@ -415,7 +415,7 @@
           "type": "collection_block",
           "settings": {
             "collection": "shortfill-e-liquids",
-            "custom_url": "shopify:\/\/collections\/shortfill-e-liquids",
+            "custom_url": "shopify://collections/shortfill-e-liquids",
             "title": "SHORTFILLS",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -451,7 +451,7 @@
           "type": "collection_block",
           "settings": {
             "collection": "vape-mods",
-            "custom_url": "shopify:\/\/collections\/vape-mods",
+            "custom_url": "shopify://collections/vape-mods",
             "title": "MODS",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -460,7 +460,7 @@
           "type": "collection_block",
           "settings": {
             "collection": "sub-ohm-kits",
-            "custom_url": "shopify:\/\/collections\/just-in-e-liquids",
+            "custom_url": "shopify://collections/just-in-e-liquids",
             "title": "SUB-OHM KITS",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -479,7 +479,7 @@
           "settings": {
             "collection": "aio",
             "custom_url": "",
-            "title": "AIO\/BORO",
+            "title": "AIO/BORO",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
         },
@@ -534,7 +534,7 @@
         "heading": "POPULAR COLLECTIONS",
         "heading_size": "h2",
         "button_text": "All Collections [arrow]",
-        "button_link": "shopify:\/\/collections",
+        "button_link": "shopify://collections",
         "button_style": "m-button--outline",
         "header_divider": true,
         "header_alignment": "left",
@@ -583,7 +583,7 @@
           "settings": {
             "collection": "restocks",
             "heading": "Restocks",
-            "icon": "shopify:\/\/shop_images\/icons8-procurement-96.png",
+            "icon": "shopify://shop_images/icons8-procurement-96.png",
             "icon_image_width": 36,
             "icon_svg": ""
           }
@@ -614,7 +614,7 @@
           "settings": {
             "collection": "coming-soon",
             "heading": "Pre-Order",
-            "icon": "shopify:\/\/shop_images\/pre-order.png",
+            "icon": "shopify://shop_images/pre-order.png",
             "icon_image_width": 36,
             "icon_svg": ""
           }
@@ -678,9 +678,9 @@
           "settings": {
             "width": "100%",
             "color_scheme": "background-5",
-            "image_desktop": "shopify:\/\/shop_images\/FREE_JUST_JUICE_2_2100_x_600_px.png",
-            "image_mobile": "shopify:\/\/shop_images\/FREE-JUST-JUICE-BAR-SALT_600_x_700_px_1.png",
-            "card_link": "shopify:\/\/collections\/pod-kits",
+            "image_desktop": "shopify://shop_images/FREE_JUST_JUICE_2_2100_x_600_px.png",
+            "image_mobile": "shopify://shop_images/FREE-JUST-JUICE-BAR-SALT_600_x_700_px_1.png",
+            "card_link": "shopify://collections/pod-kits",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h3",
@@ -780,7 +780,7 @@
           "settings": {
             "collection": "coming-soon",
             "heading": "Pre-Order",
-            "icon": "shopify:\/\/shop_images\/pre-order.png",
+            "icon": "shopify://shop_images/pre-order.png",
             "icon_image_width": 36,
             "icon_svg": ""
           }
@@ -850,12 +850,12 @@
         "heading": "Disposable Inspired",
         "heading_size": "h2",
         "button_text": "View Collection [arrow]",
-        "button_link": "shopify:\/\/collections\/disposable-inspired-eliquids",
+        "button_link": "shopify://collections/disposable-inspired-eliquids",
         "button_style": "m-button--primary",
         "header_divider": true,
         "header_alignment": "left",
         "show_countdown": true,
-        "ends_time": "2024\/01\/31 23:59",
+        "ends_time": "2024/01/31 23:59",
         "collection": "disposable-inspired-eliquids",
         "pcard_layout": "",
         "pcard_image_ratio": "",
@@ -886,8 +886,8 @@
           "settings": {
             "width": "50%",
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/2-FOR-10-MULTI-BUY-VAPE-DEAL_728_x_320_px.png",
-            "card_link": "shopify:\/\/collections\/2-for-10",
+            "image_desktop": "shopify://shop_images/2-FOR-10-MULTI-BUY-VAPE-DEAL_728_x_320_px.png",
+            "card_link": "shopify://collections/2-for-10",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h2",
@@ -910,8 +910,8 @@
           "settings": {
             "width": "50%",
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/CORRECT_SIZE_4-FOR-10-MULTI-BUY-VAPE-DEAL_728_x_320_px.png",
-            "card_link": "shopify:\/\/collections\/4-for-10",
+            "image_desktop": "shopify://shop_images/CORRECT_SIZE_4-FOR-10-MULTI-BUY-VAPE-DEAL_728_x_320_px.png",
+            "card_link": "shopify://collections/4-for-10",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h2",
@@ -963,8 +963,8 @@
           "disabled": true,
           "settings": {
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/vaporesso-luxe-x2-banner-2.webp",
-            "card_link": "shopify:\/\/products\/vaporesso-luxe-x2-pod-vape-kit",
+            "image_desktop": "shopify://shop_images/vaporesso-luxe-x2-banner-2.webp",
+            "card_link": "shopify://products/vaporesso-luxe-x2-pod-vape-kit",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h2",
@@ -993,12 +993,12 @@
         "heading": "Coming Soon",
         "heading_size": "h2",
         "button_text": "View Collection [arrow]",
-        "button_link": "shopify:\/\/collections\/coming-soon",
+        "button_link": "shopify://collections/coming-soon",
         "button_style": "m-button--primary",
         "header_divider": true,
         "header_alignment": "left",
         "show_countdown": true,
-        "ends_time": "2024\/07\/14 16:00",
+        "ends_time": "2024/07/14 16:00",
         "collection": "coming-soon",
         "pcard_layout": "",
         "pcard_image_ratio": "",
@@ -1088,7 +1088,7 @@
           "disabled": true,
           "settings": {
             "collection": "aio",
-            "heading": "Boro\/AIO",
+            "heading": "Boro/AIO",
             "icon_image_width": 36,
             "icon_svg": ""
           }
@@ -1202,7 +1202,7 @@
           "disabled": true,
           "settings": {
             "collection": "aio",
-            "heading": "Boro\/AIO",
+            "heading": "Boro/AIO",
             "icon_image_width": 36,
             "icon_svg": ""
           }
@@ -1263,7 +1263,7 @@
         "heading": "Weekly Vape Deals",
         "heading_size": "h3",
         "button_text": "Shop Now",
-        "button_link": "shopify:\/\/collections\/weekly-offers",
+        "button_link": "shopify://collections/weekly-offers",
         "button_style": "m-button--primary",
         "header_divider": true,
         "header_alignment": "left",
@@ -1301,14 +1301,14 @@
           "type": "image_card",
           "settings": {
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/nav-disposables-4-for-14-2312.png",
-            "image_mobile": "shopify:\/\/shop_images\/Artboard_2_08261654-7f24-4472-9e6c-fa42938e4ce3.png",
-            "card_link": "shopify:\/\/collections\/multi-buy",
+            "image_desktop": "shopify://shop_images/nav-disposables-4-for-14-2312.png",
+            "image_mobile": "shopify://shop_images/Artboard_2_08261654-7f24-4472-9e6c-fa42938e4ce3.png",
+            "card_link": "shopify://collections/multi-buy",
             "apply_link_on": "button",
             "heading": "Amazing\n<br>Multi Buys",
             "text_size": "h2",
             "sub_heading": "",
-            "description": "<p><strong>Up to 35% OFF<\/strong> <\/p>",
+            "description": "<p><strong>Up to 35% OFF</strong> </p>",
             "desc_text_color": "body",
             "content_position": "top_left",
             "content_alignment": "left",
@@ -1324,7 +1324,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/Untitled-ss_cccaef5a-edbd-4fb6-a400-f6a94c0397bb.png",
+            "featured_image": "shopify://shop_images/Untitled-ss_cccaef5a-edbd-4fb6-a400-f6a94c0397bb.png",
             "title": "",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -1334,7 +1334,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/2_a41ac785-fd11-482e-bf12-85647390caf3.png",
+            "featured_image": "shopify://shop_images/2_a41ac785-fd11-482e-bf12-85647390caf3.png",
             "title": "",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -1344,7 +1344,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/Untitled-1_bc7aa2d6-fde7-4dd6-a5e3-064ecc674083.png",
+            "featured_image": "shopify://shop_images/Untitled-1_bc7aa2d6-fde7-4dd6-a5e3-064ecc674083.png",
             "title": "",
             "card_color_scheme": "scheme_1"
           }
@@ -1354,7 +1354,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/4_033e053a-d3b0-41e2-93ce-a10cfb0aadeb.png",
+            "featured_image": "shopify://shop_images/4_033e053a-d3b0-41e2-93ce-a10cfb0aadeb.png",
             "title": "",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -1364,7 +1364,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/7_4c9c7a49-19b8-4bf1-a2a8-f75e0c1c52f7.png",
+            "featured_image": "shopify://shop_images/7_4c9c7a49-19b8-4bf1-a2a8-f75e0c1c52f7.png",
             "title": "",
             "card_color_scheme": "scheme-9b802ae1-d821-4057-8103-ed71b8f01c72"
           }
@@ -1374,7 +1374,7 @@
           "settings": {
             "collection": "",
             "custom_url": "",
-            "featured_image": "shopify:\/\/shop_images\/6_1a329cf7-8e6c-4c63-b1f3-c42d4f35892c.png",
+            "featured_image": "shopify://shop_images/6_1a329cf7-8e6c-4c63-b1f3-c42d4f35892c.png",
             "title": "",
             "card_color_scheme": "scheme_1"
           }
@@ -1438,22 +1438,6 @@
     },
     "172485267053883f1e": {
       "type": "apps",
-      "blocks": {
-        "seguno_popups_popup_embedded_form_app_block_HBAH4D": {
-          "type": "shopify:\/\/apps\/seguno-popups\/blocks\/popup-embedded-form-app-block\/f53bd66f-9a20-4ce2-ae2e-ccbd0148bd4b",
-          "settings": {
-            "popup_id": "712412ef64514460bd34ed497f0b6aa1",
-            "background_color": "#ffffff",
-            "top_padding": 0,
-            "bottom_padding": 0,
-            "right_padding": 0,
-            "left_padding": 0
-          }
-        }
-      },
-      "block_order": [
-        "seguno_popups_popup_embedded_form_app_block_HBAH4D"
-      ],
       "settings": {
         "color_scheme": "",
         "include_margins": true,
@@ -1475,7 +1459,7 @@
             "alignment": "center",
             "heading": "Get 10% Off Now!",
             "text_size": "h2",
-            "description": "<p>Sign up for our newsletter to unlock your exclusive 10% discount and access to special deals.<\/p>",
+            "description": "<p>Sign up for our newsletter to unlock your exclusive 10% discount and access to special deals.</p>",
             "text_color": "body",
             "placeholder": "Enter your email address",
             "submit_button": "Subscribe",
@@ -1488,7 +1472,7 @@
           "settings": {
             "width": "100%",
             "alignment": "center",
-            "code": "<div data-seguno-popup-embed=\"7ea4f4f7851d477d90cd42fc5ab72e9a\"><\/div>",
+            "code": "<div data-seguno-popup-embed=\"7ea4f4f7851d477d90cd42fc5ab72e9a\"></div>",
             "block_custom_class": "",
             "animations": "inherit"
           }
@@ -1499,9 +1483,7 @@
         "html_g4VBge"
       ],
       "disabled": true,
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "background-1",
         "boxed_layout": true,
@@ -1529,141 +1511,141 @@
         "image_87izw8": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Voopoo_fbb16555-cf82-4df7-9567-94ca2ea06dc1.png",
-            "image_link": "shopify:\/\/collections\/voopoo"
+            "image": "shopify://shop_images/Voopoo_fbb16555-cf82-4df7-9567-94ca2ea06dc1.png",
+            "image_link": "shopify://collections/voopoo"
           }
         },
         "image_n9dFTX": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Uwell_dd14a974-70b0-4d8a-a379-60e4d43363d0.png",
-            "image_link": "shopify:\/\/collections\/uwell"
+            "image": "shopify://shop_images/Uwell_dd14a974-70b0-4d8a-a379-60e4d43363d0.png",
+            "image_link": "shopify://collections/uwell"
           }
         },
         "image_cYk4X9": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Lost_Vape_75608b37-1422-4133-9f74-16346d7c41a2.png",
-            "image_link": "shopify:\/\/collections\/lost-vape"
+            "image": "shopify://shop_images/Lost_Vape_75608b37-1422-4133-9f74-16346d7c41a2.png",
+            "image_link": "shopify://collections/lost-vape"
           }
         },
         "image_NUjRX7": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Geekvape_c829e7f6-00cb-4be2-aa65-1b4209e0a428.png",
-            "image_link": "shopify:\/\/collections\/geek-vape"
+            "image": "shopify://shop_images/Geekvape_c829e7f6-00cb-4be2-aa65-1b4209e0a428.png",
+            "image_link": "shopify://collections/geek-vape"
           }
         },
         "image_YiYA7w": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/SXMini_ab573e48-7f38-4dac-bcb4-86d860dfa8f3.png",
-            "image_link": "shopify:\/\/collections\/sx-mini"
+            "image": "shopify://shop_images/SXMini_ab573e48-7f38-4dac-bcb4-86d860dfa8f3.png",
+            "image_link": "shopify://collections/sx-mini"
           }
         },
         "image_7AQiUp": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/oxva_faafc6ce-2fc9-4e75-91fc-0ab046b75664.png",
-            "image_link": "shopify:\/\/collections\/oxva"
+            "image": "shopify://shop_images/oxva_faafc6ce-2fc9-4e75-91fc-0ab046b75664.png",
+            "image_link": "shopify://collections/oxva"
           }
         },
         "image_dtbbXn": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Lost_Mary.png",
-            "image_link": "shopify:\/\/collections\/lost-mary"
+            "image": "shopify://shop_images/Lost_Mary.png",
+            "image_link": "shopify://collections/lost-mary"
           }
         },
         "image_w388ML": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Aspire_5049b873-57a0-4299-b281-c54a24be8c78.png",
-            "image_link": "shopify:\/\/collections\/aspire"
+            "image": "shopify://shop_images/Aspire_5049b873-57a0-4299-b281-c54a24be8c78.png",
+            "image_link": "shopify://collections/aspire"
           }
         },
         "image_AaYJGP": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/LVE_2d701638-dfa6-49f1-b238-53f7c7325a12.png",
-            "image_link": "shopify:\/\/collections\/lve"
+            "image": "shopify://shop_images/LVE_2d701638-dfa6-49f1-b238-53f7c7325a12.png",
+            "image_link": "shopify://collections/lve"
           }
         },
         "image_9CmPBh": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Wick_Liquor_c0155607-dda6-4bce-bc1d-14bf72e7af41.png",
-            "image_link": "shopify:\/\/collections\/wick-liquor"
+            "image": "shopify://shop_images/Wick_Liquor_c0155607-dda6-4bce-bc1d-14bf72e7af41.png",
+            "image_link": "shopify://collections/wick-liquor"
           }
         },
         "image_abRmyi": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Ambition_Mods_9a43c592-8976-4ee6-a5a6-ff38741a4f36.png",
-            "image_link": "shopify:\/\/collections\/ambition-mods"
+            "image": "shopify://shop_images/Ambition_Mods_9a43c592-8976-4ee6-a5a6-ff38741a4f36.png",
+            "image_link": "shopify://collections/ambition-mods"
           }
         },
         "image_Yztg9R": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Dotmod_9246a50b-d919-43d1-989b-5019308b8772.png",
-            "image_link": "shopify:\/\/collections\/dotmod"
+            "image": "shopify://shop_images/Dotmod_9246a50b-d919-43d1-989b-5019308b8772.png",
+            "image_link": "shopify://collections/dotmod"
           }
         },
         "image_nbw73h": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Elfbar_3831c336-0eca-4bbc-9ebf-3711220b9365.png",
-            "image_link": "shopify:\/\/collections\/elf-bar"
+            "image": "shopify://shop_images/Elfbar_3831c336-0eca-4bbc-9ebf-3711220b9365.png",
+            "image_link": "shopify://collections/elf-bar"
           }
         },
         "image_iPRPUm": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Vaporesso_68a843cb-59c1-4f32-93af-a626dc551362.png",
-            "image_link": "shopify:\/\/collections\/vaporesso"
+            "image": "shopify://shop_images/Vaporesso_68a843cb-59c1-4f32-93af-a626dc551362.png",
+            "image_link": "shopify://collections/vaporesso"
           }
         },
         "image_9b4KgM": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Suicide_Mods_cf47a79b-59ee-41ba-8128-2486b2f4c676.png",
-            "image_link": "shopify:\/\/collections\/suicide-mods"
+            "image": "shopify://shop_images/Suicide_Mods_cf47a79b-59ee-41ba-8128-2486b2f4c676.png",
+            "image_link": "shopify://collections/suicide-mods"
           }
         },
         "image_7iy9tD": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Hellvape_46b285bc-eabf-4daa-91e2-4be8acbbcfd6.png",
-            "image_link": "shopify:\/\/collections\/hellvape"
+            "image": "shopify://shop_images/Hellvape_46b285bc-eabf-4daa-91e2-4be8acbbcfd6.png",
+            "image_link": "shopify://collections/hellvape"
           }
         },
         "image_z6YfkK": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Vaperz_Cloud_6d38db30-71c2-4b28-a80e-45b5394e428a.png",
-            "image_link": "shopify:\/\/collections\/vaperz-cloud"
+            "image": "shopify://shop_images/Vaperz_Cloud_6d38db30-71c2-4b28-a80e-45b5394e428a.png",
+            "image_link": "shopify://collections/vaperz-cloud"
           }
         },
         "image_w34k4y": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/gold-bar_-logo_400.webp",
-            "image_link": "shopify:\/\/collections\/gold-bar"
+            "image": "shopify://shop_images/gold-bar_-logo_400.webp",
+            "image_link": "shopify://collections/gold-bar"
           }
         },
         "image_8qy9kB": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Cthulhu_9bf1b220-c87a-4ed5-93a0-3993823500f5.png",
-            "image_link": "shopify:\/\/collections\/cthulhu"
+            "image": "shopify://shop_images/Cthulhu_9bf1b220-c87a-4ed5-93a0-3993823500f5.png",
+            "image_link": "shopify://collections/cthulhu"
           }
         },
         "image_LRntHT": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Five_Pawns_1980416a-16c0-46ca-9941-3a25fc663b50.png",
-            "image_link": "shopify:\/\/collections\/five-pawns"
+            "image": "shopify://shop_images/Five_Pawns_1980416a-16c0-46ca-9941-3a25fc663b50.png",
+            "image_link": "shopify://collections/five-pawns"
           }
         }
       },
@@ -1701,7 +1683,7 @@
         "heading": "POPULAR BRANDS",
         "text_size": "h1",
         "button_text": "View All",
-        "button_link": "shopify:\/\/pages\/all-brands",
+        "button_link": "shopify://pages/vape-brands",
         "button_style": "m-button--outline",
         "header_divider": true,
         "header_alignment": "left",
@@ -1726,9 +1708,9 @@
           "settings": {
             "width": "75%",
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/elfbar-elfliq-nic-salt-banner-homepage-ecigone-uk_1.png",
-            "image_mobile": "shopify:\/\/shop_images\/elfbar-elfliq-nic-salt-banner-homepage-ecigone-uk_600_x_700_px.png",
-            "card_link": "shopify:\/\/products\/elf-bar-elfliq-10ml-salts",
+            "image_desktop": "shopify://shop_images/elfbar-elfliq-nic-salt-banner-homepage-ecigone-uk_1.png",
+            "image_mobile": "shopify://shop_images/elfbar-elfliq-nic-salt-banner-homepage-ecigone-uk_600_x_700_px.png",
+            "card_link": "shopify://products/elf-bar-elfliq-10ml-salts",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h2",
@@ -1751,8 +1733,8 @@
           "settings": {
             "width": "25%",
             "color_scheme": "scheme_1",
-            "image_desktop": "shopify:\/\/shop_images\/GEEKVAPE-POPVIBE-V500-DISPOSABLE-VAPE_600_x_700_px.png",
-            "card_link": "shopify:\/\/products\/geekvape-popvibe-v5000-disposable-pod-vape-kit",
+            "image_desktop": "shopify://shop_images/GEEKVAPE-POPVIBE-V500-DISPOSABLE-VAPE_600_x_700_px.png",
+            "card_link": "shopify://products/geekvape-popvibe-v5000-disposable-pod-vape-kit",
             "apply_link_on": "card",
             "heading": "",
             "text_size": "h2",
@@ -1812,13 +1794,13 @@
         "column": 5,
         "column_gap": 30,
         "row_gap": 30,
-        "article_image_aspect_ratio": "16\/9",
+        "article_image_aspect_ratio": "16/9",
         "article_align_content": "text-left",
         "article_show_tags": true,
         "article_show_date": true,
         "article_show_excerpt": true,
         "article_show_button": true,
-        "button_link": "shopify:\/\/blogs\/ecigone-blogs",
+        "button_link": "shopify://blogs/ecigone-blogs",
         "button_text": "View More Blogs",
         "button_style": "m-button--outline",
         "mobile_layout": "col-2",
@@ -1843,10 +1825,10 @@
             "title": "Caliburn G3 Lite",
             "text_size": "h2",
             "subheading": "Uwell's Latest Compact Pod Kit",
-            "text": "<p>The <a href=\"https:\/\/ecigone.co.uk\/collections\/UWELL\" title=\"https:\/\/ecigone.co.uk\/collections\/UWELL\">Uwell<\/a> Caliburn G3 Lite Pod Vape Kit balances style and functionality in a compact design. Perfect for both beginners and experienced vapers, it features a 1200mAh battery that delivers up to 25W and supports USB Type-C fast charging. The kit includes a 0.9Ω pod, compatible with the <a href=\"https:\/\/ecigone.co.uk\/products\/caliburn-g3-replacement-pods\" title=\"https:\/\/ecigone.co.uk\/products\/caliburn-g3-replacement-pods\">Caliburn G3 series<\/a>, catering to different vaping styles from MTL to RDL. With an auto-draw function and smart LED battery indicators, the Caliburn G3 Lite offers a straightforward and satisfying vaping experience.<\/p>",
+            "text": "<p>The <a href=\"https://ecigone.co.uk/collections/UWELL\" title=\"https://ecigone.co.uk/collections/UWELL\">Uwell</a> Caliburn G3 Lite Pod Vape Kit balances style and functionality in a compact design. Perfect for both beginners and experienced vapers, it features a 1200mAh battery that delivers up to 25W and supports USB Type-C fast charging. The kit includes a 0.9Ω pod, compatible with the <a href=\"https://ecigone.co.uk/products/caliburn-g3-replacement-pods\" title=\"https://ecigone.co.uk/products/caliburn-g3-replacement-pods\">Caliburn G3 series</a>, catering to different vaping styles from MTL to RDL. With an auto-draw function and smart LED battery indicators, the Caliburn G3 Lite offers a straightforward and satisfying vaping experience.</p>",
             "text_color": "body",
             "button_label": "SHOP NOW",
-            "button_link": "shopify:\/\/products\/uwell-caliburn-g3-lite-pod-vape-kit",
+            "button_link": "shopify://products/uwell-caliburn-g3-lite-pod-vape-kit",
             "button_style": "m-button--primary",
             "block_custom_class": "",
             "animations": "inherit"
@@ -1857,7 +1839,7 @@
           "settings": {
             "width": "66%",
             "alignment": "center",
-            "code": "<video src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/46a6f7a406cc4741ae687cd7ef5b0466.mp4\" playsinline=\"\" autoplay=\"\" muted=\"\" loop=\"\" style=\"border-radius: var(--btn-border-radius, 0);\"><\/video>",
+            "code": "<video src=\"https://cdn.shopify.com/videos/c/o/v/46a6f7a406cc4741ae687cd7ef5b0466.mp4\" playsinline=\"\" autoplay=\"\" muted=\"\" loop=\"\" style=\"border-radius: var(--btn-border-radius, 0);\"></video>",
             "block_custom_class": "",
             "animations": "inherit"
           }
@@ -1901,10 +1883,10 @@
             "title": "ABOUT US",
             "text_size": "h3",
             "subheading": "",
-            "text": "<p>At EcigOne, we're passionate about providing the finest selection of <a href=\"https:\/\/ecigone.co.uk\/collections\/vape-kits\" title=\"https:\/\/ecigone.co.uk\/collections\/vape-kits\">e-cigarettes<\/a>, <a href=\"https:\/\/ecigone.co.uk\/collections\/e-liquids\" title=\"https:\/\/ecigone.co.uk\/collections\/e-liquids\">e-liquids<\/a>, and <a href=\"https:\/\/ecigone.co.uk\/collections\/vape-accessories\" title=\"https:\/\/ecigone.co.uk\/collections\/vape-accessories\">vaping accessories<\/a> in the UK. Whether you've recently quit smoking and are new to vaping or a seasoned enthusiast, our extensive collection from leading brands promises something for everyone.<\/p><p>We are a Multi award winning Online Retailer who has who has won the ECIGCLICK Awards for the past 4 years!<\/p><h3>Unmatched Quality<\/h3><p>Every product in our selection is meticulously chosen for its quality, performance, and durability. We partner with the most reputable brands in the industry to ensure you enjoy the best vaping experience possible.<\/p><h3>Extensive Range<\/h3><p>From the latest e-cigarette devices to a vast array of e-liquids in every flavour imaginable, our product range is designed to cater to every taste and preference. Whether you're looking for something simple and sleek or advanced and customisable, you'll find it at EcigOne.<\/p><h3>Expert Advice<\/h3><p>Our team of vaping experts is always on hand to guide you through our product selection and help you find the perfect match for your vaping needs. With years of experience and a passion for what we do, we're here to ensure you make the most informed choices.<\/p><h3>Exceptional Customer Service<\/h3><p>At EcigOne, we believe in going above and beyond for our customers. From hassle-free returns to fast and reliable shipping, we're committed to providing you with an outstanding shopping experience from start to finish.<\/p><h3>Competitive Prices<\/h3><p>We strive to offer our products at the most competitive prices, ensuring you get the best value for your money. With regular deals and promotions, vaping excellence is more accessible than ever.<\/p>",
+            "text": "<p>At EcigOne, we're passionate about providing the finest selection of <a href=\"https://ecigone.co.uk/collections/vape-kits\" title=\"https://ecigone.co.uk/collections/vape-kits\">e-cigarettes</a>, <a href=\"https://ecigone.co.uk/collections/e-liquids\" title=\"https://ecigone.co.uk/collections/e-liquids\">e-liquids</a>, and <a href=\"https://ecigone.co.uk/collections/vape-accessories\" title=\"https://ecigone.co.uk/collections/vape-accessories\">vaping accessories</a> in the UK. Whether you've recently quit smoking and are new to vaping or a seasoned enthusiast, our extensive collection from leading brands promises something for everyone.</p><p>We are a Multi award winning Online Retailer who has who has won the ECIGCLICK Awards for the past 4 years!</p><h3>Unmatched Quality</h3><p>Every product in our selection is meticulously chosen for its quality, performance, and durability. We partner with the most reputable brands in the industry to ensure you enjoy the best vaping experience possible.</p><h3>Extensive Range</h3><p>From the latest e-cigarette devices to a vast array of e-liquids in every flavour imaginable, our product range is designed to cater to every taste and preference. Whether you're looking for something simple and sleek or advanced and customisable, you'll find it at EcigOne.</p><h3>Expert Advice</h3><p>Our team of vaping experts is always on hand to guide you through our product selection and help you find the perfect match for your vaping needs. With years of experience and a passion for what we do, we're here to ensure you make the most informed choices.</p><h3>Exceptional Customer Service</h3><p>At EcigOne, we believe in going above and beyond for our customers. From hassle-free returns to fast and reliable shipping, we're committed to providing you with an outstanding shopping experience from start to finish.</p><h3>Competitive Prices</h3><p>We strive to offer our products at the most competitive prices, ensuring you get the best value for your money. With regular deals and promotions, vaping excellence is more accessible than ever.</p>",
             "text_color": "body",
             "button_label": "read more",
-            "button_link": "shopify:\/\/pages\/about-us",
+            "button_link": "shopify://pages/about-us",
             "button_style": "m-button--outline",
             "block_custom_class": "",
             "animations": "inherit"
@@ -1916,7 +1898,7 @@
           "settings": {
             "width": "25%",
             "alignment": "center",
-            "image": "shopify:\/\/shop_images\/Awards_Banner_Phone.webp",
+            "image": "shopify://shop_images/Awards_Banner_Phone.webp",
             "link": "",
             "block_custom_class": "",
             "animations": "inherit"
@@ -1930,7 +1912,7 @@
             "alignment": "center",
             "heading": "Sign Up & Save 10%",
             "text_size": "h2",
-            "description": "<p>Be the first to know about new collections and exclusive offers.<\/p>",
+            "description": "<p>Be the first to know about new collections and exclusive offers.</p>",
             "text_color": "body",
             "placeholder": "Enter your email address",
             "submit_button": "Subscribe",
@@ -1970,8 +1952,7 @@
       "blocks": {
         "badge_gQdTme": {
           "type": "badge",
-          "settings": {
-          }
+          "settings": {}
         },
         "title_DK4jaU": {
           "type": "title",
@@ -1988,8 +1969,7 @@
         },
         "variant_picker_C9HdkC": {
           "type": "variant_picker",
-          "settings": {
-          }
+          "settings": {}
         },
         "complementary_VK6wPU": {
           "type": "complementary",
@@ -2020,9 +2000,7 @@
         "buy_buttons_aaHGcg"
       ],
       "disabled": true,
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "",
         "boxed_layout": true,
@@ -2048,13 +2026,13 @@
           "settings": {
             "width": "100%",
             "color_scheme": "background-5",
-            "image_desktop": "shopify:\/\/shop_images\/22_a861402a-0786-4f9e-ae09-bc4be8ea5398.png",
-            "card_link": "shopify:\/\/collections\/all-hardware-collection",
+            "image_desktop": "shopify://shop_images/22_a861402a-0786-4f9e-ae09-bc4be8ea5398.png",
+            "card_link": "shopify://collections/all-hardware-collection",
             "apply_link_on": "card",
             "heading": "Special Hardware offer",
             "text_size": "h4",
             "sub_heading": "20% Discount",
-            "description": "<p>No Discount Code Needed at Checkout!<\/p>",
+            "description": "<p>No Discount Code Needed at Checkout!</p>",
             "desc_text_color": "subtext",
             "content_position": "top_center",
             "content_alignment": "center",
@@ -2108,10 +2086,10 @@
             "title": "Best Online Store In UK",
             "text_size": "h2",
             "subheading": "",
-            "text": "<h5>Welcome to Ecigone, Established in 2014, we are a Multi-award Winning Company! Voted The UK’s Best Online Vape Store consecutively for the last few years.<\/h5>",
+            "text": "<h5>Welcome to Ecigone, Established in 2014, we are a Multi-award Winning Company! Voted The UK’s Best Online Vape Store consecutively for the last few years.</h5>",
             "text_color": "body",
             "button_label": "Read More",
-            "button_link": "shopify:\/\/pages\/about-us",
+            "button_link": "shopify://pages/about-us",
             "button_style": "m-button--primary",
             "block_custom_class": "",
             "animations": "inherit"
@@ -2123,7 +2101,7 @@
           "settings": {
             "width": "50%",
             "alignment": "center",
-            "image": "shopify:\/\/shop_images\/0_b76927df-c87b-4b35-8cbb-2cf09bb732a3.png",
+            "image": "shopify://shop_images/0_b76927df-c87b-4b35-8cbb-2cf09bb732a3.png",
             "link": "",
             "block_custom_class": "",
             "animations": "inherit"
