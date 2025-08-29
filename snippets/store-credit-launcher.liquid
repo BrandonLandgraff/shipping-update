@@ -16,6 +16,9 @@
 		window.StoreCreditInit.customer_name = '{{ customer.first_name }} {{ customer.last_name }}';
 		window.StoreCreditInit.customer_email = '{{ storecredit_customer_email }}';
 		window.StoreCreditInit.customer_signature = '{{ storecredit_customer_signature }}';
+		window.StoreCreditInit.customer_tags = [{% for tag in customer.tags %} 
+			"{{ tag | escape }}"{% unless forloop.last %},{% endunless %} {% endfor %}
+		];
 		// B2B
 		window.StoreCreditInit.b2b_customer = '{{ customer.b2b? }}';
 		window.StoreCreditInit.customer_company_id = '{{ customer.current_company.id }}';
