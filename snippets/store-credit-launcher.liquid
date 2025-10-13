@@ -22,6 +22,8 @@
 		// B2B
 		window.StoreCreditInit.b2b_customer = '{{ customer.b2b? }}';
 		window.StoreCreditInit.customer_company_id = '{{ customer.current_company.id }}';
+		window.StoreCreditInit.customer_company_name = '{{ customer.current_company.name }}';
+		window.StoreCreditInit.customer_company_external_id = '{{ customer.current_company.external_id }}';
         {% for location in customer.current_company.available_locations -%}
             {% if location.current? %}
             	window.StoreCreditInit.company_location_id = '{{ location.id }}';            
