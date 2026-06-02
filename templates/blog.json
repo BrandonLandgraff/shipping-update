@@ -35,7 +35,7 @@
           "type": "recent_post",
           "settings": {
             "title": "Recent Post",
-            "sidebar_recent_blog_name": "news",
+            "sidebar_recent_blog_name": "ecigone-blogs",
             "sidebar_recent_blog_count": "3",
             "blog_show_tags": true,
             "blog_show_author": false,
