@@ -97,7 +97,7 @@
     {% endif %}
     {%- liquid
       render 'scroll-top-button'
-echo "<div style='display:none'>"       sections 'header-group' echo "</div>"
+echo "<div style='display:none'>"
 
       assign enable_aside_group = false
       if template == 'index' and settings.enable_aside_section_group == true
@@ -165,4 +165,13 @@ echo "<div style='display:none'>"       sections 'header-group' echo "</div>"
 
 {% include 'store-credit-launcher' %}
 </body>
-</html>
+</html>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: echo "<div style='display:none'>"       sections 'header-group' echo "</div>"
+  to: echo "<div style='display:none'>"
+  position: 3912..3945
+{%- endcomment -%}
